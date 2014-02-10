@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="QVTr2Coq : Encoding QVT-R Transformations in Coq" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>QVTr2Coq</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/qvt/qvtr2coq">View on GitHub</a>
+
+          <h1 id="project_title">QVTr2Coq</h1>
+          <h2 id="project_tagline">Encoding QVT-R Transformations in Coq</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/qvt/qvtr2coq/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/qvt/qvtr2coq/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a name="qvtr2coq" class="anchor" href="#qvtr2coq"><span class="octicon octicon-link"></span></a>QVTr2Coq</h1>
+
+<p><em>QVTr2Coq</em> is a systematic embedding of the <a href="http://www.omg.org/spec/QVT/1.1/">QVT Relations</a> (QVT-R) transformation language in Constructive Type Theory as implemented by the <a href="http://coq.inria.fr/">Coq proof assistant</a>. The framework allows to manually construct and verify implementations of transformation programs in QVT-R. </p>
+
+<h2>
+<a name="example-use-as-a-test-oracle" class="anchor" href="#example-use-as-a-test-oracle"><span class="octicon octicon-link"></span></a>Example Use as a Test Oracle</h2>
+
+<p>QVT-R semantics are complex and not well understood. At the present time, QVT-R semantics are implicitly modeled in tooling, but we cannot be sure if interpreters do what we expect the QVT-R specification to do.</p>
+
+<p>One solution to this problem is to build a test oracle that can be utilised to semi-automatically construct reference implementations of individual transformations to test QVT-R execution engines. Because of the problem-oriented nature of the QVT-R language, there is a gap between specification and the actual interpretation of QVT-R programs. To ensure that a model transformation specified in QVT-R results in the intended behaviour, it must be tested.</p>
+
+<p>For demonstration, we used the framework to generate a CTT specification from the well-known UML2RDBMS example transformation. The specification is then verified in a manual step and an implementation is extracted.</p>
+
+<p>For additional details on this use case please consult our publication.</p>
+
+<h2>
+<a name="features" class="anchor" href="#features"><span class="octicon octicon-link"></span></a>Features</h2>
+
+<p>Soon to be added.</p>
+
+
+
+<h2>
+<a name="installing" class="anchor" href="#installing"><span class="octicon octicon-link"></span></a>Installing</h2>
+
+<p><em>QVTr2Coq</em> runs on the Eclipse Modeling Tools. The following steps assume a fresh installation of Eclipse. </p>
+
+<ul>
+<li>Download Eclipse <a href="http://www.eclipse.org/downloads/packages/eclipse-modeling-tools/keplersr1">Modeling Tools 4.3 (Kepler)</a> (Kepler);</li>
+<li>Download and install in Eclipse (through the <strong>Help &gt; Install New Software...</strong>) menu the following archives in the given order:
+
+<ul>
+<li>
+<a href="http://www.eclipse.org/modeling/tmf/downloads/?project=xtext">Eclipse Xtext 2.5+</a> of the Model Development Tools (MDT) project;</li>
+<li>
+<a href="http://www.eclipse.org/mmt/downloads/?project=qvtd">Eclipse QVTd 0.10+</a> of the Model to Model Transformation (MMT) project;</li>
+</ul>
+</li>
+<li>Download <a href="http://qvt.github.io/qvtr2coq/downloads/qvtr2coq-0.3.1.zip">QVTr2Coq</a>;</li>
+<li>Import the QVTr2Coq project into your Eclipse workspace.</li>
+</ul><p>You are ready to use the code generator to produce Coq specifications from QVT-R programs, Ecore metamodels and instances thereof.</p>
+
+
+
+
+
+<h2>
+<a name="publications" class="anchor" href="#publications"><span class="octicon octicon-link"></span></a>Publications</h2>
+
+<ul>
+<li>A. Rentschler, J. Terrell, S. Zschaler, L. Happe, R. Reussner. <a href="http://could.finally.lead.to/paper.pdf"><em>Testing QVT-R Transformation Tools with Coq-Verified Implementations</em></a>. Submitted to the 7th International Conference on Model Transformation (ICMT'14).</li>
+</ul><h2>
+<a name="contributors" class="anchor" href="#contributors"><span class="octicon octicon-link"></span></a>Contributors</h2>
+
+<ul>
+<li><a href="http://sdq.ipd.kit.edu/people/andreas_rentschler/">Andreas Rentschler</a></li>
+<li><a href="http://www.inf.kcl.ac.uk/pg/terrellj/">Jeffrey Terrell</a></li>
+<li><a href="https://kclpure.kcl.ac.uk/portal/steffen.zschaler.html">Steffen Zschaler</a></li>
+</ul><p>This research is a cooperation between King's College London (KCL) and Karlsruhe Institute of Technology (KIT).
+Work has partly been funded by the German Research Foundation (DFG) under the Priority Programme SPP 1593: <a href="http://www.dfg-spp1593.de">Design For Future – Managed Software Evolution</a> and grant No. RE 1674/5-1: <a href="http://www.ferdinand-project.org">Model-Driven Methods and Tools for Performance Prediction and Capacity Planning of Component-Based Software Systems</a>.</p>
+
+<p><img src="images/Logo_KIT.png" alt="KIT" height="80px">   
+<img src="images/Logo_KCL.png" alt="KCL" height="80px">   
+<img src="images/Logo_ADVERT2.png" alt="ADVERT" height="80px">   
+<img src="images/Logo_FERDINAND.png" alt="FERDINAND" height="70px"></p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">QVTr2Coq maintained by <a href="https://github.com/qvt">qvt</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
