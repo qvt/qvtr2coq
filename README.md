@@ -85,5 +85,5 @@ Work has partly been funded by the German Research Foundation (DFG) under the Pr
 
 <img src="images/Logo_KIT.png" alt="KIT" height="80px"/>&nbsp;&nbsp;&nbsp;
 <img src="images/Logo_KCL.png" alt="KCL" height="80px"/>&nbsp;&nbsp;&nbsp;
-<img src="images/Logo_ADVERT.png" alt="ADVERT" width="100px" height="80px"/>&nbsp;&nbsp;&nbsp;
-<img src="images/Logo_FERDINAND.png" alt="FERDINAND" height="70px"/>
+<img src="images/Logo_Advert.png" alt="ADVERT" width="100px" height="80px"/>&nbsp;&nbsp;&nbsp;
+<img src="images/Logo_Ferdinand.png" alt="FERDINAND" height="70px"/>
