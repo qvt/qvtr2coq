@@ -15,9 +15,9 @@ For additional details on this use case please consult our publication.
 ## Features
 
 Soon to be added.
-<!--QVTr2Coq is meta-model independent, being able to process any meta-model specified in ECore and its respective instances in XMI. Additional constraints, as well as operations, are specified by embedding OCL in annotations, as prescribed by EMF. Inter-model consistency is specified by the [QVT Relations](http://www.omg.org/spec/QVT/1.1/) (QVT-R) transformation language.
+<!--Blabla is meta-model independent, being able to process any meta-model specified in ECore and its respective instances in XMI. Additional constraints, as well as operations, are specified by embedding OCL in annotations, as prescribed by EMF. Inter-model consistency is specified by the [QVT Relations](http://www.omg.org/spec/QVT/1.1/) (QVT-R) transformation language.
 
-Over these constraints and models, Echo possesses the following features.
+Over these constraints and models, Qvtr2Coq possesses the following features.
 
 <dl>
   <dt>Model visualization</dt>
@@ -51,24 +51,23 @@ Repair procedures are always *minimal*, in the sense that the resulting consiste
 
 ## Installing
 
-Soon to be added.
-<!--*Echo* is deployed over the Eclipse Modeling Tools 4.3 (Kepler). The following steps assume a fresh installation of Eclipse. 
+*QVTr2Coq* runs on the Eclipse Modeling Tools. The following steps assume a fresh installation of Eclipse. 
 
-* Download Eclipse [Modeling Tools 4.3](http://www.eclipse.org/downloads/packages/eclipse-modeling-tools/keplersr1) (Kepler);
+* Download Eclipse [Modeling Tools 4.3 (Kepler)](http://www.eclipse.org/downloads/packages/eclipse-modeling-tools/keplersr1) (Kepler);
 * Download and install in Eclipse (through the **Help > Install New Software...**) menu the following archives in the given order:
-  + [Eclipse OCL 4.2](http://www.eclipse.org/modeling/mdt/downloads/?project=ocl) of the Model Development Tools (MDT) project;
-  + [Eclipse QVTd 0.11](http://www.eclipse.org/mmt/downloads/?project=qvtd) of the Model to Model Transformation (MMT) project;
-  + [Echo 0.3](http://haslab.github.io/echo/downloads/echo-0.3.1.zip).
+  + [Eclipse Xtext 2.5+](http://www.eclipse.org/modeling/tmf/downloads/?project=xtext) of the Model Development Tools (MDT) project;
+  + [Eclipse QVTd 0.10+](http://www.eclipse.org/mmt/downloads/?project=qvtd) of the Model to Model Transformation (MMT) project;
+* Download [QVTr2Coq](http://qvt.github.io/qvtr2coq/downloads/qvtr2coq-0.3.1.zip);
+* Import the QVTr2Coq project into your Eclipse workspace.
 
-For Mac OS users, versions of Java earlier than 7up40 have an issue with the bridge between AWT and SWT that does not allow the embedding of the Alloy Visualizer in Eclipse. This is fixed in posterior releases.
+You are ready to use the code generator to produce Coq specifications from QVT-R programs, Ecore metamodels and instances thereof.
 
-
-([read more](https://github.com/haslab/echo/wiki/Install))-->
+<!--([read more](https://github.com/qvt/qvtr2coq/wiki/Install))-->
 
 
 <!--## Examples
 
-Folder [examples](http://github.com/haslab/echo/tree/master/examples) contains ECore meta-models and QVT-R implementations of some typical bidirectional transformations, as well some example XMI model instances. Alternatively, download this [archive](http://haslab.github.io/echo/downloads/echo-0.3.0_examples.zip) containing the same examples.
+Folder [examples](http://github.com/haslab/echo/tree/master/examples) contains Ecore meta-models and QVT-R implementations of some typical bidirectional transformations, as well some example XMI model instances. Alternatively, download this [archive](http://haslab.github.io/echo/downloads/echo-0.3.0_examples.zip) containing the same examples.
 
 ([read more](https://sdqweb.ipd.kit.edu/wiki/Testing_QVT-R_Transformation_Tools))
 ([read more](https://github.com/haslab/echo/wiki/Examples))-->
@@ -86,5 +85,5 @@ Work has partly been funded by the German Research Foundation (DFG) under the Pr
 
 <img src="images/Logo_KIT.png" alt="KIT" height="80px"/>&nbsp;&nbsp;&nbsp;
 <img src="images/Logo_KCL.png" alt="KCL" height="80px"/>&nbsp;&nbsp;&nbsp;
-<img src="images/Logo_FERDINAND.png" alt="FERDINAND" height="70px"/>&nbsp;&nbsp;&nbsp;
-<img src="images/Logo_ADVERT.png" alt="ADVERT" height="80px"/>
+<img src="images/Logo_ADVERT.png" alt="ADVERT" width="100px" height="80px"/>&nbsp;&nbsp;&nbsp;
+<img src="images/Logo_FERDINAND.png" alt="FERDINAND" height="70px"/>
