@@ -84,7 +84,7 @@ Folder [examples](http://github.com/haslab/echo/tree/master/examples) contains E
 This research is a cooperation between King's College London (KCL) and Karlsruhe Institute of Technology (KIT).
 Work has partly been funded by the German Research Foundation (DFG) under the Priority Programme SPP 1593: [Design For Future – Managed Software Evolution](http://www.dfg-spp1593.de) and grant No. RE 1674/5-1: [Model-Driven Methods and Tools for Performance Prediction and Capacity Planning of Component-Based Software Systems](http://www.ferdinand-project.org).
 
-<img src="images/Logo_KIT.jpg" alt="KIT" height="100px"/>
+<img src="images/Logo_KIT.png" alt="KIT" height="100px"/>
 <img src="images/Logo_KCL.jpg" alt="KCL" height="100px"/>
-<img src="images/Logo_Ferdinand.jpg" alt="FERDINAND" height="100px"/>
+<img src="images/Logo_Ferdinand.png" alt="FERDINAND" height="100px"/>
 <img src="images/Logo_ADVERT.jpg" alt="ADVERT" height="100px"/>
