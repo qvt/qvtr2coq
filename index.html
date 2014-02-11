@@ -31,10 +31,7 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <h1>
-<a name="qvtr2coq" class="anchor" href="#qvtr2coq"><span class="octicon octicon-link"></span></a>QVTr2Coq</h1>
-
-<p><em>QVTr2Coq</em> is a systematic embedding of the <a href="http://www.omg.org/spec/QVT/1.1/">QVT Relations</a> (QVT-R) transformation language in Constructive Type Theory as implemented by the <a href="http://coq.inria.fr/">Coq proof assistant</a>. The framework allows to manually construct and verify implementations of transformation programs in QVT-R. </p>
+        <p><em>QVTr2Coq</em> is a systematic embedding of the <a href="http://www.omg.org/spec/QVT/1.1/">QVT Relations</a> (QVT-R) transformation language in Constructive Type Theory as implemented by the <a href="http://coq.inria.fr/">Coq proof assistant</a>. The framework allows to manually construct and verify implementations of QVT-R transformation programs in Coq. </p>
 
 <h2>
 <a name="example-use-as-a-test-oracle" class="anchor" href="#example-use-as-a-test-oracle"><span class="octicon octicon-link"></span></a>Example Use as a Test Oracle</h2>
@@ -50,11 +47,16 @@
 <h2>
 <a name="features" class="anchor" href="#features"><span class="octicon octicon-link"></span></a>Features</h2>
 
-<p>Soon to be added.</p>
+<p>The project consists of three Xtend-based transformations:</p>
 
-
-
-<h2>
+<ul>
+<li>
+<em>QVTr2Coq</em> translates QVTd programs to Coq specifications;</li>
+<li>
+<em>Ecore2Coq</em> translates Ecore metamodels to Coq specifications;</li>
+<li>
+<em>XMI2Coq</em> translates Ecore instances to Coq specifications.</li>
+</ul><h2>
 <a name="installing" class="anchor" href="#installing"><span class="octicon octicon-link"></span></a>Installing</h2>
 
 <p><em>QVTr2Coq</em> runs on the Eclipse Modeling Tools. The following steps assume a fresh installation of Eclipse. </p>
@@ -72,9 +74,16 @@
 </li>
 <li>Download <a href="http://qvt.github.io/qvtr2coq/downloads/qvtr2coq-0.3.1.zip">QVTr2Coq</a>;</li>
 <li>Import the QVTr2Coq project into your Eclipse workspace.</li>
-</ul><p>You are ready to use the code generator to produce Coq specifications from QVT-R programs, Ecore metamodels and instances thereof.</p>
+</ul><p>You are ready to use the code generator to produce Coq specifications from QVT-R programs, Ecore metamodels and instances thereof. To do so, use the run configuration "Generate Coq Code". The transformation searches in subfolder <a href="http://github.com/qvtr/qvtr2coq/tree/master/edu.kit.ipd.sdq.mdsd.qvtrelation2coq/models">models</a> for files ending with .qvtr, .ecore, and .xmi. Resulting Coq specifications (.v files) are placed into <a href="http://github.com/qvtr/qvtr2coq/tree/master/edu.kit.ipd.sdq.mdsd.qvtrelation2coq/src-gen">src-gen</a>. </p>
 
+<p>To use the generated Coq files, you need to install the <a href="http://coq.inria.fr/download">Coq proof assistant</a>, version 8.4 or higher. We recommend to download Coq bundled with CoqIDE.</p>
 
+<h2>
+<a name="example-proof" class="anchor" href="#example-proof"><span class="octicon octicon-link"></span></a>Example Proof</h2>
+
+<p>Folder <a href="http://github.com/qvtr/qvtr2coq/tree/master/edu.kit.ipd.sdq.mdsd.qvtrelation2coq/models">models</a> already contains QVT-R implementations together with their Ecore metamodels. One of them is the example transformation UML2RDBMS that maps UML to RDBMS models. It is the same version as that provided by the Eclipse QVTd project.</p>
+
+<p>In folder <a href="http://github.com/qvtr/qvtr2coq/tree/master/edu.kit.ipd.sdq.mdsd.qvtrelation2coq/proof">proof</a>, you will find the generated Coq specification of UML2RDBMS, complemented with an example proof. Several of the lemmas are general enough to be used in your own proofs, for instance package ListHelpers.</p>
 
 
 
@@ -87,9 +96,12 @@
 <a name="contributors" class="anchor" href="#contributors"><span class="octicon octicon-link"></span></a>Contributors</h2>
 
 <ul>
-<li><a href="http://sdq.ipd.kit.edu/people/andreas_rentschler/">Andreas Rentschler</a></li>
-<li><a href="http://www.inf.kcl.ac.uk/pg/terrellj/">Jeffrey Terrell</a></li>
-<li><a href="https://kclpure.kcl.ac.uk/portal/steffen.zschaler.html">Steffen Zschaler</a></li>
+<li>
+<a href="http://sdq.ipd.kit.edu/people/andreas_rentschler/">Andreas Rentschler</a> from Karlsruhe Institute of Technology</li>
+<li>
+<a href="http://www.inf.kcl.ac.uk/pg/terrellj/">Jeffrey Terrell</a> from King's College, London</li>
+<li>
+<a href="https://kclpure.kcl.ac.uk/portal/steffen.zschaler.html">Steffen Zschaler</a> from King's College, London</li>
 </ul><p>This research is a cooperation between King's College London (KCL) and Karlsruhe Institute of Technology (KIT).
 Work has partly been funded by the German Research Foundation (DFG) under grant No. RE 1674/5-1: <a href="http://www.ferdinand-project.org">Model-Driven Methods and Tools for Performance Prediction and Capacity Planning of Component-Based Software Systems</a> and the Priority Programme SPP 1593: <a href="http://www.dfg-spp1593.de">Design For Future – Managed Software Evolution</a>.</p>
 
