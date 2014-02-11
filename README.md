@@ -1,6 +1,4 @@
-# QVTr2Coq
-
-*QVTr2Coq* is a systematic embedding of the [QVT Relations](http://www.omg.org/spec/QVT/1.1/) (QVT-R) transformation language in Constructive Type Theory as implemented by the [Coq proof assistant](http://coq.inria.fr/). The framework allows to manually construct and verify implementations of transformation programs in QVT-R. 
+*QVTr2Coq* is a systematic embedding of the [QVT Relations](http://www.omg.org/spec/QVT/1.1/) (QVT-R) transformation language in Constructive Type Theory as implemented by the [Coq proof assistant](http://coq.inria.fr/). The framework allows to manually construct and verify implementations of QVT-R transformation programs in Coq. 
 
 ## Example Use as a Test Oracle
 
@@ -14,40 +12,11 @@ For additional details on this use case please consult our publication.
 
 ## Features
 
-Soon to be added.
-<!--Blabla is meta-model independent, being able to process any meta-model specified in ECore and its respective instances in XMI. Additional constraints, as well as operations, are specified by embedding OCL in annotations, as prescribed by EMF. Inter-model consistency is specified by the [QVT Relations](http://www.omg.org/spec/QVT/1.1/) (QVT-R) transformation language.
+The project consists of three Xtend-based transformations:
 
-Over these constraints and models, Qvtr2Coq possesses the following features.
-
-<dl>
-  <dt>Model visualization</dt>
-  <dd>Models are presented using the Alloy visualizer. For better readability, an Alloy theme is automatically inferred from the meta-model, although an user-defined theme can also be provided if desired.</dd>
-
-  <dt>Model generation</dt>
-  <dd>Given a meta-model and user-specified size, Echo can generate a new model conformant with the metamodel. Additional constraints can also be specified to generate instances with a parametrized shape.</dd>
-
-  <dt>Consistency check</dt>
-  <dd>Given a model, Echo can check if it conforms to the respective meta-model.</dd>
-
-  <dt>Model repair</dt>
-  <dd>Given a model that does not conform to its meta-model, Echo can find a minimal repair that produces a consistent model.</dd>
-
-  <dt>Inter-model consistency check</dt>
-  <dd>Given a QVT-R transformation and two models that are supposed to be consistent via it, Echo can check if such is the case. The checking semantics follows exactly the specified in the QVT standard.</dd>
-
-  <dt>Inter-model consistency repair</dt>
-  <dd>QVT-R specifications are interpreted as bidirectional transformations, thus, given inconsistent models, Echo is able to repair either one to recover consistency.</dd>
-
-  <dt>Inter-model generation</dt>
-  <dd>Given a QVT-R transformation and an existing model, Echo can generate the minimal model consistent with existing model by the QVT-R transformation.</dd>
-</dl>
-
-For all generation and repair procedures, Echo presents *all* valid solutions, allowing the user to select the desired one.
-
-Repair procedures are always *minimal*, in the sense that the resulting consistent model is as close as possible to the original inconsistent one. The user is able to choose how to measure this distance: either through *graph edit distance*, a meta-model independent metric that sees models as graphs and counts modifications of edges and nodes, or through an *operation-based distance*, that counts the number of applications of user-defined operations required to obtain the new model.
-
-([read more](https://github.com/haslab/echo/wiki/Overview))
--->
+* *QVTr2Coq* translates QVTd programs to Coq specifications;
+* *Ecore2Coq* translates Ecore metamodels to Coq specifications;
+* *XMI2Coq* translates Ecore instances to Coq specifications.
 
 ## Installing
 
@@ -60,25 +29,25 @@ Repair procedures are always *minimal*, in the sense that the resulting consiste
 * Download [QVTr2Coq](http://qvt.github.io/qvtr2coq/downloads/qvtr2coq-0.3.1.zip);
 * Import the QVTr2Coq project into your Eclipse workspace.
 
-You are ready to use the code generator to produce Coq specifications from QVT-R programs, Ecore metamodels and instances thereof.
+You are ready to use the code generator to produce Coq specifications from QVT-R programs, Ecore metamodels and instances thereof. To do so, use the run configuration "Generate Coq Code". The transformation searches in subfolder [models](http://github.com/qvtr/qvtr2coq/tree/master/edu.kit.ipd.sdq.mdsd.qvtrelation2coq/models) for files ending with .qvtr, .ecore, and .xmi. Resulting Coq specifications (.v files) are placed into [src-gen](http://github.com/qvtr/qvtr2coq/tree/master/edu.kit.ipd.sdq.mdsd.qvtrelation2coq/src-gen). 
 
-<!--([read more](https://github.com/qvt/qvtr2coq/wiki/Install))-->
+To use the generated Coq files, you need to install the [Coq proof assistant](http://coq.inria.fr/download), version 8.4 or higher. We recommend to download Coq bundled with CoqIDE.
 
+## Example Proof
 
-<!--## Examples
+Folder [models](http://github.com/qvtr/qvtr2coq/tree/master/edu.kit.ipd.sdq.mdsd.qvtrelation2coq/models) already contains QVT-R implementations together with their Ecore metamodels. One of them is the example transformation UML2RDBMS that maps UML to RDBMS models. It is the same version as that provided by the Eclipse QVTd project.
 
-Folder [examples](http://github.com/haslab/echo/tree/master/examples) contains Ecore meta-models and QVT-R implementations of some typical bidirectional transformations, as well some example XMI model instances. Alternatively, download this [archive](http://haslab.github.io/echo/downloads/echo-0.3.0_examples.zip) containing the same examples.
+In folder [proof](http://github.com/qvtr/qvtr2coq/tree/master/edu.kit.ipd.sdq.mdsd.qvtrelation2coq/proof), you will find the generated Coq specification of UML2RDBMS, complemented with an example proof. Several of the lemmas are general enough to be used in your own proofs, for instance package ListHelpers.
 
-([read more](https://sdqweb.ipd.kit.edu/wiki/Testing_QVT-R_Transformation_Tools))
-([read more](https://github.com/haslab/echo/wiki/Examples))-->
+<!--([see also](https://sdqweb.ipd.kit.edu/wiki/Testing_QVT-R_Transformation_Tools))-->
 
 ## Publications
 * A. Rentschler, J. Terrell, S. Zschaler, L. Happe, R. Reussner. [*Testing QVT-R Transformation Tools with Coq-Verified Implementations*](http://could.finally.lead.to/paper.pdf). Submitted to the 7th International Conference on Model Transformation (ICMT'14).
 
 ## Contributors
-* [Andreas Rentschler] (http://sdq.ipd.kit.edu/people/andreas_rentschler/)
-* [Jeffrey Terrell] (http://www.inf.kcl.ac.uk/pg/terrellj/)
-* [Steffen Zschaler] (https://kclpure.kcl.ac.uk/portal/steffen.zschaler.html)
+* [Andreas Rentschler] (http://sdq.ipd.kit.edu/people/andreas_rentschler/) from Karlsruhe Institute of Technology
+* [Jeffrey Terrell] (http://www.inf.kcl.ac.uk/pg/terrellj/) from King's College, London
+* [Steffen Zschaler] (https://kclpure.kcl.ac.uk/portal/steffen.zschaler.html) from King's College, London
 
 This research is a cooperation between King's College London (KCL) and Karlsruhe Institute of Technology (KIT).
 Work has partly been funded by the German Research Foundation (DFG) under grant No. RE 1674/5-1: [Model-Driven Methods and Tools for Performance Prediction and Capacity Planning of Component-Based Software Systems](http://www.ferdinand-project.org) and the Priority Programme SPP 1593: [Design For Future – Managed Software Evolution](http://www.dfg-spp1593.de).
