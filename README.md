@@ -4,7 +4,7 @@
 
 QVT-R semantics are complex and not well understood. At the present time, QVT-R semantics are implicitly modeled in tooling, but we cannot be sure if interpreters do what we expect the QVT-R specification to do.
 
-<img src="http://qvt.github.io/qvtr2coq/images/Approach.png" alt="Approach"/>
+<img src="http://qvt.github.io/qvtr2coq/images/Approach.png" width="640px" alt="The overall approach"/><br>
 
 One solution to this problem is to build a test oracle that can be utilised to semi-automatically construct reference implementations of individual transformations to test QVT-R execution engines. Because of the problem-oriented nature of the QVT-R language, there is a gap between specification and the actual interpretation of QVT-R programs. To ensure that a model transformation specified in QVT-R results in the intended behaviour, it must be tested.
 
