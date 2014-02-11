@@ -54,14 +54,16 @@
 <em>Ecore2Coq</em> translates Ecore metamodels to Coq specifications;</li>
 <li>
 <em>XMI2Coq</em> translates Ecore instances to Coq specifications.</li>
-</ul><h2>
+</ul><p>Additionally, we provide a verified implementation of <em>UML2RDBMS</em> as an example use case.</p>
+
+<h2>
 <a name="installing" class="anchor" href="#installing"><span class="octicon octicon-link"></span></a>Installing</h2>
 
 <p><em>QVTr2Coq</em> runs on the Eclipse Modeling Tools. The following steps assume a fresh installation of Eclipse. </p>
 
 <ul>
 <li>Download Eclipse <a href="http://www.eclipse.org/downloads/packages/eclipse-modeling-tools/keplersr1">Modeling Tools 4.3 (Kepler)</a> (Kepler);</li>
-<li>Download and install in Eclipse (through the <strong>Help &gt; Install New Software…</strong>) menu the following archives in the given order:
+<li>Download and install in Eclipse the following archives in the given order, by choosing <strong>Help &gt; Install New Software…</strong>:
 
 <ul>
 <li>
@@ -70,7 +72,7 @@
 <a href="http://www.eclipse.org/mmt/downloads/?project=qvtd">Eclipse QVTd 0.10+</a> of the Model to Model Transformation (MMT) project;</li>
 </ul>
 </li>
-<li>Download <a href="https://github.com/qvt/qvtr2coq/zipball/master">QVTr2Coq</a>&lt;!--(<a href="http://qvt.github.io/qvtr2coq/downloads/qvtr2coq-0.1.0.zip)--%3E">http://qvt.github.io/qvtr2coq/downloads/qvtr2coq-0.1.0.zip)--&gt;</a>;</li>
+<li>Download <a href="https://github.com/qvt/qvtr2coq/zipball/master">QVTr2Coq</a>;</li>
 <li>Import the contained project through <strong>File &gt; Import &gt; Existing Projects into Workspace…</strong> into your Eclipse workspace.</li>
 </ul><p>You are ready to use the code generator to produce Coq specifications from QVT-R programs, Ecore metamodels and instances thereof. To do so, use the run configuration <strong>Generate Coq Code</strong>. The transformation searches in subfolder <a href="http://github.com/qvt/qvtr2coq/tree/master/edu.kit.ipd.sdq.mdsd.qvtrelation2coq/models">models</a> for files ending with .qvtr, .ecore, and .xmi. Resulting Coq specifications (.v files) are placed into <a href="http://github.com/qvt/qvtr2coq/tree/master/edu.kit.ipd.sdq.mdsd.qvtrelation2coq/src-gen">src-gen</a>. </p>
 
