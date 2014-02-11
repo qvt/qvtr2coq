@@ -31,10 +31,10 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <p><em>QVTr2Coq</em> is a systematic embedding of the <a href="http://www.omg.org/spec/QVT/1.1/">QVT Relations</a> (QVT-R) transformation language in Constructive Type Theory as implemented by the <a href="http://coq.inria.fr/">Coq proof assistant</a>. The framework allows to manually construct and verify implementations of QVT-R transformation programs in Coq. </p>
+        <p><em>QVTr2Coq</em> is a systematic embedding of the <a href="http://www.omg.org/spec/QVT/1.1/">QVT Relations</a> (QVT-R) transformation language in Constructive Type Theory as implemented by the <a href="http://coq.inria.fr/">Coq proof assistant</a>. The framework allows to manually construct and verify implementations of QVT-R transformation programs in Coq. Verified transformations can be used as a test oracle, i.e., for testing existing QVT-R transformation tools if they are in compliance with standardised semantics.</p>
 
 <h2>
-<a name="example-use-as-a-test-oracle" class="anchor" href="#example-use-as-a-test-oracle"><span class="octicon octicon-link"></span></a>Example Use as a Test Oracle</h2>
+<a name="description" class="anchor" href="#description"><span class="octicon octicon-link"></span></a>Description</h2>
 
 <p>QVT-R semantics are complex and not well understood. At the present time, QVT-R semantics are implicitly modeled in tooling, but we cannot be sure if interpreters do what we expect the QVT-R specification to do.</p>
 
@@ -42,12 +42,12 @@
 
 <p>For demonstration, we used the framework to generate a CTT specification from the well-known UML2RDBMS example transformation. The specification is then verified in a manual step and an implementation is extracted.</p>
 
-<p>For additional details on this use case please consult our publication.</p>
+<p>For additional details on this use case, please consult our publication.</p>
 
 <h2>
 <a name="features" class="anchor" href="#features"><span class="octicon octicon-link"></span></a>Features</h2>
 
-<p>The project consists of three Xtend-based transformations:</p>
+<p>The project consists of three Xtend-based transformations for encoding QVT-R in Coq,</p>
 
 <ul>
 <li>
