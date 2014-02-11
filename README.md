@@ -10,9 +10,9 @@ For demonstration, we used the framework to generate a CTT specification from th
 
 ## Features
 
-The project consists of three Xtend-based transformations for encoding QVT-R in Coq,
+The project consists of three Xtend-based model transformations for encoding QVT-R in Coq,
 
-* *QVTr2Coq* translates QVTd programs to Coq specifications;
+* *QVTr2Coq* translates QVT-R programs (parsed with QVTd) to Coq specifications;
 * *Ecore2Coq* translates Ecore metamodels to Coq specifications;
 * *XMI2Coq* translates Ecore instances to Coq specifications.
 
@@ -22,12 +22,19 @@ Additionally, we provide a verified implementation of *UML2RDBMS* as an example 
 
 *QVTr2Coq* runs on the Eclipse Modeling Tools. The following steps assume a fresh installation of Eclipse. 
 
+<<<<<<< HEAD
+* Download Eclipse [Modeling Tools 4.3 (Kepler)](http://www.eclipse.org/downloads/packages/eclipse-modeling-tools/keplersr1) (Kepler) and launch it;
+* Install through menu **Help > Install Modeling Components...** [Eclipse Xtext 2.5+](http://www.eclipse.org/modeling/tmf/downloads/?project=xtext) of the Model Development Tools (MDT) project;
+* Choose **Help > Install New Software...** to install [Eclipse QVTd 0.10+](http://www.eclipse.org/mmt/downloads/?project=qvtd) of the Model to Model Transformation (MMT) project, [update site](http://download.eclipse.org/mmt/qvtd/updates/releases);
+* Download [QVTr2Coq](https://github.com/qvt/qvtr2coq/zipball/master) and import contained projects through **File > Import > Existing Projects into Workspace…** into your Eclipse workspace.
+=======
 * Download Eclipse [Modeling Tools 4.3 (Kepler)](http://www.eclipse.org/downloads/packages/eclipse-modeling-tools/keplersr1) (Kepler);
 * Download and install in Eclipse the following archives in the given order, by choosing **Help > Install New Software…**:
   + [Eclipse Xtext 2.5+](http://www.eclipse.org/modeling/tmf/downloads/?project=xtext) of the Model Development Tools (MDT) project;
   + [Eclipse QVTd 0.10+](http://www.eclipse.org/mmt/downloads/?project=qvtd) of the Model to Model Transformation (MMT) project;
 * Download [QVTr2Coq](https://github.com/qvt/qvtr2coq/zipball/master);
 * Import the contained project through **File > Import > Existing Projects into Workspace…** into your Eclipse workspace.
+>>>>>>> f45eac6bc7e984b6671c63e485a132d3be7b05c9
 
 <!--(http://qvt.github.io/qvtr2coq/downloads/qvtr2coq-0.1.0.zip)-->
 
@@ -39,7 +46,7 @@ To use the generated Coq files, you need to install the [Coq proof assistant](ht
 
 Folder [models](http://github.com/qvt/qvtr2coq/tree/master/edu.kit.ipd.sdq.mdsd.qvtrelation2coq/models) already contains QVT-R implementations together with their Ecore metamodels. One of them is the example transformation UML2RDBMS that maps UML to RDBMS models. It is the same version as that provided by the Eclipse QVTd project.
 
-In folder [proof](http://github.com/qvt/qvtr2coq/tree/master/edu.kit.ipd.sdq.mdsd.qvtrelation2coq/proof), you will find the generated Coq specification of UML2RDBMS, complemented with an example proof. Several of the lemmas are general enough to be used in your own proofs, for instance package ListHelpers.
+In folder [proof](http://github.com/qvt/qvtr2coq/tree/master/edu.kit.ipd.sdq.mdsd.qvtrelation2coq/proof), you will find the generated Coq specification of UML2RDBMS, complemented by an example proof. Several of the lemmas are general enough to be used in your own proofs, for instance package ListHelpers.
 
 <!--([see also](https://sdqweb.ipd.kit.edu/wiki/Testing_QVT-R_Transformation_Tools))-->
 
