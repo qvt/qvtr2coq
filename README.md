@@ -1,6 +1,6 @@
-*QVTr2Coq* is a systematic embedding of the [QVT Relations](http://www.omg.org/spec/QVT/1.1/) (QVT-R) transformation language in Constructive Type Theory as implemented by the [Coq proof assistant](http://coq.inria.fr/). The framework allows to manually construct and verify implementations of QVT-R transformation programs in Coq. 
+*QVTr2Coq* is a systematic embedding of the [QVT Relations](http://www.omg.org/spec/QVT/1.1/) (QVT-R) transformation language in Constructive Type Theory as implemented by the [Coq proof assistant](http://coq.inria.fr/). The framework allows to manually construct and verify implementations of QVT-R transformation programs in Coq. Verified transformations can be used as a test oracle, i.e., for testing existing QVT-R transformation tools if they are in compliance with standardised semantics.
 
-## Example Use as a Test Oracle
+## Description
 
 QVT-R semantics are complex and not well understood. At the present time, QVT-R semantics are implicitly modeled in tooling, but we cannot be sure if interpreters do what we expect the QVT-R specification to do.
 
@@ -8,11 +8,11 @@ One solution to this problem is to build a test oracle that can be utilised to s
 
 For demonstration, we used the framework to generate a CTT specification from the well-known UML2RDBMS example transformation. The specification is then verified in a manual step and an implementation is extracted.
 
-For additional details on this use case please consult our publication.
+For additional details on this use case, please consult our publication.
 
 ## Features
 
-The project consists of three Xtend-based transformations:
+The project consists of three Xtend-based transformations for encoding QVT-R in Coq,
 
 * *QVTr2Coq* translates QVTd programs to Coq specifications;
 * *Ecore2Coq* translates Ecore metamodels to Coq specifications;
