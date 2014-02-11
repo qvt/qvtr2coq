@@ -22,19 +22,10 @@ Additionally, we provide a verified implementation of *UML2RDBMS* as an example 
 
 *QVTr2Coq* runs on the Eclipse Modeling Tools. The following steps assume a fresh installation of Eclipse. 
 
-<<<<<<< HEAD
 * Download Eclipse [Modeling Tools 4.3 (Kepler)](http://www.eclipse.org/downloads/packages/eclipse-modeling-tools/keplersr1) (Kepler) and launch it;
 * Install through menu **Help > Install Modeling Components...** [Eclipse Xtext 2.5+](http://www.eclipse.org/modeling/tmf/downloads/?project=xtext) of the Model Development Tools (MDT) project;
 * Choose **Help > Install New Software...** to install [Eclipse QVTd 0.10+](http://www.eclipse.org/mmt/downloads/?project=qvtd) of the Model to Model Transformation (MMT) project, [update site](http://download.eclipse.org/mmt/qvtd/updates/releases);
 * Download [QVTr2Coq](https://github.com/qvt/qvtr2coq/zipball/master) and import contained projects through **File > Import > Existing Projects into Workspace…** into your Eclipse workspace.
-=======
-* Download Eclipse [Modeling Tools 4.3 (Kepler)](http://www.eclipse.org/downloads/packages/eclipse-modeling-tools/keplersr1) (Kepler);
-* Download and install in Eclipse the following archives in the given order, by choosing **Help > Install New Software…**:
-  + [Eclipse Xtext 2.5+](http://www.eclipse.org/modeling/tmf/downloads/?project=xtext) of the Model Development Tools (MDT) project;
-  + [Eclipse QVTd 0.10+](http://www.eclipse.org/mmt/downloads/?project=qvtd) of the Model to Model Transformation (MMT) project;
-* Download [QVTr2Coq](https://github.com/qvt/qvtr2coq/zipball/master);
-* Import the contained project through **File > Import > Existing Projects into Workspace…** into your Eclipse workspace.
->>>>>>> f45eac6bc7e984b6671c63e485a132d3be7b05c9
 
 <!--(http://qvt.github.io/qvtr2coq/downloads/qvtr2coq-0.1.0.zip)-->
 
