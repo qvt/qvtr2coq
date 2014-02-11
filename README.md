@@ -50,7 +50,7 @@ In folder [proof](http://github.com/qvt/qvtr2coq/tree/master/edu.kit.ipd.sdq.mds
 * [Steffen Zschaler] (https://kclpure.kcl.ac.uk/portal/steffen.zschaler.html) from King's College, London
 
 This research is a cooperation between King's College London (KCL) and Karlsruhe Institute of Technology (KIT).
-Work has partly been funded by the German Research Foundation (DFG) under grant No. RE 1674/5-1: [Model-Driven Methods and Tools for Performance Prediction and Capacity Planning of Component-Based Software Systems](http://www.ferdinand-project.org) and the Priority Programme SPP 1593: [Design For Future – Managed Software Evolution](http://www.dfg-spp1593.de).
+Work has partly been funded by the German Research Foundation (DFG) under grant No. RE 1674/5-1: Model-Driven Methods and Tools for Performance Prediction and Capacity Planning of Component-Based Software Systems (codenamed [FERDINAND project](http://www.ferdinand-project.org)) and the Priority Programme SPP 1593: Design For Future – Managed Software Evolution (more specifically, the [ADVERT project](http://www.dfg-spp1593.de)).
 
 <img src="http://qvt.github.io/qvtr2coq/images/Logo_KIT.png" alt="KIT" height="70px"/>&nbsp;&nbsp;&nbsp;&nbsp;
 <img src="http://qvt.github.io/qvtr2coq/images/Logo_KCL.png" alt="KCL" height="70px"/>&nbsp;&nbsp;&nbsp;&nbsp;
