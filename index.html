@@ -31,7 +31,7 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <p><em>QVTr2Coq</em> is a systematic embedding of the <a href="http://www.omg.org/spec/QVT/1.1/">QVT Relations</a> (QVT-R) transformation language in Constructive Type Theory as implemented by the <a href="http://coq.inria.fr/">Coq proof assistant</a>. The framework allows to manually construct and verify implementations of QVT-R transformation programs in Coq. Verified transformations can be used as a test oracle, i.e., for testing existing QVT-R transformation tools if they are in compliance with standardised semantics.</p>
+        <p><em>QVTr2Coq</em> is a systematic embedding of the <a href="http://www.omg.org/spec/QVT/1.1/">QVT Relations</a> (QVT-R) transformation language in Constructive Type Theory (CTT) as implemented by the <a href="http://coq.inria.fr/">Coq proof assistant</a>. The framework allows to manually construct and verify implementations of QVT-R transformation programs in Coq. Verified transformations can be used as a test oracle, i.e., for testing existing QVT-R transformation tools if they are in compliance with standardised semantics.</p>
 
 <h2>
 <a name="description" class="anchor" href="#description"><span class="octicon octicon-link"></span></a>Description</h2>
@@ -41,8 +41,6 @@
 <p>One solution to this problem is to build a test oracle that can be utilised to semi-automatically construct reference implementations of individual transformations to test QVT-R execution engines. Because of the problem-oriented nature of the QVT-R language, there is a gap between specification and the actual interpretation of QVT-R programs. To ensure that a model transformation specified in QVT-R results in the intended behaviour, it must be tested.</p>
 
 <p>For demonstration, we used the framework to generate a CTT specification from the well-known UML2RDBMS example transformation. The specification is then verified in a manual step and an implementation is extracted.</p>
-
-<p>For additional details on this use case, please consult our publication.</p>
 
 <h2>
 <a name="features" class="anchor" href="#features"><span class="octicon octicon-link"></span></a>Features</h2>
@@ -74,21 +72,21 @@
 </li>
 <li>Download <a href="http://qvt.github.io/qvtr2coq/downloads/qvtr2coq-0.3.1.zip">QVTr2Coq</a>;</li>
 <li>Import the QVTr2Coq project into your Eclipse workspace.</li>
-</ul><p>You are ready to use the code generator to produce Coq specifications from QVT-R programs, Ecore metamodels and instances thereof. To do so, use the run configuration "Generate Coq Code". The transformation searches in subfolder <a href="http://github.com/qvtr/qvtr2coq/tree/master/edu.kit.ipd.sdq.mdsd.qvtrelation2coq/models">models</a> for files ending with .qvtr, .ecore, and .xmi. Resulting Coq specifications (.v files) are placed into <a href="http://github.com/qvtr/qvtr2coq/tree/master/edu.kit.ipd.sdq.mdsd.qvtrelation2coq/src-gen">src-gen</a>. </p>
+</ul><p>You are ready to use the code generator to produce Coq specifications from QVT-R programs, Ecore metamodels and instances thereof. To do so, use the run configuration "Generate Coq Code". The transformation searches in subfolder <a href="http://github.com/qvt/qvtr2coq/tree/master/edu.kit.ipd.sdq.mdsd.qvtrelation2coq/models">models</a> for files ending with .qvtr, .ecore, and .xmi. Resulting Coq specifications (.v files) are placed into <a href="http://github.com/qvt/qvtr2coq/tree/master/edu.kit.ipd.sdq.mdsd.qvtrelation2coq/src-gen">src-gen</a>. </p>
 
 <p>To use the generated Coq files, you need to install the <a href="http://coq.inria.fr/download">Coq proof assistant</a>, version 8.4 or higher. We recommend to download Coq bundled with CoqIDE.</p>
 
 <h2>
 <a name="example-proof" class="anchor" href="#example-proof"><span class="octicon octicon-link"></span></a>Example Proof</h2>
 
-<p>Folder <a href="http://github.com/qvtr/qvtr2coq/tree/master/edu.kit.ipd.sdq.mdsd.qvtrelation2coq/models">models</a> already contains QVT-R implementations together with their Ecore metamodels. One of them is the example transformation UML2RDBMS that maps UML to RDBMS models. It is the same version as that provided by the Eclipse QVTd project.</p>
+<p>Folder <a href="http://github.com/qvt/qvtr2coq/tree/master/edu.kit.ipd.sdq.mdsd.qvtrelation2coq/models">models</a> already contains QVT-R implementations together with their Ecore metamodels. One of them is the example transformation UML2RDBMS that maps UML to RDBMS models. It is the same version as that provided by the Eclipse QVTd project.</p>
 
-<p>In folder <a href="http://github.com/qvtr/qvtr2coq/tree/master/edu.kit.ipd.sdq.mdsd.qvtrelation2coq/proof">proof</a>, you will find the generated Coq specification of UML2RDBMS, complemented with an example proof. Several of the lemmas are general enough to be used in your own proofs, for instance package ListHelpers.</p>
+<p>In folder <a href="http://github.com/qvt/qvtr2coq/tree/master/edu.kit.ipd.sdq.mdsd.qvtrelation2coq/proof">proof</a>, you will find the generated Coq specification of UML2RDBMS, complemented with an example proof. Several of the lemmas are general enough to be used in your own proofs, for instance package ListHelpers.</p>
 
 
 
 <h2>
-<a name="publications" class="anchor" href="#publications"><span class="octicon octicon-link"></span></a>Publications</h2>
+<a name="publication" class="anchor" href="#publication"><span class="octicon octicon-link"></span></a>Publication</h2>
 
 <ul>
 <li>A. Rentschler, J. Terrell, S. Zschaler, L. Happe, R. Reussner. <a href="http://could.finally.lead.to/paper.pdf"><em>Testing QVT-R Transformation Tools with Coq-Verified Implementations</em></a>. Submitted to the 7th International Conference on Model Transformation (ICMT'14).</li>
