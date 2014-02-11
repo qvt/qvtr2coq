@@ -21,13 +21,13 @@ The project consists of three Xtend-based transformations for encoding QVT-R in 
 *QVTr2Coq* runs on the Eclipse Modeling Tools. The following steps assume a fresh installation of Eclipse. 
 
 * Download Eclipse [Modeling Tools 4.3 (Kepler)](http://www.eclipse.org/downloads/packages/eclipse-modeling-tools/keplersr1) (Kepler);
-* Download and install in Eclipse (through the **Help > Install New Software...**) menu the following archives in the given order:
+* Download and install in Eclipse (through the **Help > Install New Software…**) menu the following archives in the given order:
   + [Eclipse Xtext 2.5+](http://www.eclipse.org/modeling/tmf/downloads/?project=xtext) of the Model Development Tools (MDT) project;
   + [Eclipse QVTd 0.10+](http://www.eclipse.org/mmt/downloads/?project=qvtd) of the Model to Model Transformation (MMT) project;
-* Download [QVTr2Coq](http://qvt.github.io/qvtr2coq/downloads/qvtr2coq-0.3.1.zip);
-* Import the QVTr2Coq project into your Eclipse workspace.
+* Download [QVTr2Coq](https://github.com/qvt/qvtr2coq/zipball/master)<!--(http://qvt.github.io/qvtr2coq/downloads/qvtr2coq-0.1.0.zip)-->;
+* Import the contained project through **File > Import > Existing Projects into Workspace…** into your Eclipse workspace.
 
-You are ready to use the code generator to produce Coq specifications from QVT-R programs, Ecore metamodels and instances thereof. To do so, use the run configuration "Generate Coq Code". The transformation searches in subfolder [models](http://github.com/qvt/qvtr2coq/tree/master/edu.kit.ipd.sdq.mdsd.qvtrelation2coq/models) for files ending with .qvtr, .ecore, and .xmi. Resulting Coq specifications (.v files) are placed into [src-gen](http://github.com/qvt/qvtr2coq/tree/master/edu.kit.ipd.sdq.mdsd.qvtrelation2coq/src-gen). 
+You are ready to use the code generator to produce Coq specifications from QVT-R programs, Ecore metamodels and instances thereof. To do so, use the run configuration **Generate Coq Code**. The transformation searches in subfolder [models](http://github.com/qvt/qvtr2coq/tree/master/edu.kit.ipd.sdq.mdsd.qvtrelation2coq/models) for files ending with .qvtr, .ecore, and .xmi. Resulting Coq specifications (.v files) are placed into [src-gen](http://github.com/qvt/qvtr2coq/tree/master/edu.kit.ipd.sdq.mdsd.qvtrelation2coq/src-gen). 
 
 To use the generated Coq files, you need to install the [Coq proof assistant](http://coq.inria.fr/download), version 8.4 or higher. We recommend to download Coq bundled with CoqIDE.
 
