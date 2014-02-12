@@ -1,4 +1,6 @@
-*QVTr2Coq* is a systematic embedding of the [QVT Relations](http://www.omg.org/spec/QVT/1.1/) (QVT-R) transformation language in Constructive Type Theory (CTT) as implemented by the [Coq proof assistant](http://coq.inria.fr/). The framework allows to manually construct and verify implementations of QVT-R transformation programs in Coq. Verified transformations can be used as a test oracle, i.e., for testing existing QVT-R transformation tools if they are in compliance with standardised semantics.
+<!-- TODO: for the camera-ready version of the paper, change project name (and links) to "QVTrv" -->
+
+QVTr2Coq is a systematic embedding of the [QVT Relations](http://www.omg.org/spec/QVT/1.1/) (QVT-R) transformation language in Constructive Type Theory (CTT) as implemented by the [Coq proof assistant](http://coq.inria.fr/). The framework allows to manually construct and verify implementations of QVT-R transformation programs in Coq. Verified transformations can be used as a test oracle, i.e., for testing existing QVT-R transformation tools if they are in compliance with standardised semantics.
 
 ### Description
 
