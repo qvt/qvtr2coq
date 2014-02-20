@@ -47,7 +47,7 @@ Folder **[model](http://github.com/qvt/qvtr2coq/tree/master/edu.kit.ipd.sdq.mdsd
 In folder **[proof](http://github.com/qvt/qvtr2coq/tree/master/edu.kit.ipd.sdq.mdsd.qvtrelation2coq/proof)** you will find the generated Coq specification of UML2RDBMS, complemented by an example proof and a Haskell program, **[UML2RDBMS.hs](http://github.com/qvt/qvtr2coq/tree/master/edu.kit.ipd.sdq.mdsd.qvtrelation2coq/proof/UML2RDBMS.hs)**, which has been extracted from the proof. Several of the lemmas are general enough to be used in your own proofs, these are contained in package **[ListHelpers.v](http://github.com/qvt/qvtr2coq/tree/master/edu.kit.ipd.sdq.mdsd.qvtrelation2coq/proof/ListHelpers.v)**.
 
 ### Publication
-* A. Rentschler, J. Terrell, S. Zschaler, L. Happe, R. Reussner. [*Testing QVT-R Transformation Tools with Coq-Verified Implementations*](http://could.finally.lead.to/paper.pdf). Submitted to the 7th International Conference on Model Transformation (ICMT'14).
+* A. Rentschler, J. Terrell, S. Zschaler, L. Happe, R. Reussner. *Testing QVT-R Transformation Tools with Coq-Verified Implementations*. Submitted to the 7th International Conference on Model Transformation (ICMT'14).
 
 ### Contributors
 * [Andreas Rentschler] (http://sdq.ipd.kit.edu/people/andreas_rentschler/) from Karlsruhe Institute of Technology
