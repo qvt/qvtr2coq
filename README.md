@@ -32,7 +32,9 @@ Additionally, we provide a verified implementation of *UML2RDBMS* as an example 
 * Download [QVTr2Coq](http://qvt.github.io/qvtr2coq/downloads/QVTr2Coq-Project.zip) and import contained projects through **File > Import > Existing Projects into Workspace…** into your Eclipse workspace.
 <!--(https://github.com/qvt/qvtr2coq/zipball/master)-->
 
-You are ready to use the code generator to produce Coq specifications from QVT-R programs, Ecore metamodels and instances thereof. To do so, use the run configuration **Generate Coq Code**. The transformation searches in subfolder **models** <!--[models](http://github.com/qvt/qvtr2coq/tree/master/edu.kit.ipd.sdq.mdsd.qvtrelation2coq/models)--> for files ending with .qvtr, .ecore, and .xmi. Resulting Coq specifications (.v files) are placed into **src-gen**<!--[src-gen](http://github.com/qvt/qvtr2coq/tree/master/edu.kit.ipd.sdq.mdsd.qvtrelation2coq/src-gen)-->. 
+You are ready to use the code generator to produce Coq specifications from QVT-R programs, Ecore metamodels and instances thereof. To do so, use the run configuration **Generate Coq Code**. The transformation searches in subfolder **models** for files ending with .qvtr, .ecore, and .xmi. Resulting Coq specifications (.v files) are placed into **src-gen**. 
+<!--[models](http://github.com/qvt/qvtr2coq/tree/master/edu.kit.ipd.sdq.mdsd.qvtrelation2coq/models)-->
+<!--[src-gen](http://github.com/qvt/qvtr2coq/tree/master/edu.kit.ipd.sdq.mdsd.qvtrelation2coq/src-gen)-->
 
 To run a proof on generated Coq files, you need to install the [Coq proof assistant](http://coq.inria.fr/download), version 8.4 or higher. We recommend to download Coq bundled with CoqIDE. We already provide a proof for UML2RDBMS, it is contained in subfolder **proof** in the project, together with the extracted Haskell program, **UML2RDBMS.hs**.
 
