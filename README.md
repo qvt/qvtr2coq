@@ -44,7 +44,7 @@ To run a proof on generated Coq files, you need to install the [Coq proof assist
 
 Folder **models** already contains QVT-R implementations together with their Ecore metamodels. One of them is the example transformation UML2RDBMS that maps UML to RDBMS models. It is the same version as that provided by the Eclipse QVTd project.
 
-In folder **proof**, you will find the generated Coq specification of UML2RDBMS, complemented by an example proof. Several of the lemmas are general enough to be used in your own proofs, these are contained in package **ListHelpers.v**. Finally, we provide a Haskell program, **UML2RDBMS.hs**, that had been extracted from the example proof.
+In folder **proof**, you will find the generated Coq specification of UML2RDBMS, complemented by an example proof and a Haskell program, **UML2RDBMS.hs**, which has been extracted from the proof. Several of the lemmas are general enough to be used in your own proofs, these are contained in package **ListHelpers.v**.
 
 <!--[models](http://github.com/qvt/qvtr2coq/tree/master/edu.kit.ipd.sdq.mdsd.qvtrelation2coq/models)-->
 <!--[proof](http://github.com/qvt/qvtr2coq/tree/master/edu.kit.ipd.sdq.mdsd.qvtrelation2coq/proof)-->
