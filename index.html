@@ -67,12 +67,14 @@
 
 <ul>
 <li>Download Eclipse <a href="http://www.eclipse.org/downloads/packages/eclipse-modeling-tools/keplersr1">Modeling Tools 4.3 (Kepler)</a> (Kepler) and launch it;</li>
-<li>Install <a href="http://www.eclipse.org/modeling/tmf/downloads/?project=xtext">Eclipse Xtext 2.5+</a> of the Model Development Tools (MDT) project, use menu <strong>Help &gt; Install Modeling Components...</strong>;</li>
-<li>To install <a href="http://www.eclipse.org/mmt/downloads/?project=qvtd">Eclipse QVTd 0.10+</a> of the Model to Model Transformation (MMT) project, choose <strong>Help &gt; Install New Software...</strong> and use this <a href="http://download.eclipse.org/mmt/qvtd/updates/releases">update site</a>;</li>
-<li>Download <a href="https://github.com/qvt/qvtr2coq/zipball/master">QVTr2Coq</a> and import contained projects through <strong>File &gt; Import &gt; Existing Projects into Workspace…</strong> into your Eclipse workspace.</li>
-</ul><p>You are ready to use the code generator to produce Coq specifications from QVT-R programs, Ecore metamodels and instances thereof. To do so, use the run configuration <strong>Generate Coq Code</strong>. The transformation searches in subfolder <a href="http://github.com/qvt/qvtr2coq/tree/master/edu.kit.ipd.sdq.mdsd.qvtrelation2coq/models">models</a> for files ending with .qvtr, .ecore, and .xmi. Resulting Coq specifications (.v files) are placed into <a href="http://github.com/qvt/qvtr2coq/tree/master/edu.kit.ipd.sdq.mdsd.qvtrelation2coq/src-gen">src-gen</a>. </p>
+<li>Install through menu <strong>Help &gt; Install Modeling Components...</strong> <a href="http://www.eclipse.org/modeling/tmf/downloads/?project=xtext">Eclipse Xtext 2.5+</a> of the Model Development Tools (MDT) project;</li>
+<li>Choose <strong>Help &gt; Install New Software...</strong> to install <a href="http://www.eclipse.org/mmt/downloads/?project=qvtd">Eclipse QVTd 0.10+</a> of the Model to Model Transformation (MMT) project, <a href="http://download.eclipse.org/mmt/qvtd/updates/releases">update site</a>;</li>
+<li>Download <a href="http://qvt.github.io/qvtr2coq/downloads/QVTr2Coq-Project.zip">QVTr2Coq</a> and import contained projects through <strong>File &gt; Import &gt; Existing Projects into Workspace…</strong> into your Eclipse workspace.
+&lt;!--(<a href="https://github.com/qvt/qvtr2coq/zipball/master)--%3E">https://github.com/qvt/qvtr2coq/zipball/master)--&gt;</a>
+</li>
+</ul><p>You are ready to use the code generator to produce Coq specifications from QVT-R programs, Ecore metamodels and instances thereof. To do so, use the run configuration <strong>Generate Coq Code</strong>. The transformation searches in subfolder <strong>models</strong> &lt;!--<a href="http://github.com/qvt/qvtr2coq/tree/master/edu.kit.ipd.sdq.mdsd.qvtrelation2coq/models">models</a>--&gt; for files ending with .qvtr, .ecore, and .xmi. Resulting Coq specifications (.v files) are placed into <strong>src-gen</strong>&lt;!--<a href="http://github.com/qvt/qvtr2coq/tree/master/edu.kit.ipd.sdq.mdsd.qvtrelation2coq/src-gen">src-gen</a>--&gt;. </p>
 
-<p>To run a proof on generated Coq files, you need to install the <a href="http://coq.inria.fr/download">Coq proof assistant</a>, version 8.4 or higher. We recommend to download Coq bundled with CoqIDE.</p>
+<p>To run a proof on generated Coq files, you need to install the <a href="http://coq.inria.fr/download">Coq proof assistant</a>, version 8.4 or higher. We recommend to download Coq bundled with CoqIDE. We already provide a proof for UML2RDBMS, it is contained in subfolder <strong>proof</strong> in the project, together with the extracted Haskell program, <strong>UML2RDBMS.hs</strong>.</p>
 
 <h3>
 <a name="example-proof" class="anchor" href="#example-proof"><span class="octicon octicon-link"></span></a>Example Proof</h3>
