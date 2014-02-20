@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<org.eclipse.mmt.qvtd.UmlToRdbms:dummy xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:org.eclipse.mmt.qvtd.UmlToRdbms="http://www.eclipse.org/mmt/qvtd/UmlToRdbms#umlMM" xsi:schemaLocation="http://www.eclipse.org/mmt/qvtd/UmlToRdbms#umlMM umlMM.ecore">
+  <containsPackage name="myPackage">
+    <classifier xsi:type="org.eclipse.mmt.qvtd.UmlToRdbms:Class" name="Library" kind="Persistent" sourceOf="//@containsPackage.0/@association.0"/>
+    <classifier xsi:type="org.eclipse.mmt.qvtd.UmlToRdbms:Class" name="Medium" kind="Persistent" subclass="//@containsPackage.0/@classifier.2 //@containsPackage.0/@classifier.3" destinationOf="//@containsPackage.0/@association.0">
+      <attribute name="author" type="//@containsPackage.0/@classifier.4"/>
+    </classifier>
+    <classifier xsi:type="org.eclipse.mmt.qvtd.UmlToRdbms:Class" name="DVD" kind="Persistent" general="//@containsPackage.0/@classifier.1"/>
+    <classifier xsi:type="org.eclipse.mmt.qvtd.UmlToRdbms:Class" name="Book" kind="Persistent" general="//@containsPackage.0/@classifier.1">
+      <attribute name="numberOfPages" type="//@containsPackage.0/@classifier.6"/>
+    </classifier>
+    <classifier xsi:type="org.eclipse.mmt.qvtd.UmlToRdbms:Class" name="Author" typeOf="//@containsPackage.0/@classifier.1/@attribute.0" kind="Persistent">
+      <attribute name="name" type="//@containsPackage.0/@classifier.7"/>
+    </classifier>
+    <classifier xsi:type="org.eclipse.mmt.qvtd.UmlToRdbms:Class" name="NonPersistentClass" kind="NonPersistent"/>
+    <classifier xsi:type="org.eclipse.mmt.qvtd.UmlToRdbms:PrimitiveDataType" name="INTEGER" typeOf="//@containsPackage.0/@classifier.3/@attribute.0"/>
+    <classifier xsi:type="org.eclipse.mmt.qvtd.UmlToRdbms:PrimitiveDataType" name="STRING" typeOf="//@containsPackage.0/@classifier.4/@attribute.0"/>
+    <association name="LibraryToMedium" source="//@containsPackage.0/@classifier.0" destination="//@containsPackage.0/@classifier.1"/>
+  </containsPackage>
+</org.eclipse.mmt.qvtd.UmlToRdbms:dummy>

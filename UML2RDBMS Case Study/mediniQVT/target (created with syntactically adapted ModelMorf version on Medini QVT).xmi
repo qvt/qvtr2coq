@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdbmsMM:Schema xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:rdbmsMM="http://www.eclipse.org/mmt/qvtd/UmlToRdbms#rdbmsMM" xsi:schemaLocation="http://www.eclipse.org/mmt/qvtd/UmlToRdbms#rdbmsMM rdbmsMM.ecore" name="myPackage">
+  <table name="Library" hasForeignKey="//@foreignKey.0">
+    <column name="Library_tid" type="NUMBER" hasKey="//@table.0/@hasKey"/>
+    <column name="Library_LibraryToMedium_Medium_tid" type="NUMBER" hasForeignKey="//@foreignKey.0"/>
+    <hasKey name="Library_pk" column="//@table.0/@column.0"/>
+  </table>
+  <table name="Medium">
+    <column name="_author_name" type="VARCHAR"/>
+    <column name="Medium_tid" type="NUMBER" hasKey="//@table.1/@hasKey"/>
+    <hasKey name="Medium_pk" column="//@table.1/@column.1" referredBy="//@foreignKey.0"/>
+  </table>
+  <table name="DVD">
+    <column name="_author_name" type="VARCHAR"/>
+    <column name="DVD_tid" type="NUMBER" hasKey="//@table.2/@hasKey"/>
+    <hasKey name="DVD_pk" column="//@table.2/@column.1"/>
+  </table>
+  <table name="Book">
+    <column name="numberOfPages" type="NUMBER"/>
+    <column name="_author_name" type="VARCHAR"/>
+    <column name="Book_tid" type="NUMBER" hasKey="//@table.3/@hasKey"/>
+    <hasKey name="Book_pk" column="//@table.3/@column.2"/>
+  </table>
+  <table name="Author">
+    <column name="name" type="VARCHAR"/>
+    <column name="Author_tid" type="NUMBER" hasKey="//@table.4/@hasKey"/>
+    <hasKey name="Author_pk" column="//@table.4/@column.1"/>
+  </table>
+  <foreignKey refersTo="//@table.1/@hasKey" name="Library_LibraryToMedium_Medium" owner="//@table.0" column="//@table.0/@column.1"/>
+</rdbmsMM:Schema>

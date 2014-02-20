@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="UmlToRdbms"
+    nsURI="urn:UmlToRdbms.ecore" nsPrefix="UmlToRdbms">
+  <eClassifiers xsi:type="ecore:EClass" name="PackageToSchema">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="p" eType="ecore:EClass umlMM.ecore#//Package"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="s" eType="ecore:EClass rdbmsMM.ecore#//Schema"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="pn" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ClassToTable">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="c" eType="ecore:EClass umlMM.ecore#//Class"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="t" eType="ecore:EClass rdbmsMM.ecore#//Table"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="cn" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="prefix" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="p" eType="ecore:EClass umlMM.ecore#//Package"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="s" eType="ecore:EClass rdbmsMM.ecore#//Schema"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="cl" eType="ecore:EClass rdbmsMM.ecore#//Column"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="k" eType="ecore:EClass rdbmsMM.ecore#//Key"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ClassToPKey">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="c" eType="ecore:EClass umlMM.ecore#//Class"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="k" eType="ecore:EClass rdbmsMM.ecore#//Key"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="cn" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AttributeToColumn">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="c" eType="ecore:EClass umlMM.ecore#//Class"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="t" eType="ecore:EClass rdbmsMM.ecore#//Table"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="prefix" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PrimitiveAttributeToColumn">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="c" eType="ecore:EClass umlMM.ecore#//Class"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="t" eType="ecore:EClass rdbmsMM.ecore#//Table"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="prefix" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="an" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="pn" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="cn" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sqltype" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="a" eType="ecore:EClass umlMM.ecore#//Attribute"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="p" eType="ecore:EClass umlMM.ecore#//PrimitiveDataType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="cl" eType="ecore:EClass rdbmsMM.ecore#//Column"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ComplexAttributeToColumn">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="c" eType="ecore:EClass umlMM.ecore#//Class"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="t" eType="ecore:EClass rdbmsMM.ecore#//Table"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="prefix" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="an" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="newPrefix" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="a" eType="ecore:EClass umlMM.ecore#//Attribute"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tc" eType="ecore:EClass umlMM.ecore#//Class"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SuperAttributeToColumn">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="c" eType="ecore:EClass umlMM.ecore#//Class"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="t" eType="ecore:EClass rdbmsMM.ecore#//Table"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="prefix" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sc" eType="ecore:EClass umlMM.ecore#//Class"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AssocToFKey">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="a" eType="ecore:EClass umlMM.ecore#//Association"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fk" eType="ecore:EClass rdbmsMM.ecore#//ForeignKey"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="srcTbl" eType="ecore:EClass rdbmsMM.ecore#//Table"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="destTbl" eType="ecore:EClass rdbmsMM.ecore#//Table"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="pKey" eType="ecore:EClass rdbmsMM.ecore#//Key"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="an" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="scn" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dcn" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fkn" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fcn" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="p" eType="ecore:EClass umlMM.ecore#//Package"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sc" eType="ecore:EClass umlMM.ecore#//Class"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dc" eType="ecore:EClass umlMM.ecore#//Class"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="s" eType="ecore:EClass rdbmsMM.ecore#//Schema"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fc" eType="ecore:EClass rdbmsMM.ecore#//Column"/>
+  </eClassifiers>
+</ecore:EPackage>

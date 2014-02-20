@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SimpleRDBMS:RdbmsSchema xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:SimpleRDBMS="urn:SimpleRDBMS.ecore" xmlns:emof="http://schema.omg.org/spec/MOF/2.0/emof.xml"
+    xsi:schemaLocation="urn:SimpleRDBMS.ecore SimpleRDBMS.ecore http://schema.omg.org/spec/MOF/2.0/emof.xml http://www.eclipse.org/emf/2002/Ecore" xmi:id="_0"
+    rdbmsName="myPackage" id="_36iVUGjfEeONGcVfAcV5ig">
+  <rdbmsTable xmi:id="_0.@rdbmsTable.0" rdbmsName="Library" id="_36jjcGjfEeONGcVfAcV5ig">
+    <rdbmsColumn xmi:id="_0.@rdbmsTable.0.@rdbmsColumn.0" rdbmsName="Library_tid"
+        id="_36kxkGjfEeONGcVfAcV5ig" rdbmsType="NUMBER" rdbmsKey="_0.@rdbmsTable.0.@rdbmsKey.0"/>
+    <rdbmsColumn xmi:id="_0.@rdbmsTable.0.@rdbmsColumn.1" rdbmsName="Library_LibraryToMedium_Medium_tid"
+        id="_36stYGjfEeONGcVfAcV5ig" rdbmsType="NUMBER" rdbmsForeignKey="_0.@rdbmsTable.0.@rdbmsForeignKey.0"/>
+    <rdbmsForeignKey xmi:id="_0.@rdbmsTable.0.@rdbmsForeignKey.0" rdbmsName="Library_LibraryToMedium_Medium"
+        id="_36sGUGjfEeONGcVfAcV5ig" rdbmsRefersTo="_0.@rdbmsTable.1.@rdbmsKey.0"
+        rdbmsColumn="_0.@rdbmsTable.0.@rdbmsColumn.1"/>
+    <rdbmsKey xmi:id="_0.@rdbmsTable.0.@rdbmsKey.0" rdbmsName="Library_pk" id="_36i8YGjfEeONGcVfAcV5ig"
+        rdbmsColumn="_0.@rdbmsTable.0.@rdbmsColumn.0"/>
+  </rdbmsTable>
+  <rdbmsTable xmi:id="_0.@rdbmsTable.1" rdbmsName="Medium" id="_36mmwGjfEeONGcVfAcV5ig">
+    <rdbmsColumn xmi:id="_0.@rdbmsTable.1.@rdbmsColumn.0" rdbmsName="Medium_author_name"
+        id="_36ob8GjfEeONGcVfAcV5ig" rdbmsType="VARCHAR"/>
+    <rdbmsColumn xmi:id="_0.@rdbmsTable.1.@rdbmsColumn.1" rdbmsName="Medium_tid" id="_36rfQGjfEeONGcVfAcV5ig"
+        rdbmsType="NUMBER" rdbmsKey="_0.@rdbmsTable.1.@rdbmsKey.0"/>
+    <rdbmsKey xmi:id="_0.@rdbmsTable.1.@rdbmsKey.0" rdbmsName="Medium_pk" id="_36lYoGjfEeONGcVfAcV5ig"
+        rdbmsColumn="_0.@rdbmsTable.1.@rdbmsColumn.1" rdbmsRefersToOpposite="_0.@rdbmsTable.0.@rdbmsForeignKey.0"/>
+  </rdbmsTable>
+  <rdbmsTable xmi:id="_0.@rdbmsTable.2" rdbmsName="DVD" id="_36t7gGjfEeONGcVfAcV5ig">
+    <rdbmsColumn xmi:id="_0.@rdbmsTable.2.@rdbmsColumn.0" rdbmsName="DVD_author_name"
+        id="_36xl4GjfEeONGcVfAcV5ig" rdbmsType="VARCHAR"/>
+    <rdbmsColumn xmi:id="_0.@rdbmsTable.2.@rdbmsColumn.1" rdbmsName="DVD_tid" id="_360pMGjfEeONGcVfAcV5ig"
+        rdbmsType="NUMBER" rdbmsKey="_0.@rdbmsTable.2.@rdbmsKey.0"/>
+    <rdbmsKey xmi:id="_0.@rdbmsTable.2.@rdbmsKey.0" rdbmsName="DVD_pk" id="_36tUcGjfEeONGcVfAcV5ig"
+        rdbmsColumn="_0.@rdbmsTable.2.@rdbmsColumn.1"/>
+  </rdbmsTable>
+  <rdbmsTable xmi:id="_0.@rdbmsTable.3" rdbmsName="Book" id="_3613UGjfEeONGcVfAcV5ig">
+    <rdbmsColumn xmi:id="_0.@rdbmsTable.3.@rdbmsColumn.0" rdbmsName="Book_numberOfPages"
+        id="_363FcGjfEeONGcVfAcV5ig" rdbmsType="NUMBER"/>
+    <rdbmsColumn xmi:id="_0.@rdbmsTable.3.@rdbmsColumn.1" rdbmsName="Book_author_name"
+        id="_366IwGjfEeONGcVfAcV5ig" rdbmsType="VARCHAR"/>
+    <rdbmsColumn xmi:id="_0.@rdbmsTable.3.@rdbmsColumn.2" rdbmsName="Book_tid" id="_36-aMGjfEeONGcVfAcV5ig"
+        rdbmsType="NUMBER" rdbmsKey="_0.@rdbmsTable.3.@rdbmsKey.0"/>
+    <rdbmsKey xmi:id="_0.@rdbmsTable.3.@rdbmsKey.0" rdbmsName="Book_pk" id="_361QQGjfEeONGcVfAcV5ig"
+        rdbmsColumn="_0.@rdbmsTable.3.@rdbmsColumn.2"/>
+  </rdbmsTable>
+  <rdbmsTable xmi:id="_0.@rdbmsTable.4" rdbmsName="Author" id="_37KAYGjfEeONGcVfAcV5ig">
+    <rdbmsColumn xmi:id="_0.@rdbmsTable.4.@rdbmsColumn.0" rdbmsName="Author_name"
+        id="_37L1kGjfEeONGcVfAcV5ig" rdbmsType="VARCHAR"/>
+    <rdbmsColumn xmi:id="_0.@rdbmsTable.4.@rdbmsColumn.1" rdbmsName="Author_tid" id="_37NDsGjfEeONGcVfAcV5ig"
+        rdbmsType="NUMBER" rdbmsKey="_0.@rdbmsTable.4.@rdbmsKey.0"/>
+    <rdbmsKey xmi:id="_0.@rdbmsTable.4.@rdbmsKey.0" rdbmsName="Author_pk" id="_37IyQGjfEeONGcVfAcV5ig"
+        rdbmsColumn="_0.@rdbmsTable.4.@rdbmsColumn.1"/>
+  </rdbmsTable>
+</SimpleRDBMS:RdbmsSchema>

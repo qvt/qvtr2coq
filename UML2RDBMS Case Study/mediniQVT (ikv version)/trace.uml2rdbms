@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:uml2rdbms="urn:uml2rdbms.ecore">
+  <uml2rdbms:PackageToSchema>
+    <p href="source.xmi#_0"/>
+    <s href="target.xmi#_0"/>
+  </uml2rdbms:PackageToSchema>
+  <uml2rdbms:ClassToPkey>
+    <c href="source.xmi#_0.@umlOwnedElement.0"/>
+    <k href="target.xmi#_0.@rdbmsTable.0.@rdbmsKey.0"/>
+  </uml2rdbms:ClassToPkey>
+  <uml2rdbms:ClassToTable>
+    <c href="source.xmi#_0.@umlOwnedElement.0"/>
+    <t href="target.xmi#_0.@rdbmsTable.0"/>
+    <p href="source.xmi#_0"/>
+    <s href="target.xmi#_0"/>
+    <cl href="target.xmi#_0.@rdbmsTable.0.@rdbmsColumn.0"/>
+    <k href="target.xmi#_0.@rdbmsTable.0.@rdbmsKey.0"/>
+  </uml2rdbms:ClassToTable>
+  <uml2rdbms:AttributeToColumn prefix="Library">
+    <c href="source.xmi#_0.@umlOwnedElement.0"/>
+    <t href="target.xmi#_0.@rdbmsTable.0"/>
+  </uml2rdbms:AttributeToColumn>
+  <uml2rdbms:ClassToPkey>
+    <c href="source.xmi#_0.@umlOwnedElement.1"/>
+    <k href="target.xmi#_0.@rdbmsTable.1.@rdbmsKey.0"/>
+  </uml2rdbms:ClassToPkey>
+  <uml2rdbms:ClassToTable>
+    <c href="source.xmi#_0.@umlOwnedElement.1"/>
+    <t href="target.xmi#_0.@rdbmsTable.1"/>
+    <p href="source.xmi#_0"/>
+    <s href="target.xmi#_0"/>
+    <cl href="target.xmi#_0.@rdbmsTable.1.@rdbmsColumn.1"/>
+    <k href="target.xmi#_0.@rdbmsTable.1.@rdbmsKey.0"/>
+  </uml2rdbms:ClassToTable>
+  <uml2rdbms:PrimitiveAttributeToColumn prefix="Medium_author">
+    <c href="source.xmi#_0.@umlOwnedElement.4"/>
+    <t href="target.xmi#_0.@rdbmsTable.1"/>
+    <a href="source.xmi#_0.@umlOwnedElement.4.@umlAttribute.0"/>
+    <p href="source.xmi#_0.@umlOwnedElement.8"/>
+    <cl href="target.xmi#_0.@rdbmsTable.1.@rdbmsColumn.0"/>
+  </uml2rdbms:PrimitiveAttributeToColumn>
+  <uml2rdbms:AttributeToColumn prefix="Medium_author">
+    <c href="source.xmi#_0.@umlOwnedElement.4"/>
+    <t href="target.xmi#_0.@rdbmsTable.1"/>
+  </uml2rdbms:AttributeToColumn>
+  <uml2rdbms:ComplexAttributeToColumn prefix="Medium">
+    <c href="source.xmi#_0.@umlOwnedElement.1"/>
+    <t href="target.xmi#_0.@rdbmsTable.1"/>
+    <a href="source.xmi#_0.@umlOwnedElement.1.@umlAttribute.0"/>
+    <tc href="source.xmi#_0.@umlOwnedElement.4"/>
+  </uml2rdbms:ComplexAttributeToColumn>
+  <uml2rdbms:AttributeToColumn prefix="Medium">
+    <c href="source.xmi#_0.@umlOwnedElement.1"/>
+    <t href="target.xmi#_0.@rdbmsTable.1"/>
+  </uml2rdbms:AttributeToColumn>
+  <uml2rdbms:AssocToFKey>
+    <a href="source.xmi#_0.@umlOwnedElement.6"/>
+    <fk href="target.xmi#_0.@rdbmsTable.0.@rdbmsForeignKey.0"/>
+    <p href="source.xmi#_0"/>
+    <sc href="source.xmi#_0.@umlOwnedElement.0"/>
+    <dc href="source.xmi#_0.@umlOwnedElement.1"/>
+    <srcTbl href="target.xmi#_0.@rdbmsTable.0"/>
+    <s href="target.xmi#_0"/>
+    <fc href="target.xmi#_0.@rdbmsTable.0.@rdbmsColumn.1"/>
+    <pKey href="target.xmi#_0.@rdbmsTable.1.@rdbmsKey.0"/>
+    <destTbl href="target.xmi#_0.@rdbmsTable.1"/>
+  </uml2rdbms:AssocToFKey>
+  <uml2rdbms:ClassToPkey>
+    <c href="source.xmi#_0.@umlOwnedElement.2"/>
+    <k href="target.xmi#_0.@rdbmsTable.2.@rdbmsKey.0"/>
+  </uml2rdbms:ClassToPkey>
+  <uml2rdbms:ClassToTable>
+    <c href="source.xmi#_0.@umlOwnedElement.2"/>
+    <t href="target.xmi#_0.@rdbmsTable.2"/>
+    <p href="source.xmi#_0"/>
+    <s href="target.xmi#_0"/>
+    <cl href="target.xmi#_0.@rdbmsTable.2.@rdbmsColumn.1"/>
+    <k href="target.xmi#_0.@rdbmsTable.2.@rdbmsKey.0"/>
+  </uml2rdbms:ClassToTable>
+  <uml2rdbms:PrimitiveAttributeToColumn prefix="DVD_author">
+    <c href="source.xmi#_0.@umlOwnedElement.4"/>
+    <t href="target.xmi#_0.@rdbmsTable.2"/>
+    <a href="source.xmi#_0.@umlOwnedElement.4.@umlAttribute.0"/>
+    <p href="source.xmi#_0.@umlOwnedElement.8"/>
+    <cl href="target.xmi#_0.@rdbmsTable.2.@rdbmsColumn.0"/>
+  </uml2rdbms:PrimitiveAttributeToColumn>
+  <uml2rdbms:AttributeToColumn prefix="DVD_author">
+    <c href="source.xmi#_0.@umlOwnedElement.4"/>
+    <t href="target.xmi#_0.@rdbmsTable.2"/>
+  </uml2rdbms:AttributeToColumn>
+  <uml2rdbms:ComplexAttributeToColumn prefix="DVD">
+    <c href="source.xmi#_0.@umlOwnedElement.1"/>
+    <t href="target.xmi#_0.@rdbmsTable.2"/>
+    <a href="source.xmi#_0.@umlOwnedElement.1.@umlAttribute.0"/>
+    <tc href="source.xmi#_0.@umlOwnedElement.4"/>
+  </uml2rdbms:ComplexAttributeToColumn>
+  <uml2rdbms:AttributeToColumn prefix="DVD">
+    <c href="source.xmi#_0.@umlOwnedElement.1"/>
+    <t href="target.xmi#_0.@rdbmsTable.2"/>
+  </uml2rdbms:AttributeToColumn>
+  <uml2rdbms:SuperAttributeToColumn prefix="DVD">
+    <c href="source.xmi#_0.@umlOwnedElement.2"/>
+    <t href="target.xmi#_0.@rdbmsTable.2"/>
+    <sc href="source.xmi#_0.@umlOwnedElement.1"/>
+  </uml2rdbms:SuperAttributeToColumn>
+  <uml2rdbms:AttributeToColumn prefix="DVD">
+    <c href="source.xmi#_0.@umlOwnedElement.2"/>
+    <t href="target.xmi#_0.@rdbmsTable.2"/>
+  </uml2rdbms:AttributeToColumn>
+  <uml2rdbms:ClassToPkey>
+    <c href="source.xmi#_0.@umlOwnedElement.3"/>
+    <k href="target.xmi#_0.@rdbmsTable.3.@rdbmsKey.0"/>
+  </uml2rdbms:ClassToPkey>
+  <uml2rdbms:ClassToTable>
+    <c href="source.xmi#_0.@umlOwnedElement.3"/>
+    <t href="target.xmi#_0.@rdbmsTable.3"/>
+    <p href="source.xmi#_0"/>
+    <s href="target.xmi#_0"/>
+    <cl href="target.xmi#_0.@rdbmsTable.3.@rdbmsColumn.2"/>
+    <k href="target.xmi#_0.@rdbmsTable.3.@rdbmsKey.0"/>
+  </uml2rdbms:ClassToTable>
+  <uml2rdbms:PrimitiveAttributeToColumn prefix="Book">
+    <c href="source.xmi#_0.@umlOwnedElement.3"/>
+    <t href="target.xmi#_0.@rdbmsTable.3"/>
+    <a href="source.xmi#_0.@umlOwnedElement.3.@umlAttribute.0"/>
+    <p href="source.xmi#_0.@umlOwnedElement.7"/>
+    <cl href="target.xmi#_0.@rdbmsTable.3.@rdbmsColumn.0"/>
+  </uml2rdbms:PrimitiveAttributeToColumn>
+  <uml2rdbms:PrimitiveAttributeToColumn prefix="Book_author">
+    <c href="source.xmi#_0.@umlOwnedElement.4"/>
+    <t href="target.xmi#_0.@rdbmsTable.3"/>
+    <a href="source.xmi#_0.@umlOwnedElement.4.@umlAttribute.0"/>
+    <p href="source.xmi#_0.@umlOwnedElement.8"/>
+    <cl href="target.xmi#_0.@rdbmsTable.3.@rdbmsColumn.1"/>
+  </uml2rdbms:PrimitiveAttributeToColumn>
+  <uml2rdbms:AttributeToColumn prefix="Book_author">
+    <c href="source.xmi#_0.@umlOwnedElement.4"/>
+    <t href="target.xmi#_0.@rdbmsTable.3"/>
+  </uml2rdbms:AttributeToColumn>
+  <uml2rdbms:ComplexAttributeToColumn prefix="Book">
+    <c href="source.xmi#_0.@umlOwnedElement.1"/>
+    <t href="target.xmi#_0.@rdbmsTable.3"/>
+    <a href="source.xmi#_0.@umlOwnedElement.1.@umlAttribute.0"/>
+    <tc href="source.xmi#_0.@umlOwnedElement.4"/>
+  </uml2rdbms:ComplexAttributeToColumn>
+  <uml2rdbms:AttributeToColumn prefix="Book">
+    <c href="source.xmi#_0.@umlOwnedElement.1"/>
+    <t href="target.xmi#_0.@rdbmsTable.3"/>
+  </uml2rdbms:AttributeToColumn>
+  <uml2rdbms:SuperAttributeToColumn prefix="Book">
+    <c href="source.xmi#_0.@umlOwnedElement.3"/>
+    <t href="target.xmi#_0.@rdbmsTable.3"/>
+    <sc href="source.xmi#_0.@umlOwnedElement.1"/>
+  </uml2rdbms:SuperAttributeToColumn>
+  <uml2rdbms:AttributeToColumn prefix="Book">
+    <c href="source.xmi#_0.@umlOwnedElement.3"/>
+    <t href="target.xmi#_0.@rdbmsTable.3"/>
+  </uml2rdbms:AttributeToColumn>
+  <uml2rdbms:ClassToPkey>
+    <c href="source.xmi#_0.@umlOwnedElement.4"/>
+    <k href="target.xmi#_0.@rdbmsTable.4.@rdbmsKey.0"/>
+  </uml2rdbms:ClassToPkey>
+  <uml2rdbms:ClassToTable>
+    <c href="source.xmi#_0.@umlOwnedElement.4"/>
+    <t href="target.xmi#_0.@rdbmsTable.4"/>
+    <p href="source.xmi#_0"/>
+    <s href="target.xmi#_0"/>
+    <cl href="target.xmi#_0.@rdbmsTable.4.@rdbmsColumn.1"/>
+    <k href="target.xmi#_0.@rdbmsTable.4.@rdbmsKey.0"/>
+  </uml2rdbms:ClassToTable>
+  <uml2rdbms:PrimitiveAttributeToColumn prefix="Author">
+    <c href="source.xmi#_0.@umlOwnedElement.4"/>
+    <t href="target.xmi#_0.@rdbmsTable.4"/>
+    <a href="source.xmi#_0.@umlOwnedElement.4.@umlAttribute.0"/>
+    <p href="source.xmi#_0.@umlOwnedElement.8"/>
+    <cl href="target.xmi#_0.@rdbmsTable.4.@rdbmsColumn.0"/>
+  </uml2rdbms:PrimitiveAttributeToColumn>
+  <uml2rdbms:AttributeToColumn prefix="Author">
+    <c href="source.xmi#_0.@umlOwnedElement.4"/>
+    <t href="target.xmi#_0.@rdbmsTable.4"/>
+  </uml2rdbms:AttributeToColumn>
+</xmi:XMI>

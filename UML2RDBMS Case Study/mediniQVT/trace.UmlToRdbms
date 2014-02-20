@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:UmlToRdbms="urn:UmlToRdbms.ecore">
+  <UmlToRdbms:PackageToSchema>
+    <p href="source.xmi#//@containsPackage.0"/>
+    <s href="target.xmi#/"/>
+  </UmlToRdbms:PackageToSchema>
+  <UmlToRdbms:ClassToPKey>
+    <c href="source.xmi#//@containsPackage.0/@classifier.0"/>
+    <k href="target.xmi#//@table.0/@hasKey"/>
+  </UmlToRdbms:ClassToPKey>
+  <UmlToRdbms:AttributeToColumn prefix="">
+    <c href="source.xmi#//@containsPackage.0/@classifier.0"/>
+    <t href="target.xmi#//@table.0"/>
+  </UmlToRdbms:AttributeToColumn>
+  <UmlToRdbms:ClassToTable>
+    <c href="source.xmi#//@containsPackage.0/@classifier.0"/>
+    <t href="target.xmi#//@table.0"/>
+    <p href="source.xmi#//@containsPackage.0"/>
+    <s href="target.xmi#/"/>
+    <cl href="target.xmi#//@table.0/@column.0"/>
+    <k href="target.xmi#//@table.0/@hasKey"/>
+  </UmlToRdbms:ClassToTable>
+  <UmlToRdbms:ClassToPKey>
+    <c href="source.xmi#//@containsPackage.0/@classifier.1"/>
+    <k href="target.xmi#//@table.1/@hasKey"/>
+  </UmlToRdbms:ClassToPKey>
+  <UmlToRdbms:AttributeToColumn prefix="">
+    <c href="source.xmi#//@containsPackage.0/@classifier.1"/>
+    <t href="target.xmi#//@table.1"/>
+  </UmlToRdbms:AttributeToColumn>
+  <UmlToRdbms:PrimitiveAttributeToColumn prefix="_author">
+    <c href="source.xmi#//@containsPackage.0/@classifier.4"/>
+    <t href="target.xmi#//@table.1"/>
+    <a href="source.xmi#//@containsPackage.0/@classifier.4/@attribute.0"/>
+    <p href="source.xmi#//@containsPackage.0/@classifier.7"/>
+    <cl href="target.xmi#//@table.1/@column.0"/>
+  </UmlToRdbms:PrimitiveAttributeToColumn>
+  <UmlToRdbms:AttributeToColumn prefix="_author">
+    <c href="source.xmi#//@containsPackage.0/@classifier.4"/>
+    <t href="target.xmi#//@table.1"/>
+  </UmlToRdbms:AttributeToColumn>
+  <UmlToRdbms:ComplexAttributeToColumn prefix="">
+    <c href="source.xmi#//@containsPackage.0/@classifier.1"/>
+    <t href="target.xmi#//@table.1"/>
+    <a href="source.xmi#//@containsPackage.0/@classifier.1/@attribute.0"/>
+    <tc href="source.xmi#//@containsPackage.0/@classifier.4"/>
+  </UmlToRdbms:ComplexAttributeToColumn>
+  <UmlToRdbms:ClassToTable>
+    <c href="source.xmi#//@containsPackage.0/@classifier.1"/>
+    <t href="target.xmi#//@table.1"/>
+    <p href="source.xmi#//@containsPackage.0"/>
+    <s href="target.xmi#/"/>
+    <cl href="target.xmi#//@table.1/@column.1"/>
+    <k href="target.xmi#//@table.1/@hasKey"/>
+  </UmlToRdbms:ClassToTable>
+  <UmlToRdbms:ClassToPKey>
+    <c href="source.xmi#//@containsPackage.0/@classifier.2"/>
+    <k href="target.xmi#//@table.2/@hasKey"/>
+  </UmlToRdbms:ClassToPKey>
+  <UmlToRdbms:AttributeToColumn prefix="">
+    <c href="source.xmi#//@containsPackage.0/@classifier.2"/>
+    <t href="target.xmi#//@table.2"/>
+  </UmlToRdbms:AttributeToColumn>
+  <UmlToRdbms:PrimitiveAttributeToColumn prefix="_author">
+    <c href="source.xmi#//@containsPackage.0/@classifier.4"/>
+    <t href="target.xmi#//@table.2"/>
+    <a href="source.xmi#//@containsPackage.0/@classifier.4/@attribute.0"/>
+    <p href="source.xmi#//@containsPackage.0/@classifier.7"/>
+    <cl href="target.xmi#//@table.2/@column.0"/>
+  </UmlToRdbms:PrimitiveAttributeToColumn>
+  <UmlToRdbms:AttributeToColumn prefix="_author">
+    <c href="source.xmi#//@containsPackage.0/@classifier.4"/>
+    <t href="target.xmi#//@table.2"/>
+  </UmlToRdbms:AttributeToColumn>
+  <UmlToRdbms:ComplexAttributeToColumn prefix="">
+    <c href="source.xmi#//@containsPackage.0/@classifier.1"/>
+    <t href="target.xmi#//@table.2"/>
+    <a href="source.xmi#//@containsPackage.0/@classifier.1/@attribute.0"/>
+    <tc href="source.xmi#//@containsPackage.0/@classifier.4"/>
+  </UmlToRdbms:ComplexAttributeToColumn>
+  <UmlToRdbms:AttributeToColumn prefix="">
+    <c href="source.xmi#//@containsPackage.0/@classifier.1"/>
+    <t href="target.xmi#//@table.2"/>
+  </UmlToRdbms:AttributeToColumn>
+  <UmlToRdbms:SuperAttributeToColumn prefix="">
+    <c href="source.xmi#//@containsPackage.0/@classifier.2"/>
+    <t href="target.xmi#//@table.2"/>
+    <sc href="source.xmi#//@containsPackage.0/@classifier.1"/>
+  </UmlToRdbms:SuperAttributeToColumn>
+  <UmlToRdbms:ClassToTable>
+    <c href="source.xmi#//@containsPackage.0/@classifier.2"/>
+    <t href="target.xmi#//@table.2"/>
+    <p href="source.xmi#//@containsPackage.0"/>
+    <s href="target.xmi#/"/>
+    <cl href="target.xmi#//@table.2/@column.1"/>
+    <k href="target.xmi#//@table.2/@hasKey"/>
+  </UmlToRdbms:ClassToTable>
+  <UmlToRdbms:ClassToPKey>
+    <c href="source.xmi#//@containsPackage.0/@classifier.3"/>
+    <k href="target.xmi#//@table.3/@hasKey"/>
+  </UmlToRdbms:ClassToPKey>
+  <UmlToRdbms:AttributeToColumn prefix="">
+    <c href="source.xmi#//@containsPackage.0/@classifier.3"/>
+    <t href="target.xmi#//@table.3"/>
+  </UmlToRdbms:AttributeToColumn>
+  <UmlToRdbms:PrimitiveAttributeToColumn prefix="">
+    <c href="source.xmi#//@containsPackage.0/@classifier.3"/>
+    <t href="target.xmi#//@table.3"/>
+    <a href="source.xmi#//@containsPackage.0/@classifier.3/@attribute.0"/>
+    <p href="source.xmi#//@containsPackage.0/@classifier.6"/>
+    <cl href="target.xmi#//@table.3/@column.0"/>
+  </UmlToRdbms:PrimitiveAttributeToColumn>
+  <UmlToRdbms:PrimitiveAttributeToColumn prefix="_author">
+    <c href="source.xmi#//@containsPackage.0/@classifier.4"/>
+    <t href="target.xmi#//@table.3"/>
+    <a href="source.xmi#//@containsPackage.0/@classifier.4/@attribute.0"/>
+    <p href="source.xmi#//@containsPackage.0/@classifier.7"/>
+    <cl href="target.xmi#//@table.3/@column.1"/>
+  </UmlToRdbms:PrimitiveAttributeToColumn>
+  <UmlToRdbms:AttributeToColumn prefix="_author">
+    <c href="source.xmi#//@containsPackage.0/@classifier.4"/>
+    <t href="target.xmi#//@table.3"/>
+  </UmlToRdbms:AttributeToColumn>
+  <UmlToRdbms:ComplexAttributeToColumn prefix="">
+    <c href="source.xmi#//@containsPackage.0/@classifier.1"/>
+    <t href="target.xmi#//@table.3"/>
+    <a href="source.xmi#//@containsPackage.0/@classifier.1/@attribute.0"/>
+    <tc href="source.xmi#//@containsPackage.0/@classifier.4"/>
+  </UmlToRdbms:ComplexAttributeToColumn>
+  <UmlToRdbms:AttributeToColumn prefix="">
+    <c href="source.xmi#//@containsPackage.0/@classifier.1"/>
+    <t href="target.xmi#//@table.3"/>
+  </UmlToRdbms:AttributeToColumn>
+  <UmlToRdbms:SuperAttributeToColumn prefix="">
+    <c href="source.xmi#//@containsPackage.0/@classifier.3"/>
+    <t href="target.xmi#//@table.3"/>
+    <sc href="source.xmi#//@containsPackage.0/@classifier.1"/>
+  </UmlToRdbms:SuperAttributeToColumn>
+  <UmlToRdbms:ClassToTable>
+    <c href="source.xmi#//@containsPackage.0/@classifier.3"/>
+    <t href="target.xmi#//@table.3"/>
+    <p href="source.xmi#//@containsPackage.0"/>
+    <s href="target.xmi#/"/>
+    <cl href="target.xmi#//@table.3/@column.2"/>
+    <k href="target.xmi#//@table.3/@hasKey"/>
+  </UmlToRdbms:ClassToTable>
+  <UmlToRdbms:ClassToPKey>
+    <c href="source.xmi#//@containsPackage.0/@classifier.4"/>
+    <k href="target.xmi#//@table.4/@hasKey"/>
+  </UmlToRdbms:ClassToPKey>
+  <UmlToRdbms:AttributeToColumn prefix="">
+    <c href="source.xmi#//@containsPackage.0/@classifier.4"/>
+    <t href="target.xmi#//@table.4"/>
+  </UmlToRdbms:AttributeToColumn>
+  <UmlToRdbms:PrimitiveAttributeToColumn prefix="">
+    <c href="source.xmi#//@containsPackage.0/@classifier.4"/>
+    <t href="target.xmi#//@table.4"/>
+    <a href="source.xmi#//@containsPackage.0/@classifier.4/@attribute.0"/>
+    <p href="source.xmi#//@containsPackage.0/@classifier.7"/>
+    <cl href="target.xmi#//@table.4/@column.0"/>
+  </UmlToRdbms:PrimitiveAttributeToColumn>
+  <UmlToRdbms:ClassToTable>
+    <c href="source.xmi#//@containsPackage.0/@classifier.4"/>
+    <t href="target.xmi#//@table.4"/>
+    <p href="source.xmi#//@containsPackage.0"/>
+    <s href="target.xmi#/"/>
+    <cl href="target.xmi#//@table.4/@column.1"/>
+    <k href="target.xmi#//@table.4/@hasKey"/>
+  </UmlToRdbms:ClassToTable>
+  <UmlToRdbms:AssocToFKey>
+    <a href="source.xmi#//@containsPackage.0/@association.0"/>
+    <fk href="target.xmi#//@foreignKey.0"/>
+    <p href="source.xmi#//@containsPackage.0"/>
+    <sc href="source.xmi#//@containsPackage.0/@classifier.0"/>
+    <dc href="source.xmi#//@containsPackage.0/@classifier.1"/>
+    <s href="target.xmi#/"/>
+    <fc href="target.xmi#//@table.0/@column.1"/>
+  </UmlToRdbms:AssocToFKey>
+</xmi:XMI>

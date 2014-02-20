@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SimpleUML:UmlPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:SimpleUML="urn:SimpleUML.ecore" xmlns:emof="http://schema.omg.org/spec/MOF/2.0/emof.xml"
+    xsi:schemaLocation="urn:SimpleUML.ecore SimpleUML.ecore http://schema.omg.org/spec/MOF/2.0/emof.xml http://www.eclipse.org/emf/2002/Ecore" xmi:id="_0"
+    umlName="myPackage" id="_pXZ9wKS6EduN8Krm-aC8vQ">
+  <umlOwnedElement xmi:type="SimpleUML:UmlClass" xmi:id="_0.@umlOwnedElement.0" umlName="Library"
+      umlKind="Persistent" id="_pXZ9waS6EduN8Krm-aC8vQ" umlReverse="_0.@umlOwnedElement.6"/>
+  <umlOwnedElement xmi:type="SimpleUML:UmlClass" xmi:id="_0.@umlOwnedElement.1" umlName="Medium"
+      umlKind="Persistent" id="_pXjuwKS6EduN8Krm-aC8vQ" umlForward="_0.@umlOwnedElement.6"
+      umlSpecific="_0.@umlOwnedElement.2 _0.@umlOwnedElement.3">
+    <umlAttribute xmi:id="_0.@umlOwnedElement.1.@umlAttribute.0" umlName="author"
+        id="_pXjuwaS6EduN8Krm-aC8vQ" umlType="_0.@umlOwnedElement.4"/>
+  </umlOwnedElement>
+  <umlOwnedElement xmi:type="SimpleUML:UmlClass" xmi:id="_0.@umlOwnedElement.2" umlName="DVD"
+      umlKind="Persistent" id="_pXjuwqS6EduN8Krm-aC8vQ" umlGeneral="_0.@umlOwnedElement.1"/>
+  <umlOwnedElement xmi:type="SimpleUML:UmlClass" xmi:id="_0.@umlOwnedElement.3" umlName="Book"
+      umlKind="Persistent" id="_pXjuw6S6EduN8Krm-aC8vQ" umlGeneral="_0.@umlOwnedElement.1">
+    <umlAttribute xmi:id="_0.@umlOwnedElement.3.@umlAttribute.0" umlName="numberOfPages"
+        id="_pXjuxKS6EduN8Krm-aC8vQ" umlType="_0.@umlOwnedElement.7"/>
+  </umlOwnedElement>
+  <umlOwnedElement xmi:type="SimpleUML:UmlClass" xmi:id="_0.@umlOwnedElement.4" umlName="Author"
+      umlKind="Persistent" id="_pXjuxaS6EduN8Krm-aC8vQ" umlAttribute1="_0.@umlOwnedElement.1.@umlAttribute.0">
+    <umlAttribute xmi:id="_0.@umlOwnedElement.4.@umlAttribute.0" umlName="name" id="_pXjuxqS6EduN8Krm-aC8vQ"
+        umlType="_0.@umlOwnedElement.8"/>
+  </umlOwnedElement>
+  <umlOwnedElement xmi:type="SimpleUML:UmlClass" xmi:id="_0.@umlOwnedElement.5" umlName="nonPersistentClas"
+      umlKind="nonPersistent" id="_pXjux6S6EduN8Krm-aC8vQ"/>
+  <umlOwnedElement xmi:type="SimpleUML:UmlAssociation" xmi:id="_0.@umlOwnedElement.6"
+      umlName="LibraryToMedium" umlKind="Persistent" id="_pXjuyKS6EduN8Krm-aC8vQ"
+      umlDestination="_0.@umlOwnedElement.1" umlSource="_0.@umlOwnedElement.0"/>
+  <umlOwnedElement xmi:type="SimpleUML:UmlPrimitiveDataType" xmi:id="_0.@umlOwnedElement.7"
+      umlName="INTEGER" umlKind="" id="_pXjuyaS6EduN8Krm-aC8vQ" umlAttribute1="_0.@umlOwnedElement.3.@umlAttribute.0"/>
+  <umlOwnedElement xmi:type="SimpleUML:UmlPrimitiveDataType" xmi:id="_0.@umlOwnedElement.8"
+      umlName="STRING" umlKind="" id="_pXjuyqS6EduN8Krm-aC8vQ" umlAttribute1="_0.@umlOwnedElement.4.@umlAttribute.0"/>
+</SimpleUML:UmlPackage>

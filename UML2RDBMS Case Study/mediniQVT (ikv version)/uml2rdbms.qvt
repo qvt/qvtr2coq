@@ -1,0 +1,239 @@
+
+/*
+ * This transformation is uni-directional in direction "rdbms" and maps classes in packages to tables in schemas.
+ * It is based upon the example in the official QVT specification at http://www.omg.org/cgi-bin/apps/doc?ptc/05-11-01.pdf.
+ */
+
+transformation uml2rdbms(uml:SimpleUML, rdbms:SimpleRDBMS) {
+
+	-- map each package to a schema
+	top relation PackageToSchema {
+	  
+	  pn : String;
+	  
+	  checkonly domain uml p : SimpleUML::UmlPackage {
+	    umlName = pn
+	  };
+	  
+	  enforce domain rdbms s : SimpleRDBMS::RdbmsSchema {
+	    rdbmsName = pn
+	  };
+	  
+	}
+	
+	-- map each persistent class to a table
+	top relation ClassToTable {
+	  
+	  cn : String;
+	  prefix : String;
+	  
+	  checkonly domain uml c : SimpleUML::UmlClass {
+	    umlNamespace = p : SimpleUML::UmlPackage {
+	    },
+	    umlKind = 'Persistent',
+	    umlName = cn
+	  };
+	  
+	  enforce domain rdbms t : SimpleRDBMS::RdbmsTable {
+	    rdbmsSchema = s : SimpleRDBMS::RdbmsSchema {
+	    },
+	    rdbmsName = cn,
+	    rdbmsColumn = cl : SimpleRDBMS::RdbmsColumn {
+	      rdbmsName = cn + '_tid',
+	      rdbmsType = 'NUMBER'
+	    },
+	    rdbmsKey = k : SimpleRDBMS::RdbmsKey {
+	      rdbmsColumn = cl : SimpleRDBMS::RdbmsColumn{}
+	    }
+	  };
+	  
+	  when {
+	    PackageToSchema(p, s);
+	  }
+	  
+	  where {
+	    ClassToPkey(c, k);
+	    prefix = cn;
+	    AttributeToColumn(c, t, prefix);
+	  }
+	  
+	}
+	
+	relation ClassToPkey {
+	  
+	  cn : String;
+	  
+	  checkonly domain uml c : SimpleUML::UmlClass {
+	    umlName = cn
+	  };
+	  
+	  enforce domain rdbms k : SimpleRDBMS::RdbmsKey {
+	    rdbmsName = cn + '_pk'
+	  };
+	  
+	}
+	
+	relation AttributeToColumn {
+	  
+	  checkonly domain uml c : SimpleUML::UmlClass {
+	  };
+	  
+	  enforce domain rdbms t : SimpleRDBMS::RdbmsTable {
+	  };
+	  
+	  primitive domain prefix : String;
+	  
+	  where {
+	    ComplexAttributeToColumn(c, t, prefix);
+	    PrimitiveAttributeToColumn(c, t, prefix);
+	    SuperAttributeToColumn(c, t, prefix);
+	  }
+	  
+	}
+	
+	relation PrimitiveAttributeToColumn {
+	  
+	  an : String;
+	  pn : String;
+	  cn : String;
+	  sqltype : String;
+	  
+	  checkonly domain uml c : SimpleUML::UmlClass {
+	    umlAttribute = a : SimpleUML::UmlAttribute {
+	      umlName = an,
+	      umlType = p : SimpleUML::UmlPrimitiveDataType {
+	        umlName = pn
+	      }
+	    }
+	  };
+	  
+	  enforce domain rdbms t : SimpleRDBMS::RdbmsTable {
+	    rdbmsColumn = cl : SimpleRDBMS::RdbmsColumn {
+	      rdbmsName = cn,
+	      rdbmsType = sqltype
+	    }
+	  };
+	  
+	  primitive domain prefix : String;
+	  
+	  where {
+	    cn = if prefix = '' then
+	      an
+	    else
+	      prefix + '_' + an
+	    endif;
+	    sqltype = PrimitiveTypeToSqlType(pn);
+	  }
+	  
+	}
+	
+	relation ComplexAttributeToColumn {
+	  
+	  an : String;
+	  newPrefix : String;
+	  
+	  checkonly domain uml c : SimpleUML::UmlClass {
+	    umlAttribute = a : SimpleUML::UmlAttribute {
+	      umlName = an,
+	      umlType = tc : SimpleUML::UmlClass {
+	      }
+	    }
+	  };
+	  
+	  enforce domain rdbms t : SimpleRDBMS::RdbmsTable {
+	  };
+	  
+	  primitive domain prefix : String;
+	  
+	  where {
+	    newPrefix = prefix + '_' + an;
+	    AttributeToColumn(tc, t, newPrefix);
+	  }
+	  
+	}
+	
+	relation SuperAttributeToColumn {
+	  
+	  checkonly domain uml c : SimpleUML::UmlClass {
+	    umlGeneral = sc : SimpleUML::UmlClass {
+	    }
+	  };
+	  
+	  enforce domain rdbms t : SimpleRDBMS::RdbmsTable {
+	  };
+	  
+	  primitive domain prefix : String;
+	  
+	  where {
+	    AttributeToColumn(sc, t, prefix);
+	  }
+	  
+	}
+	
+	-- map each association between persistent classes to a foreign key
+	top relation AssocToFKey {
+	  
+	  an : String;
+	  scn : String;
+	  dcn : String;
+	  fkn : String;
+	  fcn : String;
+	  
+	  checkonly domain uml a : SimpleUML::UmlAssociation {
+	    umlNamespace = p : SimpleUML::UmlPackage {
+	    },
+	    umlName = an,
+	    umlSource = sc : SimpleUML::UmlClass {
+	      umlKind = 'Persistent',
+	      umlName = scn
+	    },
+	    umlDestination = dc : SimpleUML::UmlClass {
+	      umlKind = 'Persistent',
+	      umlName = dcn
+	    }
+	  };
+	  
+	  enforce domain rdbms fk : SimpleRDBMS::RdbmsForeignKey {
+	    rdbmsName = fkn,
+	    rdbmsOwner = srcTbl : SimpleRDBMS::RdbmsTable {
+	      rdbmsSchema = s : SimpleRDBMS::RdbmsSchema {
+	      }
+	    },
+	    rdbmsColumn = fc : SimpleRDBMS::RdbmsColumn {
+	      rdbmsName = fcn,
+	      rdbmsType = 'NUMBER',
+	      rdbmsOwner = srcTbl
+	    },
+	    rdbmsRefersTo = pKey : SimpleRDBMS::RdbmsKey {
+	      rdbmsOwner = destTbl : SimpleRDBMS::RdbmsTable {
+	      }
+	    }
+	  };
+	  
+	  when {
+	    ClassToPkey(dc, pKey);
+	    PackageToSchema(p, s);
+	    ClassToTable(sc, srcTbl);
+	    ClassToTable(dc, destTbl);
+	  }
+	  
+	  where {
+	    fkn = scn + '_' + an + '_' + dcn;
+	    fcn = fkn + '_tid';
+	  }
+	  
+	}
+	
+	query PrimitiveTypeToSqlType (typename : String) : String {
+	  if typename = 'INTEGER' then
+	    'NUMBER'
+	  else
+	    if typename = 'BOOLEAN' then
+	      'BOOLEAN'
+	    else
+	      'VARCHAR'
+	    endif
+	  endif
+	}
+	
+}
