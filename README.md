@@ -36,13 +36,13 @@ Additionally, we provide a verified implementation of *UML2RDBMS* as an example 
 
 <!--(http://qvt.github.io/qvtr2coq/downloads/QVTr2Coq-Project.zip)-->
 
-You are ready to use the code generator to produce Coq specifications from QVT-R programs, Ecore metamodels and instances thereof. To do so, use the run configuration **Generate Coq Code**. The transformation searches in subfolder **[models](http://github.com/qvt/qvtr2coq/tree/master/edu.kit.ipd.sdq.mdsd.qvtrelation2coq/models)** for files ending with .qvtr, .ecore, and .xmi. Resulting Coq specifications (.v files) are placed into **[src-gen](http://github.com/qvt/qvtr2coq/tree/master/edu.kit.ipd.sdq.mdsd.qvtrelation2coq/src-gen)**. 
+You are ready to use the code generator to produce Coq specifications from QVT-R programs, Ecore metamodels and instances thereof. To do so, use the run configuration **Generate Coq Code**. The transformation searches in subfolder **[model](http://github.com/qvt/qvtr2coq/tree/master/edu.kit.ipd.sdq.mdsd.qvtrelation2coq/model)** for files ending with .qvtr, .ecore, and .xmi. Resulting Coq specifications (.v files) are placed into **[src-gen](http://github.com/qvt/qvtr2coq/tree/master/edu.kit.ipd.sdq.mdsd.qvtrelation2coq/src-gen)**. 
 
 To run a proof on generated Coq files, you need to install the [Coq proof assistant](http://coq.inria.fr/download), version 8.4 or higher. We recommend to download Coq bundled with CoqIDE.
 
 ### Example Proof
 
-Folder **[models](http://github.com/qvt/qvtr2coq/tree/master/edu.kit.ipd.sdq.mdsd.qvtrelation2coq/models)** already contains QVT-R implementations together with their Ecore metamodels. One of them is the example transformation UML2RDBMS that maps UML to RDBMS models. It is the same version as that provided by the Eclipse QVTd project.
+Folder **[model](http://github.com/qvt/qvtr2coq/tree/master/edu.kit.ipd.sdq.mdsd.qvtrelation2coq/model)** already contains QVT-R implementations together with their Ecore metamodels. One of them is the example transformation UML2RDBMS that maps UML to RDBMS models. It is the same version as that provided by the Eclipse QVTd project.
 
 In folder **[proof](http://github.com/qvt/qvtr2coq/tree/master/edu.kit.ipd.sdq.mdsd.qvtrelation2coq/proof)** you will find the generated Coq specification of UML2RDBMS, complemented by an example proof and a Haskell program, **[UML2RDBMS.hs](http://github.com/qvt/qvtr2coq/tree/master/edu.kit.ipd.sdq.mdsd.qvtrelation2coq/proof/UML2RDBMS.hs)**, which has been extracted from the proof. Several of the lemmas are general enough to be used in your own proofs, these are contained in package **[ListHelpers.v](http://github.com/qvt/qvtr2coq/tree/master/edu.kit.ipd.sdq.mdsd.qvtrelation2coq/proof/ListHelpers.v)**.
 
