@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<UML>
+  <packages>
+    <package_ kind="OTHER" name="Object0" oID="0">
+      <classifiersAndAssociations>
+        <class_ kind="PERSISTENT" name="Object1" oID="1">
+          <generalClass/>
+          <attributes>
+            <attribute kind="OTHER" name="Object2" oID="2">
+              <ownerClassifier>
+                <primitiveDataType kind="OTHER" name="Object26" oID="3"/>
+              </ownerClassifier>
+            </attribute>
+            <attribute kind="OTHER" name="Object3" oID="4">
+              <ownerClassifier>
+                <primitiveDataType kind="OTHER" name="Object16" oID="5"/>
+              </ownerClassifier>
+            </attribute>
+            <attribute kind="OTHER" name="Object4" oID="6">
+              <ownerClassifier>
+                <primitiveDataType kind="OTHER" name="Object22" oID="7"/>
+              </ownerClassifier>
+            </attribute>
+          </attributes>
+        </class_>
+        <class_ kind="PERSISTENT" name="Object5" oID="8">
+          <generalClass/>
+          <attributes>
+            <attribute kind="OTHER" name="Object6" oID="9">
+              <ownerClassifier>
+                <class_ kind="PERSISTENT" name="Object1" oID="1">
+                  <generalClass/>
+                  <attributes>
+                    <attribute kind="OTHER" name="Object2" oID="2">
+                      <ownerClassifier>
+                        <primitiveDataType kind="OTHER" name="Object26" oID="3"/>
+                      </ownerClassifier>
+                    </attribute>
+                    <attribute kind="OTHER" name="Object3" oID="4">
+                      <ownerClassifier>
+                        <primitiveDataType kind="OTHER" name="Object16" oID="5"/>
+                      </ownerClassifier>
+                    </attribute>
+                    <attribute kind="OTHER" name="Object4" oID="6">
+                      <ownerClassifier>
+                        <primitiveDataType kind="OTHER" name="Object22" oID="7"/>
+                      </ownerClassifier>
+                    </attribute>
+                  </attributes>
+                </class_>
+              </ownerClassifier>
+            </attribute>
+            <attribute kind="OTHER" name="Object7" oID="10">
+              <ownerClassifier>
+                <primitiveDataType kind="OTHER" name="Object21" oID="11"/>
+              </ownerClassifier>
+            </attribute>
+            <attribute kind="OTHER" name="Object8" oID="12">
+              <ownerClassifier>
+                <primitiveDataType kind="OTHER" name="Object21" oID="11"/>
+              </ownerClassifier>
+            </attribute>
+            <attribute kind="OTHER" name="Object9" oID="13">
+              <ownerClassifier>
+                <primitiveDataType kind="OTHER" name="Object18" oID="14"/>
+              </ownerClassifier>
+            </attribute>
+            <attribute kind="OTHER" name="Object10" oID="15">
+              <ownerClassifier>
+                <class_ kind="PERSISTENT" name="Object12" oID="16">
+                  <generalClass/>
+                  <attributes>
+                    <attribute kind="OTHER" name="Object13" oID="17">
+                      <ownerClassifier>
+                        <primitiveDataType kind="OTHER" name="Object22" oID="7"/>
+                      </ownerClassifier>
+                    </attribute>
+                    <attribute kind="OTHER" name="Object14" oID="18">
+                      <ownerClassifier>
+                        <primitiveDataType kind="OTHER" name="Object28" oID="19"/>
+                      </ownerClassifier>
+                    </attribute>
+                    <attribute kind="OTHER" name="Object15" oID="20">
+                      <ownerClassifier>
+                        <primitiveDataType kind="OTHER" name="Object27" oID="21"/>
+                      </ownerClassifier>
+                    </attribute>
+                  </attributes>
+                </class_>
+              </ownerClassifier>
+            </attribute>
+            <attribute kind="OTHER" name="Object11" oID="22">
+              <ownerClassifier>
+                <primitiveDataType kind="OTHER" name="Object27" oID="21"/>
+              </ownerClassifier>
+            </attribute>
+          </attributes>
+        </class_>
+        <class_ kind="PERSISTENT" name="Object12" oID="16">
+          <generalClass/>
+          <attributes>
+            <attribute kind="OTHER" name="Object13" oID="17">
+              <ownerClassifier>
+                <primitiveDataType kind="OTHER" name="Object22" oID="7"/>
+              </ownerClassifier>
+            </attribute>
+            <attribute kind="OTHER" name="Object14" oID="18">
+              <ownerClassifier>
+                <primitiveDataType kind="OTHER" name="Object28" oID="19"/>
+              </ownerClassifier>
+            </attribute>
+            <attribute kind="OTHER" name="Object15" oID="20">
+              <ownerClassifier>
+                <primitiveDataType kind="OTHER" name="Object27" oID="21"/>
+              </ownerClassifier>
+            </attribute>
+          </attributes>
+        </class_>
+        <primitiveDataType kind="OTHER" name="Object16" oID="5"/>
+        <primitiveDataType kind="OTHER" name="Object17" oID="23"/>
+        <primitiveDataType kind="OTHER" name="Object18" oID="14"/>
+        <primitiveDataType kind="OTHER" name="Object19" oID="24"/>
+        <primitiveDataType kind="OTHER" name="Object20" oID="25"/>
+        <primitiveDataType kind="OTHER" name="Object21" oID="11"/>
+        <primitiveDataType kind="OTHER" name="Object22" oID="7"/>
+        <primitiveDataType kind="OTHER" name="Object23" oID="26"/>
+        <primitiveDataType kind="OTHER" name="Object24" oID="27"/>
+        <primitiveDataType kind="OTHER" name="Object25" oID="28"/>
+        <primitiveDataType kind="OTHER" name="Object26" oID="3"/>
+        <primitiveDataType kind="OTHER" name="Object27" oID="21"/>
+        <primitiveDataType kind="OTHER" name="Object28" oID="19"/>
+        <association destination="1" kind="OTHER" name="Object29" oID="29" source="8"/>
+        <association destination="16" kind="OTHER" name="Object30" oID="30" source="1"/>
+        <association destination="1" kind="OTHER" name="Object31" oID="31" source="16"/>
+      </classifiersAndAssociations>
+    </package_>
+  </packages>
+</UML>

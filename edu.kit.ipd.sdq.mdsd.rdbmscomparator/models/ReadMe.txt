@@ -1,0 +1,1 @@
+Copy RDBMS models that result from both transformation here, then run the Eclipse workflow UMLinstantiator.

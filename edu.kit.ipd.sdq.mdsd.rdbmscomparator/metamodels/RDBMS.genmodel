@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/edu.kit.ipd.sdq.mdsd.rdbmscomparator/src" modelPluginID="edu.kit.ipd.sdq.mdsd.rdbmscomparator"
+    modelName="RDBMS" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.xsd.ecore.importer" complianceLevel="8.0" copyrightFields="false"
+    language="" classNamePattern="" operationReflection="true" importOrganizing="true">
+  <foreignModel>RDBMS.ecore.xsd</foreignModel>
+  <genPackages prefix="Rdbms" resource="XML" disposableProviderFactory="true" ecorePackage="rdbms.ecore#/">
+    <genClasses ecoreClass="rdbms.ecore#//column">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rdbms.ecore#//column/referencedKeys"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rdbms.ecore#//column/hasForeignKeys"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rdbms.ecore#//column/kind"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rdbms.ecore#//column/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rdbms.ecore#//column/oID"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rdbms.ecore#//column/type"/>
+    </genClasses>
+    <genClasses ecoreClass="rdbms.ecore#//columns">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute rdbms.ecore#//columns/group"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference rdbms.ecore#//columns/column"/>
+    </genClasses>
+    <genClasses ecoreClass="rdbms.ecore#//DocumentRoot">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EAttribute rdbms.ecore#//DocumentRoot/mixed"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference rdbms.ecore#//DocumentRoot/xMLNSPrefixMap"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference rdbms.ecore#//DocumentRoot/xSISchemaLocation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rdbms.ecore#//DocumentRoot/column"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rdbms.ecore#//DocumentRoot/columns"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rdbms.ecore#//DocumentRoot/foreignKey"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rdbms.ecore#//DocumentRoot/foreignKeys"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rdbms.ecore#//DocumentRoot/hasForeignKeys"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rdbms.ecore#//DocumentRoot/key"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rdbms.ecore#//DocumentRoot/key2"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rdbms.ecore#//DocumentRoot/oID"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rdbms.ecore#//DocumentRoot/rDBMS"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rdbms.ecore#//DocumentRoot/referencedColumns"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rdbms.ecore#//DocumentRoot/referencedKeys"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rdbms.ecore#//DocumentRoot/schema"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rdbms.ecore#//DocumentRoot/schemas"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rdbms.ecore#//DocumentRoot/table"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rdbms.ecore#//DocumentRoot/tables"/>
+    </genClasses>
+    <genClasses ecoreClass="rdbms.ecore#//foreignKey">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rdbms.ecore#//foreignKey/referencedColumns"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rdbms.ecore#//foreignKey/kind"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rdbms.ecore#//foreignKey/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rdbms.ecore#//foreignKey/oID"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rdbms.ecore#//foreignKey/owner"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rdbms.ecore#//foreignKey/refersTo"/>
+    </genClasses>
+    <genClasses ecoreClass="rdbms.ecore#//foreignKeys">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute rdbms.ecore#//foreignKeys/group"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference rdbms.ecore#//foreignKeys/foreignKey"/>
+    </genClasses>
+    <genClasses ecoreClass="rdbms.ecore#//hasForeignKeys">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute rdbms.ecore#//hasForeignKeys/group"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference rdbms.ecore#//hasForeignKeys/oID"/>
+    </genClasses>
+    <genClasses ecoreClass="rdbms.ecore#//key">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rdbms.ecore#//key/referencedColumns"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rdbms.ecore#//key/kind"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rdbms.ecore#//key/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rdbms.ecore#//key/oID"/>
+    </genClasses>
+    <genClasses ecoreClass="rdbms.ecore#//key2">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rdbms.ecore#//key2/key"/>
+    </genClasses>
+    <genClasses ecoreClass="rdbms.ecore#//oID">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rdbms.ecore#//oID/oID"/>
+    </genClasses>
+    <genClasses ecoreClass="rdbms.ecore#//RDBMS">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rdbms.ecore#//RDBMS/schemas"/>
+    </genClasses>
+    <genClasses ecoreClass="rdbms.ecore#//referencedColumns">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute rdbms.ecore#//referencedColumns/group"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference rdbms.ecore#//referencedColumns/oID"/>
+    </genClasses>
+    <genClasses ecoreClass="rdbms.ecore#//referencedKeys">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute rdbms.ecore#//referencedKeys/group"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference rdbms.ecore#//referencedKeys/oID"/>
+    </genClasses>
+    <genClasses ecoreClass="rdbms.ecore#//schema">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rdbms.ecore#//schema/tables"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rdbms.ecore#//schema/foreignKeys"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rdbms.ecore#//schema/kind"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rdbms.ecore#//schema/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rdbms.ecore#//schema/oID"/>
+    </genClasses>
+    <genClasses ecoreClass="rdbms.ecore#//schemas">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute rdbms.ecore#//schemas/group"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference rdbms.ecore#//schemas/schema"/>
+    </genClasses>
+    <genClasses ecoreClass="rdbms.ecore#//table">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rdbms.ecore#//table/columns"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rdbms.ecore#//table/key2"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rdbms.ecore#//table/kind"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rdbms.ecore#//table/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rdbms.ecore#//table/oID"/>
+    </genClasses>
+    <genClasses ecoreClass="rdbms.ecore#//tables">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute rdbms.ecore#//tables/group"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference rdbms.ecore#//tables/table"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

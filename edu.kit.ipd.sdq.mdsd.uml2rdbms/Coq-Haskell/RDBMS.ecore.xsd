@@ -1,0 +1,152 @@
+<schema xmlns:ecore='http://www.eclipse.org/emf/2002/Ecore'
+  xmlns='http://www.w3.org/2000/10/XMLSchema'
+  targetNamespace='rdbms'
+  xmlns:t='rdbms'>
+
+ <element name='referencedColumns'>
+  <complexType ecore:name='referencedColumns'>
+   <sequence minOccurs='0' maxOccurs='unbounded'>
+    <element ref='t:oID'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='foreignKey'>
+  <complexType ecore:name='foreignKey'>
+   <sequence>
+    <element ref='t:referencedColumns'/>
+   </sequence>
+   <attribute name='oID' type='string' use='required'/>
+   <attribute name='name' type='string' use='required'/>
+   <attribute name='kind' type='string' use='required'/>
+   <attribute name='owner' type='string' use='required'/>
+   <attribute name='refersTo' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='foreignKeys'>
+  <complexType ecore:name='foreignKeys'>
+   <sequence minOccurs='0' maxOccurs='unbounded'>
+    <element ref='t:foreignKey'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='referencedColumn'>
+  <complexType ecore:name='referencedColumn'>
+   <sequence>
+    <element ref='t:oID'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='key'>
+  <complexType ecore:name='key'>
+   <sequence>
+    <element ref='t:referencedColumn'/>
+   </sequence>
+   <attribute name='oID' type='string' use='required'/>
+   <attribute name='name' type='string' use='required'/>
+   <attribute name='kind' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='key2'>
+  <complexType ecore:name='key2'>
+   <sequence minOccurs='0' maxOccurs='1'>
+    <element ref='t:key'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='hasForeignKeys'>
+  <complexType ecore:name='hasForeignKeys'>
+   <sequence minOccurs='0' maxOccurs='unbounded'>
+    <element ref='t:oID'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='oID'>
+  <complexType ecore:name='oID' mixed='true'>
+  </complexType>
+ </element>
+
+ <element name='referencedKeys'>
+  <complexType ecore:name='referencedKeys'>
+   <sequence minOccurs='0' maxOccurs='unbounded'>
+    <element ref='t:oID'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='column'>
+  <complexType ecore:name='column'>
+   <sequence>
+    <element ref='t:referencedKeys'/>
+    <element ref='t:hasForeignKeys'/>
+   </sequence>
+   <attribute name='oID' type='string' use='required'/>
+   <attribute name='name' type='string' use='required'/>
+   <attribute name='kind' type='string' use='required'/>
+   <attribute name='type' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='columns'>
+  <complexType ecore:name='columns'>
+   <sequence minOccurs='0' maxOccurs='unbounded'>
+    <element ref='t:column'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='table'>
+  <complexType ecore:name='table'>
+   <sequence>
+    <element ref='t:columns'/>
+    <element ref='t:key2'/>
+   </sequence>
+   <attribute name='oID' type='string' use='required'/>
+   <attribute name='name' type='string' use='required'/>
+   <attribute name='kind' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='tables'>
+  <complexType ecore:name='tables'>
+   <sequence minOccurs='0' maxOccurs='unbounded'>
+    <element ref='t:table'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='schema'>
+  <complexType ecore:name='schema'>
+   <sequence>
+    <element ref='t:tables'/>
+    <element ref='t:foreignKeys'/>
+   </sequence>
+   <attribute name='oID' type='string' use='required'/>
+   <attribute name='name' type='string' use='required'/>
+   <attribute name='kind' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='schemas'>
+  <complexType ecore:name='schemas'>
+   <sequence minOccurs='0' maxOccurs='unbounded'>
+    <element ref='t:schema'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='RDBMS'>
+  <complexType ecore:name='RDBMS'>
+   <sequence>
+    <element ref='t:schemas'/>
+   </sequence>
+   <!--attribute name='xmlns' type='string' use='fixed' value='rdbms'/-->
+  </complexType>
+ </element>
+</schema>

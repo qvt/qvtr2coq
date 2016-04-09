@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<UML>
+  <packages>
+    <package_ oID="0" kind="OTHER" name="myPackage">
+      <classifiersAndAssociations>
+        <primitiveDataType oID="0" kind="PERSISTENT" name="INTEGER"/>
+        <primitiveDataType oID="1" kind="PERSISTENT" name="STRING"/>
+        <class_ oID="0" kind="PERSISTENT" name="Library">
+          <generalClass/>
+          <attributes/>
+        </class_>
+        <class_ oID="1" kind="PERSISTENT" name="Medium">
+          <generalClass/>
+          <attributes>
+            <attribute oID="0" kind="PERSISTENT" name="author">
+              <ownerClassifier>
+                <class_ oID="4" kind="PERSISTENT" name="Author">
+                  <generalClass/>
+                  <attributes>
+                    <attribute oID="1" kind="PERSISTENT" name="name">
+                      <ownerClassifier>
+                        <primitiveDataType oID="1" kind="PERSISTENT" name="STRING"/>
+                      </ownerClassifier>
+                    </attribute>
+                  </attributes>
+                </class_>
+              </ownerClassifier>
+            </attribute>
+          </attributes>
+        </class_>
+        <class_ oID="2" kind="PERSISTENT" name="DVD">
+          <generalClass>
+            <class_ oID="1" kind="PERSISTENT" name="Medium">
+              <generalClass/>
+              <attributes>
+                <attribute oID="0" kind="PERSISTENT" name="author">
+                  <ownerClassifier>
+                    <class_ oID="4" kind="PERSISTENT" name="Author">
+                      <generalClass/>
+                      <attributes>
+                        <attribute oID="1" kind="PERSISTENT" name="name">
+                          <ownerClassifier>
+                            <primitiveDataType oID="1" kind="PERSISTENT" name="STRING"/>
+                          </ownerClassifier>
+                        </attribute>
+                      </attributes>
+                    </class_>
+                  </ownerClassifier>
+                </attribute>
+              </attributes>
+            </class_>
+          </generalClass>
+          <attributes/>
+        </class_>
+        <class_ oID="3" kind="PERSISTENT" name="Book">
+          <generalClass>
+            <class_ oID="1" kind="PERSISTENT" name="Medium">
+              <generalClass/>
+              <attributes>
+                <attribute oID="0" kind="PERSISTENT" name="author">
+                  <ownerClassifier>
+                    <class_ oID="4" kind="PERSISTENT" name="Author">
+                      <generalClass/>
+                      <attributes>
+                        <attribute oID="1" kind="PERSISTENT" name="name">
+                          <ownerClassifier>
+                            <primitiveDataType oID="1" kind="PERSISTENT" name="STRING"/>
+                          </ownerClassifier>
+                        </attribute>
+                      </attributes>
+                    </class_>
+                  </ownerClassifier>
+                </attribute>
+              </attributes>
+            </class_>
+          </generalClass>
+          <attributes>
+            <attribute oID="0" kind="PERSISTENT" name="numberOfPages">
+              <ownerClassifier>
+                <primitiveDataType oID="0" kind="PERSISTENT" name="INTEGER"/>
+              </ownerClassifier>
+            </attribute>
+          </attributes>
+        </class_>
+        <class_ oID="4" kind="PERSISTENT" name="Author">
+          <generalClass/>
+          <attributes>
+            <attribute oID="1" kind="PERSISTENT" name="name">
+              <ownerClassifier>
+                <primitiveDataType oID="1" kind="PERSISTENT" name="STRING"/>
+              </ownerClassifier>
+            </attribute>
+          </attributes>
+        </class_>
+        <class_ oID="5" kind="OTHER" name="NonPersistantClass">
+          <generalClass/>
+          <attributes/>
+        </class_>
+        <association oID="0" kind="PERSISTENT" name="LibraryToMedium" source="0" destination="1"/>
+      </classifiersAndAssociations>
+    </package_>
+  </packages>
+</UML>
+

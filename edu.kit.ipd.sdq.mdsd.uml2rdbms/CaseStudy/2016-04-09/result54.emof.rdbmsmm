@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ASCII"?>
+<rdbmsMM:Schema xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:rdbmsMM="rdbmsMM" xmi:id="10a43027887542e0-7e61659b1a256f72" name="Object0">
+  <table xmi:id="8a7c714b5037c2e2-2453db1dc3a27bc8" name="Object1" hasForeignKey="7bfa927beffd29b7-d797f9f2059678a4">
+    <column xmi:id="99acf0ad7b84e33d-b799e078f858a401" name="Object1_tid" type="NUMBER" hasKey="4f62cafb3ca76b30-559c7fdc5bbe465f"/>
+    <column xmi:id="5c711dec20358aeb-4a222bd5cccd55ac" name="Object2" type="VARCHAR"/>
+    <column xmi:id="52ab75c20ef64afd-45a7a092f9c6c75" name="Object3" type="VARCHAR"/>
+    <column xmi:id="b90fa3472332c708-6f34722e6674339d" name="Object4" type="VARCHAR"/>
+    <column xmi:id="c3f64f07b48dfcc5-c57782f40103f57b" name="Object5" type="VARCHAR"/>
+    <column xmi:id="154bdfe7db3b40e3-428c504551fd4c1c" name="Object6" type="VARCHAR"/>
+    <column xmi:id="7c548e3e1ae08d4c-34441ae21ae91065" name="Object7" type="VARCHAR"/>
+    <column xmi:id="7123921707d368c1-dc6a878e6be0d925" name="Object8" type="VARCHAR"/>
+    <column xmi:id="1a7792583adc2e05-f8739c0f5686c459" name="Object9" type="VARCHAR"/>
+    <column xmi:id="6587a3d03e3188de-9036f2cfcc4fc235" name="Object1_Object22_Object1_tid" type="NUMBER" hasForeignKey="7bfa927beffd29b7-d797f9f2059678a4"/>
+    <hasKey xmi:id="4f62cafb3ca76b30-559c7fdc5bbe465f" name="Object1_pk" column="99acf0ad7b84e33d-b799e078f858a401" referedBy="7bfa927beffd29b7-d797f9f2059678a4"/>
+  </table>
+  <foreignKey xmi:id="7bfa927beffd29b7-d797f9f2059678a4" name="Object1_Object22_Object1" refersTo="4f62cafb3ca76b30-559c7fdc5bbe465f" owner="8a7c714b5037c2e2-2453db1dc3a27bc8" column="6587a3d03e3188de-9036f2cfcc4fc235"/>
+</rdbmsMM:Schema>

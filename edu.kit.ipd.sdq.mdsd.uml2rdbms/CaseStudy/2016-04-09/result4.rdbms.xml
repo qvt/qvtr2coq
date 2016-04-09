@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<RDBMS xmlns="rdbms">
+  <schemas>
+    <schema oID="0" name="Object0" kind="">
+      <tables>
+        <table oID="1" name="Object1" kind="">
+          <columns>
+            <column oID="1" name="Object1_tid" kind="" type="NUMBER">
+              <referencedKeys/>
+              <hasForeignKeys/>
+            </column>
+            <column oID="2" name="Object2" kind="" type="VARCHAR">
+              <referencedKeys/>
+              <hasForeignKeys/>
+            </column>
+            <column oID="4" name="Object3" kind="" type="VARCHAR">
+              <referencedKeys/>
+              <hasForeignKeys/>
+            </column>
+            <column oID="6" name="Object4" kind="" type="VARCHAR">
+              <referencedKeys/>
+              <hasForeignKeys/>
+            </column>
+            <column oID="30" name="Object1_Object30_Object12_tid" kind="" type="NUMBER">
+              <referencedKeys/>
+              <hasForeignKeys/>
+            </column>
+          </columns>
+          <key2>
+            <key oID="1" name="Object1_pk" kind="">
+              <referencedColumns>
+                <oID oID="1"/>
+              </referencedColumns>
+            </key>
+          </key2>
+        </table>
+        <table oID="8" name="Object5" kind="">
+          <columns>
+            <column oID="8" name="Object5_tid" kind="" type="NUMBER">
+              <referencedKeys/>
+              <hasForeignKeys/>
+            </column>
+            <column oID="10" name="Object7" kind="" type="VARCHAR">
+              <referencedKeys/>
+              <hasForeignKeys/>
+            </column>
+            <column oID="12" name="Object8" kind="" type="VARCHAR">
+              <referencedKeys/>
+              <hasForeignKeys/>
+            </column>
+            <column oID="13" name="Object9" kind="" type="VARCHAR">
+              <referencedKeys/>
+              <hasForeignKeys/>
+            </column>
+            <column oID="22" name="Object11" kind="" type="VARCHAR">
+              <referencedKeys/>
+              <hasForeignKeys/>
+            </column>
+            <column oID="2" name="_Object6_Object2" kind="" type="VARCHAR">
+              <referencedKeys/>
+              <hasForeignKeys/>
+            </column>
+            <column oID="4" name="_Object6_Object3" kind="" type="VARCHAR">
+              <referencedKeys/>
+              <hasForeignKeys/>
+            </column>
+            <column oID="6" name="_Object6_Object4" kind="" type="VARCHAR">
+              <referencedKeys/>
+              <hasForeignKeys/>
+            </column>
+            <column oID="17" name="_Object10_Object13" kind="" type="VARCHAR">
+              <referencedKeys/>
+              <hasForeignKeys/>
+            </column>
+            <column oID="18" name="_Object10_Object14" kind="" type="VARCHAR">
+              <referencedKeys/>
+              <hasForeignKeys/>
+            </column>
+            <column oID="20" name="_Object10_Object15" kind="" type="VARCHAR">
+              <referencedKeys/>
+              <hasForeignKeys/>
+            </column>
+            <column oID="29" name="Object5_Object29_Object1_tid" kind="" type="NUMBER">
+              <referencedKeys/>
+              <hasForeignKeys/>
+            </column>
+          </columns>
+          <key2>
+            <key oID="8" name="Object5_pk" kind="">
+              <referencedColumns>
+                <oID oID="8"/>
+              </referencedColumns>
+            </key>
+          </key2>
+        </table>
+        <table oID="16" name="Object12" kind="">
+          <columns>
+            <column oID="16" name="Object12_tid" kind="" type="NUMBER">
+              <referencedKeys/>
+              <hasForeignKeys/>
+            </column>
+            <column oID="17" name="Object13" kind="" type="VARCHAR">
+              <referencedKeys/>
+              <hasForeignKeys/>
+            </column>
+            <column oID="18" name="Object14" kind="" type="VARCHAR">
+              <referencedKeys/>
+              <hasForeignKeys/>
+            </column>
+            <column oID="20" name="Object15" kind="" type="VARCHAR">
+              <referencedKeys/>
+              <hasForeignKeys/>
+            </column>
+            <column oID="31" name="Object12_Object31_Object1_tid" kind="" type="NUMBER">
+              <referencedKeys/>
+              <hasForeignKeys/>
+            </column>
+          </columns>
+          <key2>
+            <key oID="16" name="Object12_pk" kind="">
+              <referencedColumns>
+                <oID oID="16"/>
+              </referencedColumns>
+            </key>
+          </key2>
+        </table>
+      </tables>
+      <foreignKeys>
+        <foreignKey oID="29" name="Object5_Object29_Object1" kind="" owner="8" refersTo="1">
+          <referencedColumns>
+            <oID oID="29"/>
+          </referencedColumns>
+        </foreignKey>
+        <foreignKey oID="30" name="Object1_Object30_Object12" kind="" owner="1" refersTo="16">
+          <referencedColumns>
+            <oID oID="30"/>
+          </referencedColumns>
+        </foreignKey>
+        <foreignKey oID="31" name="Object12_Object31_Object1" kind="" owner="16" refersTo="1">
+          <referencedColumns>
+            <oID oID="31"/>
+          </referencedColumns>
+        </foreignKey>
+      </foreignKeys>
+    </schema>
+  </schemas>
+</RDBMS>
+

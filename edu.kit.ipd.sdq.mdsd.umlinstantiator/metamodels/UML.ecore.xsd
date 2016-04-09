@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xsd:schema xmlns="uml" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:xsd="http://www.w3.org/2000/10/XMLSchema" targetNamespace="uml">
+
+ <xsd:element name="association">
+  <xsd:complexType ecore:name="association">
+   <xsd:attribute name="oID" type="xsd:string" use="required"/>
+   <xsd:attribute name="kind" type="xsd:string" use="required"/>
+   <xsd:attribute name="name" type="xsd:string" use="required"/>
+   <xsd:attribute name="source" type="xsd:string" use="required"/>
+   <xsd:attribute name="destination" type="xsd:string" use="required"/>
+  </xsd:complexType>
+ </xsd:element>
+
+ <xsd:element name="primitiveDataType">
+  <xsd:complexType ecore:name="primitiveDataType">
+   <xsd:attribute name="oID" type="xsd:string" use="required"/>
+   <xsd:attribute name="kind" type="xsd:string" use="required"/>
+   <xsd:attribute name="name" type="xsd:string" use="required"/>
+  </xsd:complexType>
+ </xsd:element>
+
+ <xsd:element name="ownerClassifier">
+  <xsd:complexType ecore:name="ownerClassifier">
+   <xsd:choice>
+    <xsd:element ref="class_"/>
+    <xsd:element ref="primitiveDataType"/>
+   </xsd:choice>
+  </xsd:complexType>
+ </xsd:element>
+
+ <xsd:element name="attribute">
+  <xsd:complexType ecore:name="attribute">
+   <xsd:sequence>
+    <xsd:element ref="ownerClassifier"/>
+   </xsd:sequence>
+   <xsd:attribute name="oID" type="xsd:string" use="required"/>
+   <xsd:attribute name="kind" type="xsd:string" use="required"/>
+   <xsd:attribute name="name" type="xsd:string" use="required"/>
+  </xsd:complexType>
+ </xsd:element>
+
+ <xsd:element name="attributes">
+  <xsd:complexType ecore:name="attributes">
+   <xsd:sequence maxOccurs="unbounded" minOccurs="0">
+    <xsd:element ref="attribute"/>
+   </xsd:sequence>
+  </xsd:complexType>
+ </xsd:element>
+
+ <xsd:element name="generalClass">
+  <xsd:complexType ecore:name="generalClass">
+   <xsd:sequence maxOccurs="1" minOccurs="0">
+    <xsd:element ref="class_"/>
+   </xsd:sequence>
+  </xsd:complexType>
+ </xsd:element>
+
+ <xsd:element name="class_">
+  <xsd:complexType ecore:name="class_">
+   <xsd:sequence>
+    <xsd:element ref="generalClass"/>
+    <xsd:element ref="attributes"/>
+   </xsd:sequence>
+   <xsd:attribute name="oID" type="xsd:string" use="required"/>
+   <xsd:attribute name="kind" type="xsd:string" use="required"/>
+   <xsd:attribute name="name" type="xsd:string" use="required"/>
+  </xsd:complexType>
+ </xsd:element>
+
+ <xsd:element name="classifiersAndAssociations">
+  <xsd:complexType ecore:name="classifiersAndAssociations">
+   <xsd:choice maxOccurs="unbounded" minOccurs="0">
+    <xsd:element ref="class_"/>
+    <xsd:element ref="primitiveDataType"/>
+    <xsd:element ref="association"/>
+   </xsd:choice>
+  </xsd:complexType>
+ </xsd:element>
+
+ <xsd:element name="package_">
+  <xsd:complexType ecore:name="package_">
+   <xsd:sequence>
+    <xsd:element ref="classifiersAndAssociations"/>
+   </xsd:sequence>
+   <xsd:attribute name="oID" type="xsd:string" use="required"/>
+   <xsd:attribute name="kind" type="xsd:string" use="required"/>
+   <xsd:attribute name="name" type="xsd:string" use="required"/>
+  </xsd:complexType>
+ </xsd:element>
+
+ <xsd:element name="packages">
+  <xsd:complexType ecore:name="packages">
+   <xsd:sequence maxOccurs="unbounded" minOccurs="0">
+    <xsd:element ref="package_"/>
+   </xsd:sequence>
+  </xsd:complexType>
+ </xsd:element>
+
+ <xsd:element name="UML">
+  <xsd:complexType ecore:name="UML">
+   <xsd:sequence>
+    <xsd:element ref="packages"/>
+   </xsd:sequence>
+   <!--xsd:attribute name='xmlns' type='string' use='fixed' value='uml'/-->
+  </xsd:complexType>
+ </xsd:element>
+</xsd:schema>

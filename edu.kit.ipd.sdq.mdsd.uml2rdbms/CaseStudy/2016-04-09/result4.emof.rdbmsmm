@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="ASCII"?>
+<rdbmsMM:Schema xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:rdbmsMM="rdbmsMM" xmi:id="35953dbd36529657-c3a602e7b5f25ddb" name="Object0">
+  <table xmi:id="7aa4cb8cbbf4f91a-5acd39240f6f5329" name="Object1" hasForeignKey="61b858db373419d3-8fc9993b0b05b23f">
+    <column xmi:id="fee00ead20f48767-761d437b2dfa7547" name="Object1_tid" type="NUMBER" hasKey="31525a63ccd2c28b-8eb385fb15b04d35"/>
+    <column xmi:id="f1c756c47aa6b098-be420077580db20c" name="Object2" type="VARCHAR"/>
+    <column xmi:id="86cc54df443f193-d809d1d665f4085e" name="Object3" type="VARCHAR"/>
+    <column xmi:id="e726cffdca724c3e-8df810bbb86d01e8" name="Object4" type="VARCHAR"/>
+    <column xmi:id="78aa786d42172632-e64738be4b9bc3c8" name="Object1_Object30_Object12_tid" type="NUMBER" hasForeignKey="61b858db373419d3-8fc9993b0b05b23f"/>
+    <hasKey xmi:id="31525a63ccd2c28b-8eb385fb15b04d35" name="Object1_pk" column="fee00ead20f48767-761d437b2dfa7547" referedBy="2e0e80c4e0db8a56-625f497887bc229d f21b88c22a19fcd1-507d4d6183ab7219"/>
+  </table>
+  <table xmi:id="e566ba77eaf242a0-1f8d7306c9dcfecd" name="Object5" hasForeignKey="2e0e80c4e0db8a56-625f497887bc229d">
+    <column xmi:id="a531465bce475eb7-58689fb33ac586f9" name="Object5_tid" type="NUMBER" hasKey="e955717822ca1ff-f190d317e472c966"/>
+    <column xmi:id="71872eafdd8d66ac-6c39c3b1e929784b" name="Object7" type="VARCHAR"/>
+    <column xmi:id="97d84c54a1a21fc7-602805c73e7c0484" name="Object8" type="VARCHAR"/>
+    <column xmi:id="9f1f56b80dd84d96-e73e96a3d35df7b2" name="Object9" type="VARCHAR"/>
+    <column xmi:id="c56adf86687dbdf5-64d94c516f454be8" name="Object11" type="VARCHAR"/>
+    <column xmi:id="e382026f7add5c84-b67db4e799cff0da" name="_Object6_Object2" type="VARCHAR"/>
+    <column xmi:id="5fc8399edbee7cd8-9bc08f3634781ee" name="_Object6_Object3" type="VARCHAR"/>
+    <column xmi:id="6080a9e223c391a-cae6467a2a0f559c" name="_Object6_Object4" type="VARCHAR"/>
+    <column xmi:id="9340b9e697f949af-d794e6ad2a8ed601" name="_Object10_Object13" type="VARCHAR"/>
+    <column xmi:id="fcd4d0b86a6c2edc-15e9f65068d14b92" name="_Object10_Object14" type="VARCHAR"/>
+    <column xmi:id="15853fedb528b390-8a263947f0e73e50" name="_Object10_Object15" type="VARCHAR"/>
+    <column xmi:id="e1008f1218dac0c0-4bbb9365a2549458" name="Object5_Object29_Object1_tid" type="NUMBER" hasForeignKey="2e0e80c4e0db8a56-625f497887bc229d"/>
+    <hasKey xmi:id="e955717822ca1ff-f190d317e472c966" name="Object5_pk" column="a531465bce475eb7-58689fb33ac586f9"/>
+  </table>
+  <table xmi:id="f5b1be75a5e48ac-73b47c05ec6f1eed" name="Object12" hasForeignKey="f21b88c22a19fcd1-507d4d6183ab7219">
+    <column xmi:id="7648a0be50888a8a-39d7d99990ea58c1" name="Object12_tid" type="NUMBER" hasKey="baaa33623168fe91-b91f9bbbc3e10e85"/>
+    <column xmi:id="b566bb500999cd0e-e24a02089455e725" name="Object13" type="VARCHAR"/>
+    <column xmi:id="9c1ca00ed1a7bb9-240cc03e1e914531" name="Object14" type="VARCHAR"/>
+    <column xmi:id="2c03e0412dcd878a-149aef4cd6d15aad" name="Object15" type="VARCHAR"/>
+    <column xmi:id="5cc119c49f45034e-aeea0e68e1c98ac6" name="Object12_Object31_Object1_tid" type="NUMBER" hasForeignKey="f21b88c22a19fcd1-507d4d6183ab7219"/>
+    <hasKey xmi:id="baaa33623168fe91-b91f9bbbc3e10e85" name="Object12_pk" column="7648a0be50888a8a-39d7d99990ea58c1" referedBy="61b858db373419d3-8fc9993b0b05b23f"/>
+  </table>
+  <foreignKey xmi:id="2e0e80c4e0db8a56-625f497887bc229d" name="Object5_Object29_Object1" refersTo="31525a63ccd2c28b-8eb385fb15b04d35" owner="e566ba77eaf242a0-1f8d7306c9dcfecd" column="e1008f1218dac0c0-4bbb9365a2549458"/>
+  <foreignKey xmi:id="61b858db373419d3-8fc9993b0b05b23f" name="Object1_Object30_Object12" refersTo="baaa33623168fe91-b91f9bbbc3e10e85" owner="7aa4cb8cbbf4f91a-5acd39240f6f5329" column="78aa786d42172632-e64738be4b9bc3c8"/>
+  <foreignKey xmi:id="f21b88c22a19fcd1-507d4d6183ab7219" name="Object12_Object31_Object1" refersTo="31525a63ccd2c28b-8eb385fb15b04d35" owner="f5b1be75a5e48ac-73b47c05ec6f1eed" column="5cc119c49f45034e-aeea0e68e1c98ac6"/>
+</rdbmsMM:Schema>

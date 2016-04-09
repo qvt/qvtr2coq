@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<RDBMS xmlns="rdbms">
+  <schemas>
+    <schema oID="0" name="Object0" kind="">
+      <tables>
+        <table oID="1" name="Object1" kind="">
+          <columns>
+            <column oID="1" name="Object1_tid" kind="" type="NUMBER">
+              <referencedKeys/>
+              <hasForeignKeys/>
+            </column>
+            <column oID="2" name="Object2" kind="" type="VARCHAR">
+              <referencedKeys/>
+              <hasForeignKeys/>
+            </column>
+            <column oID="4" name="Object3" kind="" type="VARCHAR">
+              <referencedKeys/>
+              <hasForeignKeys/>
+            </column>
+            <column oID="5" name="Object4" kind="" type="VARCHAR">
+              <referencedKeys/>
+              <hasForeignKeys/>
+            </column>
+            <column oID="7" name="Object5" kind="" type="VARCHAR">
+              <referencedKeys/>
+              <hasForeignKeys/>
+            </column>
+            <column oID="9" name="Object6" kind="" type="VARCHAR">
+              <referencedKeys/>
+              <hasForeignKeys/>
+            </column>
+            <column oID="11" name="Object7" kind="" type="VARCHAR">
+              <referencedKeys/>
+              <hasForeignKeys/>
+            </column>
+            <column oID="13" name="Object8" kind="" type="VARCHAR">
+              <referencedKeys/>
+              <hasForeignKeys/>
+            </column>
+            <column oID="15" name="Object9" kind="" type="VARCHAR">
+              <referencedKeys/>
+              <hasForeignKeys/>
+            </column>
+            <column oID="22" name="Object1_Object22_Object1_tid" kind="" type="NUMBER">
+              <referencedKeys/>
+              <hasForeignKeys/>
+            </column>
+          </columns>
+          <key2>
+            <key oID="1" name="Object1_pk" kind="">
+              <referencedColumns>
+                <oID oID="1"/>
+              </referencedColumns>
+            </key>
+          </key2>
+        </table>
+      </tables>
+      <foreignKeys>
+        <foreignKey oID="22" name="Object1_Object22_Object1" kind="" owner="1" refersTo="1">
+          <referencedColumns>
+            <oID oID="22"/>
+          </referencedColumns>
+        </foreignKey>
+      </foreignKeys>
+    </schema>
+  </schemas>
+</RDBMS>
+

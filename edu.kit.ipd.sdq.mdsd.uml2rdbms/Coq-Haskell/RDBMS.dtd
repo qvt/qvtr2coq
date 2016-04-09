@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE RDBMS [
+<!ELEMENT foreignKey (referencedColumns) >
+<!ELEMENT foreignKeys (foreignKey)* >
+<!ELEMENT referencedColumns (oID)* >
+<!ELEMENT key (referencedColumns) >
+<!ELEMENT key2 (key)? >
+<!ELEMENT hasForeignKeys (oID)* >
+<!ELEMENT oID EMPTY >
+<!ELEMENT referencedKeys (oID)* >
+<!ELEMENT column (referencedKeys, hasForeignKeys) >
+<!ELEMENT columns (column)* >
+<!ELEMENT table (columns, key2) >
+<!ELEMENT tables (table)* >
+<!ELEMENT schema (tables, foreignKeys) >
+<!ELEMENT schemas (schema)* >
+<!ELEMENT RDBMS (schemas) >
+<!ATTLIST foreignKey oID CDATA #REQUIRED >
+<!ATTLIST foreignKey name CDATA #REQUIRED >
+<!ATTLIST foreignKey kind CDATA #REQUIRED >
+<!ATTLIST foreignKey owner CDATA #REQUIRED >
+<!ATTLIST foreignKey refersTo CDATA #REQUIRED >
+<!ATTLIST key oID CDATA #REQUIRED >
+<!ATTLIST key name CDATA #REQUIRED >
+<!ATTLIST key kind CDATA #REQUIRED >
+<!ATTLIST oID oID CDATA #REQUIRED >
+<!ATTLIST column oID CDATA #REQUIRED >
+<!ATTLIST column name CDATA #REQUIRED >
+<!ATTLIST column kind CDATA #REQUIRED >
+<!ATTLIST column type CDATA #REQUIRED >
+<!ATTLIST table oID CDATA #REQUIRED >
+<!ATTLIST table name CDATA #REQUIRED >
+<!ATTLIST table kind CDATA #REQUIRED >
+<!ATTLIST schema oID CDATA #REQUIRED >
+<!ATTLIST schema name CDATA #REQUIRED >
+<!ATTLIST schema kind CDATA #REQUIRED >
+<!ATTLIST RDBMS xmlns CDATA #FIXED "rdbms" >
+]>
+

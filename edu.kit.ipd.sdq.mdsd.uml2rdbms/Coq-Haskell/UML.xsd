@@ -1,0 +1,108 @@
+<schema
+  xmlns='http://www.w3.org/2000/10/XMLSchema'
+  targetNamespace='uml'
+  xmlns:t='uml'>
+
+ <element name='association'>
+  <complexType>
+   <attribute name='oID' type='string' use='required'/>
+   <attribute name='kind' type='string' use='required'/>
+   <attribute name='name' type='string' use='required'/>
+   <attribute name='source' type='string' use='required'/>
+   <attribute name='destination' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='primitiveDataType'>
+  <complexType>
+   <attribute name='oID' type='string' use='required'/>
+   <attribute name='kind' type='string' use='required'/>
+   <attribute name='name' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='ownerClassifier'>
+  <complexType>
+   <choice>
+    <element ref='t:class_'/>
+    <element ref='t:primitiveDataType'/>
+   </choice>
+  </complexType>
+ </element>
+
+ <element name='attribute'>
+  <complexType>
+   <sequence>
+    <element ref='t:ownerClassifier'/>
+   </sequence>
+   <attribute name='oID' type='string' use='required'/>
+   <attribute name='kind' type='string' use='required'/>
+   <attribute name='name' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='attributes'>
+  <complexType>
+   <sequence minOccurs='0' maxOccurs='unbounded'>
+    <element ref='t:attribute'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='generalClass'>
+  <complexType>
+   <sequence minOccurs='0' maxOccurs='1'>
+    <element ref='t:class_'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='class_'>
+  <complexType>
+   <sequence>
+    <element ref='t:generalClass'/>
+    <element ref='t:attributes'/>
+   </sequence>
+   <attribute name='oID' type='string' use='required'/>
+   <attribute name='kind' type='string' use='required'/>
+   <attribute name='name' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='classifiersAndAssociations'>
+  <complexType>
+   <choice minOccurs='0' maxOccurs='unbounded'>
+    <element ref='t:class_'/>
+    <element ref='t:primitiveDataType'/>
+    <element ref='t:association'/>
+   </choice>
+  </complexType>
+ </element>
+
+ <element name='package_'>
+  <complexType>
+   <sequence>
+    <element ref='t:classifiersAndAssociations'/>
+   </sequence>
+   <attribute name='oID' type='string' use='required'/>
+   <attribute name='kind' type='string' use='required'/>
+   <attribute name='name' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='packages'>
+  <complexType>
+   <sequence minOccurs='0' maxOccurs='unbounded'>
+    <element ref='t:package_'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='UML'>
+  <complexType>
+   <sequence>
+    <element ref='t:packages'/>
+   </sequence>
+  </complexType>
+ </element>
+</schema>

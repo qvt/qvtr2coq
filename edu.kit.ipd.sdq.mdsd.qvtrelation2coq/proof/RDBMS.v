@@ -492,7 +492,7 @@ Proof.
 			(AllInstances_Table rdbms)).
 		3:assumption.
 
-		(* There must be table t for a foreign key fk, so that fk.owner = t *)
+		(* There must be table t for a column c, so that c.owner = t *)
 		induction (Project_Table_columns t).
 		elim H1.
 

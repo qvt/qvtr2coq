@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<RDBMS xmlns="rdbms">
+  <schemas>
+    <schema oID="0" name="myPackage" kind="">
+      <tables>
+        <table oID="0" name="Library" kind="">
+          <columns>
+            <column oID="0" name="Library_tid" kind="" type="NUMBER">
+              <referencedKeys/>
+              <hasForeignKeys/>
+            </column>
+            <column oID="0" name="Library_LibraryToMedium_Medium_tid" kind="" type="NUMBER">
+              <referencedKeys/>
+              <hasForeignKeys/>
+            </column>
+          </columns>
+          <key2>
+            <key oID="0" name="Library_pk" kind="">
+              <referencedColumn>
+                <oID>0</oID>
+              </referencedColumn>
+            </key>
+          </key2>
+        </table>
+        <table oID="1" name="Medium" kind="">
+          <columns>
+            <column oID="1" name="Medium_tid" kind="" type="NUMBER">
+              <referencedKeys/>
+              <hasForeignKeys/>
+            </column>
+            <column oID="1" name="_author_name" kind="" type="VARCHAR">
+              <referencedKeys/>
+              <hasForeignKeys/>
+            </column>
+            <column oID="0" name="Library_LibraryToMedium_Medium_tid" kind="" type="NUMBER">
+              <referencedKeys/>
+              <hasForeignKeys/>
+            </column>
+          </columns>
+          <key2>
+            <key oID="1" name="Medium_pk" kind="">
+              <referencedColumn>
+                <oID>1</oID>
+              </referencedColumn>
+            </key>
+          </key2>
+        </table>
+        <table oID="2" name="DVD" kind="">
+          <columns>
+            <column oID="2" name="DVD_tid" kind="" type="NUMBER">
+              <referencedKeys/>
+              <hasForeignKeys/>
+            </column>
+            <column oID="1" name="_author_name" kind="" type="VARCHAR">
+              <referencedKeys/>
+              <hasForeignKeys/>
+            </column>
+            <column oID="0" name="Library_LibraryToMedium_Medium_tid" kind="" type="NUMBER">
+              <referencedKeys/>
+              <hasForeignKeys/>
+            </column>
+          </columns>
+          <key2>
+            <key oID="2" name="DVD_pk" kind="">
+              <referencedColumn>
+                <oID>2</oID>
+              </referencedColumn>
+            </key>
+          </key2>
+        </table>
+        <table oID="3" name="Book" kind="">
+          <columns>
+            <column oID="3" name="Book_tid" kind="" type="NUMBER">
+              <referencedKeys/>
+              <hasForeignKeys/>
+            </column>
+            <column oID="0" name="numberOfPages" kind="" type="VARCHAR">
+              <referencedKeys/>
+              <hasForeignKeys/>
+            </column>
+            <column oID="1" name="_author_name" kind="" type="VARCHAR">
+              <referencedKeys/>
+              <hasForeignKeys/>
+            </column>
+            <column oID="0" name="Library_LibraryToMedium_Medium_tid" kind="" type="NUMBER">
+              <referencedKeys/>
+              <hasForeignKeys/>
+            </column>
+          </columns>
+          <key2>
+            <key oID="3" name="Book_pk" kind="">
+              <referencedColumn>
+                <oID>3</oID>
+              </referencedColumn>
+            </key>
+          </key2>
+        </table>
+        <table oID="4" name="Author" kind="">
+          <columns>
+            <column oID="4" name="Author_tid" kind="" type="NUMBER">
+              <referencedKeys/>
+              <hasForeignKeys/>
+            </column>
+            <column oID="1" name="name" kind="" type="VARCHAR">
+              <referencedKeys/>
+              <hasForeignKeys/>
+            </column>
+            <column oID="0" name="Library_LibraryToMedium_Medium_tid" kind="" type="NUMBER">
+              <referencedKeys/>
+              <hasForeignKeys/>
+            </column>
+          </columns>
+          <key2>
+            <key oID="4" name="Author_pk" kind="">
+              <referencedColumn>
+                <oID>4</oID>
+              </referencedColumn>
+            </key>
+          </key2>
+        </table>
+      </tables>
+      <foreignKeys>
+        <foreignKey oID="0" name="Library_LibraryToMedium_Medium" kind="" owner="0" refersTo="1">
+          <referencedColumns>
+            <oID>0</oID>
+          </referencedColumns>
+        </foreignKey>
+      </foreignKeys>
+    </schema>
+  </schemas>
+</RDBMS>
+

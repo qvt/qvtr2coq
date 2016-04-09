@@ -1,0 +1,108 @@
+<schema xmlns:ecore='http://www.eclipse.org/emf/2002/Ecore'
+  xmlns='http://www.w3.org/2000/10/XMLSchema'
+  targetNamespace='uml'
+  xmlns:t='uml'>
+
+ <element name='association'>
+  <complexType ecore:name='association'>
+   <attribute name='oID' type='string' use='required'/>
+   <attribute name='kind' type='string' use='required'/>
+   <attribute name='name' type='string' use='required'/>
+   <attribute name='source' type='string' use='required'/>
+   <attribute name='destination' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='primitiveDataType'>
+  <complexType ecore:name='primitiveDataType'>
+   <attribute name='oID' type='string' use='required'/>
+   <attribute name='kind' type='string' use='required'/>
+   <attribute name='name' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='ownerClassifier'>
+  <complexType ecore:name='ownerClassifier'>
+   <choice>
+    <element ref='t:class_'/>
+    <element ref='t:primitiveDataType'/>
+   </choice>
+  </complexType>
+ </element>
+
+ <element name='attribute'>
+  <complexType ecore:name='attribute'>
+   <sequence>
+    <element ref='t:ownerClassifier'/>
+   </sequence>
+   <attribute name='oID' type='string' use='required'/>
+   <attribute name='kind' type='string' use='required'/>
+   <attribute name='name' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='attributes'>
+  <complexType ecore:name='attributes'>
+   <sequence minOccurs='0' maxOccurs='unbounded'>
+    <element ref='t:attribute'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='generalClass'>
+  <complexType ecore:name='generalClass'>
+   <sequence minOccurs='0' maxOccurs='1'>
+    <element ref='t:class_'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='class_'>
+  <complexType ecore:name='class_'>
+   <sequence>
+    <element ref='t:generalClass'/>
+    <element ref='t:attributes'/>
+   </sequence>
+   <attribute name='oID' type='string' use='required'/>
+   <attribute name='kind' type='string' use='required'/>
+   <attribute name='name' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='classifiersAndAssociations'>
+  <complexType ecore:name='classifiersAndAssociations'>
+   <choice minOccurs='0' maxOccurs='unbounded'>
+    <element ref='t:class_'/>
+    <element ref='t:primitiveDataType'/>
+    <element ref='t:association'/>
+   </choice>
+  </complexType>
+ </element>
+
+ <element name='package_'>
+  <complexType ecore:name='package_'>
+   <sequence>
+    <element ref='t:classifiersAndAssociations'/>
+   </sequence>
+   <attribute name='oID' type='string' use='required'/>
+   <attribute name='kind' type='string' use='required'/>
+   <attribute name='name' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='packages'>
+  <complexType ecore:name='packages'>
+   <sequence minOccurs='0' maxOccurs='unbounded'>
+    <element ref='t:package_'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='UML'>
+  <complexType ecore:name='UML'>
+   <sequence>
+    <element ref='t:packages'/>
+   </sequence>
+  </complexType>
+ </element>
+</schema>

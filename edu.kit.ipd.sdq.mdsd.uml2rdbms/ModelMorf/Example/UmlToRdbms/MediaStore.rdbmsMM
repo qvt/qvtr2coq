@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ASCII"?>
+<rdbmsMM:Schema xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:rdbmsMM="rdbmsMM" xmi:id="f6d2d0fdbc696b27-69967152ac7e1c26" name="myPackage">
+  <table xmi:id="a4ce6c2cfa1ee9db-b8320a82e40d7b5" name="Library" hasForeignKey="217e333ba7fa9838-82f87d7b30138edc">
+    <column xmi:id="3a5547e89b66ee7-2eb806263178dc99" name="Library_tid" type="NUMBER" hasKey="dddeae02cb743af5-8bff1637fc16b7dd"/>
+    <column xmi:id="b4fcccf2e04036fc-b3f6af350e213d5c" name="Library_LibraryToMedium_Medium_tid" type="NUMBER" hasForeignKey="217e333ba7fa9838-82f87d7b30138edc"/>
+    <hasKey xmi:id="dddeae02cb743af5-8bff1637fc16b7dd" name="Library_pk" column="3a5547e89b66ee7-2eb806263178dc99"/>
+  </table>
+  <table xmi:id="34fcd45d70b2aab2-fccf3d027e07637b" name="Medium">
+    <column xmi:id="a4f1347504713054-da53aac7a1294ea5" name="Medium_tid" type="NUMBER" hasKey="d37d71be18e3f347-782241174a2bbe3f"/>
+    <column xmi:id="f63c87417aa50707-cd6df917c5de19d1" name="_author_name" type="VARCHAR"/>
+    <hasKey xmi:id="d37d71be18e3f347-782241174a2bbe3f" name="Medium_pk" column="a4f1347504713054-da53aac7a1294ea5" referedBy="217e333ba7fa9838-82f87d7b30138edc"/>
+  </table>
+  <table xmi:id="4fc7b4cf57f4656a-4a2e15b5ff83c66d" name="DVD">
+    <column xmi:id="809bc304a588a5f1-a60318777a722062" name="DVD_tid" type="NUMBER" hasKey="b7a60d092dff1ad4-a0ebce3a5828c5b6"/>
+    <column xmi:id="65badd2584865de0-3ba2f140b49d06bf" name="_author_name" type="VARCHAR"/>
+    <hasKey xmi:id="b7a60d092dff1ad4-a0ebce3a5828c5b6" name="DVD_pk" column="809bc304a588a5f1-a60318777a722062"/>
+  </table>
+  <table xmi:id="85b91b483beba6a-e956e02568dcc748" name="Book">
+    <column xmi:id="1168c1f3153516de-da8555a7d0d4b231" name="Book_tid" type="NUMBER" hasKey="51ffc6b1081857b2-e503f38825ab2a64"/>
+    <column xmi:id="e96ab108f9887ec7-780962b745632f94" name="numberOfPages" type="NUMBER"/>
+    <column xmi:id="c4b6973c3305582-5da9d5a7c4674a2d" name="_author_name" type="VARCHAR"/>
+    <hasKey xmi:id="51ffc6b1081857b2-e503f38825ab2a64" name="Book_pk" column="1168c1f3153516de-da8555a7d0d4b231"/>
+  </table>
+  <table xmi:id="c6fe7bf82fbd0d1b-fcdb6d93fa67d14b" name="Author">
+    <column xmi:id="d0f68a4e3dde3ff9-d37471ddabcd4ec1" name="Author_tid" type="NUMBER" hasKey="5def8b2612dff015-a83601051df7b874"/>
+    <column xmi:id="9b0875f4002fd1b3-9e13f4bebdb67b8d" name="name" type="VARCHAR"/>
+    <hasKey xmi:id="5def8b2612dff015-a83601051df7b874" name="Author_pk" column="d0f68a4e3dde3ff9-d37471ddabcd4ec1"/>
+  </table>
+  <foreignKey xmi:id="217e333ba7fa9838-82f87d7b30138edc" name="Library_LibraryToMedium_Medium" refersTo="d37d71be18e3f347-782241174a2bbe3f" owner="a4ce6c2cfa1ee9db-b8320a82e40d7b5" column="b4fcccf2e04036fc-b3f6af350e213d5c"/>
+</rdbmsMM:Schema>

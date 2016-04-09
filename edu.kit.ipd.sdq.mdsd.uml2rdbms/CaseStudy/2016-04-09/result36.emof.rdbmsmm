@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="ASCII"?>
+<rdbmsMM:Schema xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:rdbmsMM="rdbmsMM" xmi:id="a778b78666e351bc-71ca6d6349340728" name="Object0">
+  <table xmi:id="90390e3aa3fb2a22-f75347095513eaf" name="Object16">
+    <column xmi:id="cd7a3c493f4e9e8-abf237a329f2d243" name="Object16_tid" type="NUMBER" hasKey="89339f7066e284dc-847ac87b4b8b517e"/>
+    <column xmi:id="df0c4fd60a8f301-763798fbd5931487" name="Object17" type="VARCHAR"/>
+    <column xmi:id="ef53145f610d8545-619083ff93dcb636" name="Object18" type="VARCHAR"/>
+    <hasKey xmi:id="89339f7066e284dc-847ac87b4b8b517e" name="Object16_pk" column="cd7a3c493f4e9e8-abf237a329f2d243" referedBy="7c54780b9dd5fc94-4d08332b33ca26f7"/>
+  </table>
+  <table xmi:id="af5cbbf74658a76d-9564f68cc13c9b5a" name="Object32">
+    <column xmi:id="5038c214d6e6a861-74d8963b34242689" name="Object32_tid" type="NUMBER" hasKey="f3258bc5e6f8ea44-f72f73ef704c0a1c"/>
+    <column xmi:id="f7562a2ff85f7dfc-97661f73091fe64d" name="Object33" type="VARCHAR"/>
+    <column xmi:id="74aced1a06793a12-258197accdcb178c" name="Object35" type="VARCHAR"/>
+    <column xmi:id="2e267048b7dde313-1cc72c8fc0a4d983" name="Object38" type="VARCHAR"/>
+    <column xmi:id="9a5402d52bd88bdc-d16742f2c564bd6a" name="Object39" type="VARCHAR"/>
+    <column xmi:id="ee8532ad9dd7fe73-78fa57f04d227694" name="Object40" type="VARCHAR"/>
+    <column xmi:id="f31143dd917e5261-dc94f084757a3e5c" name="Object41" type="VARCHAR"/>
+    <column xmi:id="dfcdba546120e3a0-9cdd237ac7fd18dc" name="Object42" type="VARCHAR"/>
+    <column xmi:id="cb9aae35008635a1-69af6ef14ee82615" name="Object43" type="VARCHAR"/>
+    <column xmi:id="62a8b60b6fa1fff7-d45d5ff388dc776c" name="Object44" type="VARCHAR"/>
+    <column xmi:id="d297974860913ea2-bc188a070e58a7b3" name="Object45" type="VARCHAR"/>
+    <column xmi:id="b1df4f3505bb616-ab89359255a4440b" name="Object46" type="VARCHAR"/>
+    <column xmi:id="56aead8385977b71-1358578890f2fe68" name="_Object34_Object17" type="VARCHAR"/>
+    <column xmi:id="47e2d42d9049cb7b-5d3ea1cf05a9367e" name="_Object34_Object18" type="VARCHAR"/>
+    <column xmi:id="a979ff2db3615f66-2b821b1de10db45c" name="_Object36_Object2" type="VARCHAR"/>
+    <column xmi:id="203553d6566e8c6b-78f47e7d93150809" name="_Object36_Object3" type="VARCHAR"/>
+    <column xmi:id="f8b41a718b0063ac-ce6ef58c6183f3d2" name="_Object36_Object4" type="VARCHAR"/>
+    <column xmi:id="221f07308211ca14-2246622f3902335" name="_Object36_Object5" type="VARCHAR"/>
+    <column xmi:id="488e9abb8612ac01-8897d32605ac4689" name="_Object36_Object6" type="VARCHAR"/>
+    <column xmi:id="80fa5423776f16f5-1c7e097dc5700bd2" name="_Object36_Object7" type="VARCHAR"/>
+    <column xmi:id="8853b745ae15b3b9-72fb4d82faf16764" name="_Object36_Object8" type="VARCHAR"/>
+    <column xmi:id="62c7b5e43ce0e57d-981ca68c515c33f" name="_Object36_Object9" type="VARCHAR"/>
+    <column xmi:id="3279a6f10fc84707-6113746fe5f40a4c" name="_Object36_Object10" type="VARCHAR"/>
+    <column xmi:id="c987f6f1eb4c6cf2-87a9afe37717ace8" name="_Object36_Object11" type="VARCHAR"/>
+    <column xmi:id="d467ed5933dc4c7f-19aab226d226be55" name="_Object36_Object12" type="VARCHAR"/>
+    <column xmi:id="efab9646826c7894-9625076aa386b710" name="_Object36_Object14" type="VARCHAR"/>
+    <column xmi:id="d59be5231b3d22d6-829e3ebf8e434e1f" name="_Object36_Object15" type="VARCHAR"/>
+    <column xmi:id="52f6cbce1ad78502-db9c47924d56cbd0" name="_Object36_Object13_Object17" type="VARCHAR"/>
+    <column xmi:id="12db1b98563796ec-758fd6e76c0b427e" name="_Object36_Object13_Object18" type="VARCHAR"/>
+    <column xmi:id="bb3ce013067fcfdb-e7b807cb2aeece5e" name="_Object37_Object17" type="VARCHAR"/>
+    <column xmi:id="65f75176871cb60c-e56fa9ce1cbb6b5d" name="_Object37_Object18" type="VARCHAR"/>
+    <hasKey xmi:id="f3258bc5e6f8ea44-f72f73ef704c0a1c" name="Object32_pk" column="5038c214d6e6a861-74d8963b34242689"/>
+  </table>
+  <table xmi:id="f14ccb3a6b323da7-c77f21853a64a892" name="Object47" hasForeignKey="dd783d256c83ae53-8b5f1c4dc06ab6de 7c54780b9dd5fc94-4d08332b33ca26f7">
+    <column xmi:id="169135063ac90072-dde2b264b7b492df" name="Object47_tid" type="NUMBER" hasKey="71944f321b8339f8-c94d4e7a912e2ca6"/>
+    <column xmi:id="e1842969800dc00d-f518efc84c59bec6" name="Object48" type="VARCHAR"/>
+    <column xmi:id="7c9e012a27e6f5cc-4764d849b457cf3d" name="Object49" type="VARCHAR"/>
+    <column xmi:id="c476af3812928785-f9ea30f8c546a418" name="Object50" type="VARCHAR"/>
+    <column xmi:id="80e1f642b5a4a835-25332d4297de7da6" name="Object52" type="VARCHAR"/>
+    <column xmi:id="deb0424a92a11d7e-e24767ce500730ff" name="Object54" type="VARCHAR"/>
+    <column xmi:id="eca80785e22ab53b-b4896e8259da1461" name="Object55" type="VARCHAR"/>
+    <column xmi:id="690ec0d6f1ae581e-5c79b72c0ba350f1" name="Object56" type="VARCHAR"/>
+    <column xmi:id="2f35e116c143df01-a2874b3f2cfa39e1" name="_Object51_Object33" type="VARCHAR"/>
+    <column xmi:id="4202afbd8796accd-7787b074efe04f10" name="_Object51_Object35" type="VARCHAR"/>
+    <column xmi:id="ad7250ab2a0be525-9907bd62f5afa193" name="_Object51_Object38" type="VARCHAR"/>
+    <column xmi:id="a11af021c6ad783b-dfac743dd14b7ad2" name="_Object51_Object39" type="VARCHAR"/>
+    <column xmi:id="2ca8736fb84366d-86447b5e6a77fb1e" name="_Object51_Object40" type="VARCHAR"/>
+    <column xmi:id="dd1dba3a192a42a6-6253aa452137f2e4" name="_Object51_Object41" type="VARCHAR"/>
+    <column xmi:id="5abd41e89c8f989f-225e3337226311ec" name="_Object51_Object42" type="VARCHAR"/>
+    <column xmi:id="8135f169796f845c-3cc884a1b713ba4b" name="_Object51_Object43" type="VARCHAR"/>
+    <column xmi:id="7d3b0e5ab625eaaf-cec4e2e3b94be0e9" name="_Object51_Object44" type="VARCHAR"/>
+    <column xmi:id="4699258bf45aae7f-f5423b20167bcc" name="_Object51_Object45" type="VARCHAR"/>
+    <column xmi:id="3f4a1e05dfff651f-5f5ce1dae7a89e8a" name="_Object51_Object46" type="VARCHAR"/>
+    <column xmi:id="897bd592a1857c08-2f73e47cd58e9f8e" name="_Object51_Object34_Object17" type="VARCHAR"/>
+    <column xmi:id="d4f5cf43208fca2-a5f26fe838810511" name="_Object51_Object34_Object18" type="VARCHAR"/>
+    <column xmi:id="ef6ec752255ccf0d-8d080c48673796fd" name="_Object51_Object36_Object2" type="VARCHAR"/>
+    <column xmi:id="cc45bfb94de9cb03-af56dd408b4a5b0e" name="_Object51_Object36_Object3" type="VARCHAR"/>
+    <column xmi:id="bb99889974719e46-6ea5322a584e82f0" name="_Object51_Object36_Object4" type="VARCHAR"/>
+    <column xmi:id="2647fca285fba245-d39f9fd72d5d0028" name="_Object51_Object36_Object5" type="VARCHAR"/>
+    <column xmi:id="97f36d8102acb6cd-e9a3adcec1c8980d" name="_Object51_Object36_Object6" type="VARCHAR"/>
+    <column xmi:id="bc60242fb8972e0a-e9b0e9ee77af821d" name="_Object51_Object36_Object7" type="VARCHAR"/>
+    <column xmi:id="dadda00784565625-e8fa40b80460e56c" name="_Object51_Object36_Object8" type="VARCHAR"/>
+    <column xmi:id="9ed3ccc059b64738-cec295ef2dbf7e06" name="_Object51_Object36_Object9" type="VARCHAR"/>
+    <column xmi:id="cb9614dfe66ee07c-7379182b1869617a" name="_Object51_Object36_Object10" type="VARCHAR"/>
+    <column xmi:id="bd5ac58aeff55dd9-ce277b7c8a50d1df" name="_Object51_Object36_Object11" type="VARCHAR"/>
+    <column xmi:id="77247982a7e63734-fd5e7a69a1a5611f" name="_Object51_Object36_Object12" type="VARCHAR"/>
+    <column xmi:id="d51984d417271d42-698c81c4ea2fe247" name="_Object51_Object36_Object14" type="VARCHAR"/>
+    <column xmi:id="f7df6f898a13739f-f06c93268931dd23" name="_Object51_Object36_Object15" type="VARCHAR"/>
+    <column xmi:id="4a17c55e683bae77-3f66031a54abf883" name="_Object51_Object36_Object13_Object17" type="VARCHAR"/>
+    <column xmi:id="e4b9a93eeca70a0a-dc2b1335d0e229cd" name="_Object51_Object36_Object13_Object18" type="VARCHAR"/>
+    <column xmi:id="987f071e966f3ccd-d99755bff94afcc8" name="_Object51_Object37_Object17" type="VARCHAR"/>
+    <column xmi:id="86bbb6fa46d98fc-23769783d0be04cc" name="_Object51_Object37_Object18" type="VARCHAR"/>
+    <column xmi:id="d673e732aac9a0d1-a2c98e06da8810b9" name="_Object53_Object17" type="VARCHAR"/>
+    <column xmi:id="ac88b885c4d9e8bf-d82b0b4772b81d5b" name="_Object53_Object18" type="VARCHAR"/>
+    <column xmi:id="de4a85db6f6a7f5b-d278acec827a5fef" name="Object47_Object76_Object47_tid" type="NUMBER" hasForeignKey="dd783d256c83ae53-8b5f1c4dc06ab6de"/>
+    <column xmi:id="26bdc5eb3c5666be-cc6776325dc54c13" name="Object47_Object78_Object16_tid" type="NUMBER" hasForeignKey="7c54780b9dd5fc94-4d08332b33ca26f7"/>
+    <hasKey xmi:id="71944f321b8339f8-c94d4e7a912e2ca6" name="Object47_pk" column="169135063ac90072-dde2b264b7b492df" referedBy="dd783d256c83ae53-8b5f1c4dc06ab6de"/>
+  </table>
+  <table xmi:id="85188312b3335568-aa3cd9aca82ce2e" name="Object57">
+    <column xmi:id="2ed8e8d57eb0df1f-98d5797608827a9f" name="Object57_tid" type="NUMBER" hasKey="8d755b0608021b37-8168b41a209d2e36"/>
+    <column xmi:id="51373433ba9a6b71-322d017c65d86453" name="Object58" type="VARCHAR"/>
+    <column xmi:id="4fe967d5ac21ee44-bfa1c4e6f2625c5f" name="Object59" type="VARCHAR"/>
+    <column xmi:id="a2e310cf9106aed7-f5d9e32744ebb1a6" name="Object60" type="VARCHAR"/>
+    <column xmi:id="a99957c7572531dd-2fbad63d6ef0fa34" name="Object61" type="VARCHAR"/>
+    <column xmi:id="7f020b3cd206e4c1-d50cd5e60d1da263" name="Object62" type="VARCHAR"/>
+    <column xmi:id="7e6126c3a7d136b8-2fcdd8656c79706" name="Object63" type="VARCHAR"/>
+    <column xmi:id="b4293bccdbadcfb6-76d81f32ac09a652" name="Object64" type="VARCHAR"/>
+    <hasKey xmi:id="8d755b0608021b37-8168b41a209d2e36" name="Object57_pk" column="2ed8e8d57eb0df1f-98d5797608827a9f"/>
+  </table>
+  <foreignKey xmi:id="dd783d256c83ae53-8b5f1c4dc06ab6de" name="Object47_Object76_Object47" refersTo="71944f321b8339f8-c94d4e7a912e2ca6" owner="f14ccb3a6b323da7-c77f21853a64a892" column="de4a85db6f6a7f5b-d278acec827a5fef"/>
+  <foreignKey xmi:id="7c54780b9dd5fc94-4d08332b33ca26f7" name="Object47_Object78_Object16" refersTo="89339f7066e284dc-847ac87b4b8b517e" owner="f14ccb3a6b323da7-c77f21853a64a892" column="26bdc5eb3c5666be-cc6776325dc54c13"/>
+</rdbmsMM:Schema>

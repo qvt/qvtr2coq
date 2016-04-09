@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/edu.kit.ipd.sdq.mdsd.umlinstantiator/src" editDirectory="/edu.kit.ipd.sdq.mdsd.umlinstantiator.edit/src"
+    editorDirectory="/edu.kit.ipd.sdq.mdsd.umlinstantiator.editor/src" modelPluginID="edu.kit.ipd.sdq.mdsd.umlinstantiator"
+    modelName="UML" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.xsd.ecore.importer" complianceLevel="8.0" copyrightFields="false"
+    editPluginID="edu.kit.ipd.sdq.mdsd.umlinstantiator.edit" editorPluginID="edu.kit.ipd.sdq.mdsd.umlinstantiator.editor"
+    operationReflection="true" importOrganizing="true">
+  <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/importer/org.eclipse.xsd.ecore.importer">
+    <details key="createMap" value="true"/>
+  </genAnnotations>
+  <foreignModel>UML.ecore.xsd</foreignModel>
+  <genPackages prefix="Uml" resource="XML" disposableProviderFactory="true" fileExtensions="xml"
+      ecorePackage="uml.ecore#/">
+    <genClasses ecoreClass="uml.ecore#//association">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute uml.ecore#//association/destination"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute uml.ecore#//association/kind"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute uml.ecore#//association/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute uml.ecore#//association/oID"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute uml.ecore#//association/source"/>
+    </genClasses>
+    <genClasses ecoreClass="uml.ecore#//attribute">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference uml.ecore#//attribute/ownerClassifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute uml.ecore#//attribute/kind"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute uml.ecore#//attribute/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute uml.ecore#//attribute/oID"/>
+    </genClasses>
+    <genClasses ecoreClass="uml.ecore#//attributes">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute uml.ecore#//attributes/group"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference uml.ecore#//attributes/attribute"/>
+    </genClasses>
+    <genClasses ecoreClass="uml.ecore#//class_">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference uml.ecore#//class_/generalClass"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference uml.ecore#//class_/attributes"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute uml.ecore#//class_/kind"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute uml.ecore#//class_/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute uml.ecore#//class_/oID"/>
+    </genClasses>
+    <genClasses ecoreClass="uml.ecore#//classifiersAndAssociations">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute uml.ecore#//classifiersAndAssociations/group"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference uml.ecore#//classifiersAndAssociations/class"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference uml.ecore#//classifiersAndAssociations/primitiveDataType"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference uml.ecore#//classifiersAndAssociations/association"/>
+    </genClasses>
+    <genClasses ecoreClass="uml.ecore#//DocumentRoot">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EAttribute uml.ecore#//DocumentRoot/mixed"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference uml.ecore#//DocumentRoot/xMLNSPrefixMap"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference uml.ecore#//DocumentRoot/xSISchemaLocation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference uml.ecore#//DocumentRoot/association"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference uml.ecore#//DocumentRoot/attribute"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference uml.ecore#//DocumentRoot/attributes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference uml.ecore#//DocumentRoot/class"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference uml.ecore#//DocumentRoot/classifiersAndAssociations"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference uml.ecore#//DocumentRoot/generalClass"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference uml.ecore#//DocumentRoot/ownerClassifier"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference uml.ecore#//DocumentRoot/package"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference uml.ecore#//DocumentRoot/packages"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference uml.ecore#//DocumentRoot/primitiveDataType"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference uml.ecore#//DocumentRoot/uML"/>
+    </genClasses>
+    <genClasses ecoreClass="uml.ecore#//generalClass">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference uml.ecore#//generalClass/class"/>
+    </genClasses>
+    <genClasses ecoreClass="uml.ecore#//ownerClassifier">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference uml.ecore#//ownerClassifier/class"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference uml.ecore#//ownerClassifier/primitiveDataType"/>
+    </genClasses>
+    <genClasses ecoreClass="uml.ecore#//package_">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference uml.ecore#//package_/classifiersAndAssociations"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute uml.ecore#//package_/kind"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute uml.ecore#//package_/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute uml.ecore#//package_/oID"/>
+    </genClasses>
+    <genClasses ecoreClass="uml.ecore#//packages">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute uml.ecore#//packages/group"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference uml.ecore#//packages/package"/>
+    </genClasses>
+    <genClasses ecoreClass="uml.ecore#//primitiveDataType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute uml.ecore#//primitiveDataType/kind"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute uml.ecore#//primitiveDataType/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute uml.ecore#//primitiveDataType/oID"/>
+    </genClasses>
+    <genClasses ecoreClass="uml.ecore#//UML">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference uml.ecore#//UML/packages"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

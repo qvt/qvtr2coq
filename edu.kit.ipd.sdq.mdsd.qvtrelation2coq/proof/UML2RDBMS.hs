@@ -1,8 +1,13 @@
--- Haskell program, extracted from UML2RDBMS.Theorem's proof in Coq
--- Issues:
--- * implement show functions for Hugs interpreter, 
---   see "Programming Languages: Principles and Practices" by Kenneth Louden, Lambert
--- * String0 and Ascii functions should be replaced with a more meaningful String representation
+----------------------------------------------------------------------------------
+-- Verified UML2RDBMS in Haskell,
+-- Program has been automatically extracted from UML2RDBMS.Theorem's proof in Coq,
+-- including an example UML model MediaLibrary that has been extracted accordingly.
+
+-- Still needs to be adjusted to a particular Haskell implementation.
+-- * For the Hugs98 interpreter, show functions must be provided, 
+--   see "Programming Languages: Principles and Practices" by Kenneth Louden, Lambert.
+-- * For the YHC compiler, we must provide a function main :: IO ()
+----------------------------------------------------------------------------------
 
 module Main where
 
@@ -10,7 +15,10 @@ import qualified Prelude
 import Text.Show.Functions
 
 ----------------------------------------------------------------------------------
--- Recursive Extract Transform.
+-- Generated from "Recursive Extract Transform".
+-- Warning: The extraction is currently set to bypass opacity,
+-- the following opaque constant bodies have been accessed :
+-- Transform.
 ----------------------------------------------------------------------------------
 
 data Bool =
@@ -74,10 +82,6 @@ data String =
    EmptyString
  | String0 Ascii0 String
 
-instance Text.Show String where
-	EmptyString = showString "'"
-	String0 a s = showString "'" . showChar a . showString s . showString ")"
-
 append :: String -> String -> String
 append s1 s2 =
   case s1 of {
@@ -139,9 +143,7 @@ data PrimitiveDataType =
 data Class =
    Build_Class Class_OID Classifier (Option Class) (List Attribute)
 data Package =
-   Build_Package Package_OID ModelElement (List
-                                          (Sum (Sum Class PrimitiveDataType)
-                                          Association))
+   Build_Package Package_OID ModelElement (List (Sum (Sum Class PrimitiveDataType) Association))
 
 project_ModelElement_kind :: ModelElement -> KIND
 project_ModelElement_kind x =
@@ -233,8 +235,7 @@ project_Package_super x =
   case x of {
    Build_Package p super l -> super}
 
-project_Package_elements :: Package -> List
-                            (Sum (Sum Class PrimitiveDataType) Association)
+project_Package_elements :: Package -> List (Sum (Sum Class PrimitiveDataType) Association)
 project_Package_elements x =
   case x of {
    Build_Package p m elements -> elements}
@@ -251,8 +252,7 @@ allInstances_Package :: UML -> List Package
 allInstances_Package uml =
   content uml
 
-filter_Class :: (List (Sum (Sum Class PrimitiveDataType) Association)) ->
-                List Class
+filter_Class :: (List (Sum (Sum Class PrimitiveDataType) Association)) -> List Class
 filter_Class lc =
   case lc of {
    Nil -> Nil;
@@ -264,8 +264,7 @@ filter_Class lc =
        Inr p -> filter_Class lc_tail};
      Inr a -> filter_Class lc_tail}}
 
-filter_Association :: (List (Sum (Sum Class PrimitiveDataType) Association))
-                      -> List Association
+filter_Association :: (List (Sum (Sum Class PrimitiveDataType) Association)) -> List Association
 filter_Association lc =
   case lc of {
    Nil -> Nil;
@@ -274,8 +273,8 @@ filter_Association lc =
      Inl s0 -> filter_Association lc_tail;
      Inr lc_head -> Cons lc_head (filter_Association lc_tail)}}
 
-dereference_Class'' :: (List (Sum (Sum Class PrimitiveDataType) Association))
-                       -> Class_OID -> Option Class
+dereference_Class'' :: (List (Sum (Sum Class PrimitiveDataType) Association)) -> Class_OID -> Option
+                       Class
 dereference_Class'' lc c_oid =
   case lc of {
    Nil -> None;
@@ -373,22 +372,19 @@ data ModelElement0 =
    Build_ModelElement0 String String
 
 data ForeignKey =
-   Build_ForeignKey ForeignKey_OID ModelElement0 Table_OID Key_OID (List
-                                                                   Column_OID)
+   Build_ForeignKey ForeignKey_OID ModelElement0 Table_OID Key_OID (List Column_OID)
 
 data Key =
    Build_Key Key_OID ModelElement0 (List Column_OID)
 
 data Column =
-   Build_Column Column_OID ModelElement0 TYPE (List Key_OID) (List
-                                                             ForeignKey_OID)
+   Build_Column Column_OID ModelElement0 TYPE (List Key_OID) (List ForeignKey_OID)
 
 data Table =
    Build_Table Table_OID ModelElement0 (List Column) (Option Key)
 
-
 data Schema =
-   Build_Schema Schema_OID ModelElement0 (List Table) (List ForeignKey) --deriving (Show, Eq)
+   Build_Schema Schema_OID ModelElement0 (List Table) (List ForeignKey)
 
 type RDBMS =
   List Schema
@@ -450,8 +446,7 @@ primitiveTypeToSqlType name =
                                            EmptyString -> VARCHAR;
                                            String0 a1 s1 ->
                                             case a1 of {
-                                             Ascii b15 b16 b17 b18 b19 b20
-                                              b21 b22 ->
+                                             Ascii b15 b16 b17 b18 b19 b20 b21 b22 ->
                                               case b15 of {
                                                True -> VARCHAR;
                                                False ->
@@ -473,182 +468,167 @@ primitiveTypeToSqlType name =
                                                              True -> VARCHAR;
                                                              False ->
                                                               case s1 of {
-                                                               EmptyString ->
-                                                                VARCHAR;
-                                                               String0 a2
-                                                                s2 ->
+                                                               EmptyString -> VARCHAR;
+                                                               String0 a2 s2 ->
                                                                 case a2 of {
-                                                                 Ascii b23
-                                                                  b24 b25 b26
-                                                                  b27 b28 b29
+                                                                 Ascii b23 b24 b25 b26 b27 b28 b29
                                                                   b30 ->
                                                                   case b23 of {
                                                                    True ->
                                                                     case b24 of {
-                                                                     True ->
-                                                                    VARCHAR;
+                                                                     True -> VARCHAR;
                                                                      False ->
-                                                                    case b25 of {
-                                                                     True ->
-                                                                    case b26 of {
-                                                                     True ->
-                                                                    VARCHAR;
-                                                                     False ->
-                                                                    case b27 of {
-                                                                     True ->
-                                                                    VARCHAR;
-                                                                     False ->
-                                                                    case b28 of {
-                                                                     True ->
-                                                                    case b29 of {
-                                                                     True ->
-                                                                    case b30 of {
-                                                                     True ->
-                                                                    VARCHAR;
-                                                                     False ->
-                                                                    case s2 of {
-                                                                     EmptyString ->
-                                                                    VARCHAR;
-                                                                     String0 a3
-                                                                    s3 ->
-                                                                    case a3 of {
-                                                                     Ascii b31
-                                                                    b32 b33
-                                                                    b34 b35
-                                                                    b36 b37
-                                                                    b38 ->
-                                                                    case b31 of {
-                                                                     True ->
-                                                                    case b32 of {
-                                                                     True ->
-                                                                    case b33 of {
-                                                                     True ->
-                                                                    case b34 of {
-                                                                     True ->
-                                                                    VARCHAR;
-                                                                     False ->
-                                                                    case b35 of {
-                                                                     True ->
-                                                                    VARCHAR;
-                                                                     False ->
-                                                                    case b36 of {
-                                                                     True ->
-                                                                    case b37 of {
-                                                                     True ->
-                                                                    case b38 of {
-                                                                     True ->
-                                                                    VARCHAR;
-                                                                     False ->
-                                                                    case s3 of {
-                                                                     EmptyString ->
-                                                                    VARCHAR;
-                                                                     String0 a4
-                                                                    s4 ->
-                                                                    case a4 of {
-                                                                     Ascii b39
-                                                                    b40 b41
-                                                                    b42 b43
-                                                                    b44 b45
-                                                                    b46 ->
-                                                                    case b39 of {
-                                                                     True ->
-                                                                    case b40 of {
-                                                                     True ->
-                                                                    VARCHAR;
-                                                                     False ->
-                                                                    case b41 of {
-                                                                     True ->
-                                                                    case b42 of {
-                                                                     True ->
-                                                                    VARCHAR;
-                                                                     False ->
-                                                                    case b43 of {
-                                                                     True ->
-                                                                    VARCHAR;
-                                                                     False ->
-                                                                    case b44 of {
-                                                                     True ->
-                                                                    case b45 of {
-                                                                     True ->
-                                                                    case b46 of {
-                                                                     True ->
-                                                                    VARCHAR;
-                                                                     False ->
-                                                                    case s4 of {
-                                                                     EmptyString ->
-                                                                    VARCHAR;
-                                                                     String0 a5
-                                                                    s5 ->
-                                                                    case a5 of {
-                                                                     Ascii b47
-                                                                    b48 b49
-                                                                    b50 b51
-                                                                    b52 b53
-                                                                    b54 ->
-                                                                    case b47 of {
-                                                                     True ->
-                                                                    VARCHAR;
-                                                                     False ->
-                                                                    case b48 of {
-                                                                     True ->
-                                                                    case b49 of {
-                                                                     True ->
-                                                                    VARCHAR;
-                                                                     False ->
-                                                                    case b50 of {
-                                                                     True ->
-                                                                    VARCHAR;
-                                                                     False ->
-                                                                    case b51 of {
-                                                                     True ->
-                                                                    case b52 of {
-                                                                     True ->
-                                                                    case b53 of {
-                                                                     True ->
-                                                                    case b54 of {
-                                                                     True ->
-                                                                    VARCHAR;
-                                                                     False ->
-                                                                    case s5 of {
-                                                                     EmptyString ->
-                                                                    NUMBER;
-                                                                     String0 a6
-                                                                    s6 ->
-                                                                    VARCHAR}};
-                                                                     False ->
-                                                                    VARCHAR};
-                                                                     False ->
-                                                                    VARCHAR};
-                                                                     False ->
-                                                                    VARCHAR}}};
-                                                                     False ->
-                                                                    VARCHAR}}}}};
-                                                                     False ->
-                                                                    VARCHAR};
-                                                                     False ->
-                                                                    VARCHAR}}};
-                                                                     False ->
-                                                                    VARCHAR}};
-                                                                     False ->
-                                                                    VARCHAR}}}};
-                                                                     False ->
-                                                                    VARCHAR};
-                                                                     False ->
-                                                                    VARCHAR}}};
-                                                                     False ->
-                                                                    VARCHAR};
-                                                                     False ->
-                                                                    VARCHAR};
-                                                                     False ->
-                                                                    VARCHAR}}}};
-                                                                     False ->
-                                                                    VARCHAR};
-                                                                     False ->
-                                                                    VARCHAR}}};
-                                                                     False ->
-                                                                    VARCHAR}};
-                                                                   False ->
-                                                                    VARCHAR}}}};
+                                                                      case b25 of {
+                                                                       True ->
+                                                                        case b26 of {
+                                                                         True -> VARCHAR;
+                                                                         False ->
+                                                                          case b27 of {
+                                                                           True -> VARCHAR;
+                                                                           False ->
+                                                                            case b28 of {
+                                                                             True ->
+                                                                              case b29 of {
+                                                                               True ->
+                                                                                case b30 of {
+                                                                                 True -> VARCHAR;
+                                                                                 False ->
+                                                                                  case s2 of {
+                                                                                   EmptyString ->
+                                                                                    VARCHAR;
+                                                                                   String0 a3 s3 ->
+                                                                                    case a3 of {
+                                                                                     Ascii b31 b32
+                                                                                      b33 b34 b35 b36
+                                                                                      b37 b38 ->
+                                                                                      case b31 of {
+                                                                                       True ->
+                                                                                        case b32 of {
+                                                                                         True ->
+                                                                                          case b33 of {
+                                                                                           True ->
+                                                                                            case b34 of {
+                                                                                             True ->
+                                                                                            VARCHAR;
+                                                                                             False ->
+                                                                                            case b35 of {
+                                                                                             True ->
+                                                                                            VARCHAR;
+                                                                                             False ->
+                                                                                            case b36 of {
+                                                                                             True ->
+                                                                                            case b37 of {
+                                                                                             True ->
+                                                                                            case b38 of {
+                                                                                             True ->
+                                                                                            VARCHAR;
+                                                                                             False ->
+                                                                                            case s3 of {
+                                                                                             EmptyString ->
+                                                                                            VARCHAR;
+                                                                                             String0 a4
+                                                                                            s4 ->
+                                                                                            case a4 of {
+                                                                                             Ascii b39
+                                                                                            b40 b41
+                                                                                            b42 b43
+                                                                                            b44 b45
+                                                                                            b46 ->
+                                                                                            case b39 of {
+                                                                                             True ->
+                                                                                            case b40 of {
+                                                                                             True ->
+                                                                                            VARCHAR;
+                                                                                             False ->
+                                                                                            case b41 of {
+                                                                                             True ->
+                                                                                            case b42 of {
+                                                                                             True ->
+                                                                                            VARCHAR;
+                                                                                             False ->
+                                                                                            case b43 of {
+                                                                                             True ->
+                                                                                            VARCHAR;
+                                                                                             False ->
+                                                                                            case b44 of {
+                                                                                             True ->
+                                                                                            case b45 of {
+                                                                                             True ->
+                                                                                            case b46 of {
+                                                                                             True ->
+                                                                                            VARCHAR;
+                                                                                             False ->
+                                                                                            case s4 of {
+                                                                                             EmptyString ->
+                                                                                            VARCHAR;
+                                                                                             String0 a5
+                                                                                            s5 ->
+                                                                                            case a5 of {
+                                                                                             Ascii b47
+                                                                                            b48 b49
+                                                                                            b50 b51
+                                                                                            b52 b53
+                                                                                            b54 ->
+                                                                                            case b47 of {
+                                                                                             True ->
+                                                                                            VARCHAR;
+                                                                                             False ->
+                                                                                            case b48 of {
+                                                                                             True ->
+                                                                                            case b49 of {
+                                                                                             True ->
+                                                                                            VARCHAR;
+                                                                                             False ->
+                                                                                            case b50 of {
+                                                                                             True ->
+                                                                                            VARCHAR;
+                                                                                             False ->
+                                                                                            case b51 of {
+                                                                                             True ->
+                                                                                            case b52 of {
+                                                                                             True ->
+                                                                                            case b53 of {
+                                                                                             True ->
+                                                                                            case b54 of {
+                                                                                             True ->
+                                                                                            VARCHAR;
+                                                                                             False ->
+                                                                                            case s5 of {
+                                                                                             EmptyString ->
+                                                                                            NUMBER;
+                                                                                             String0 a6
+                                                                                            s6 ->
+                                                                                            VARCHAR}};
+                                                                                             False ->
+                                                                                            VARCHAR};
+                                                                                             False ->
+                                                                                            VARCHAR};
+                                                                                             False ->
+                                                                                            VARCHAR}}};
+                                                                                             False ->
+                                                                                            VARCHAR}}}}};
+                                                                                             False ->
+                                                                                            VARCHAR};
+                                                                                             False ->
+                                                                                            VARCHAR}}};
+                                                                                             False ->
+                                                                                            VARCHAR}};
+                                                                                             False ->
+                                                                                            VARCHAR}}}};
+                                                                                             False ->
+                                                                                            VARCHAR};
+                                                                                             False ->
+                                                                                            VARCHAR}}};
+                                                                                           False ->
+                                                                                            VARCHAR};
+                                                                                         False ->
+                                                                                          VARCHAR};
+                                                                                       False ->
+                                                                                        VARCHAR}}}};
+                                                                               False -> VARCHAR};
+                                                                             False -> VARCHAR}}};
+                                                                       False -> VARCHAR}};
+                                                                   False -> VARCHAR}}}};
                                                            False -> VARCHAR};
                                                          False -> VARCHAR};
                                                        False -> VARCHAR}};
@@ -707,8 +687,7 @@ primitiveTypeToSqlType name =
                                            EmptyString -> VARCHAR;
                                            String0 a1 s1 ->
                                             case a1 of {
-                                             Ascii b15 b16 b17 b18 b19 b20
-                                              b21 b22 ->
+                                             Ascii b15 b16 b17 b18 b19 b20 b21 b22 ->
                                               case b15 of {
                                                True ->
                                                 case b16 of {
@@ -728,182 +707,167 @@ primitiveTypeToSqlType name =
                                                              True -> VARCHAR;
                                                              False ->
                                                               case s1 of {
-                                                               EmptyString ->
-                                                                VARCHAR;
-                                                               String0 a2
-                                                                s2 ->
+                                                               EmptyString -> VARCHAR;
+                                                               String0 a2 s2 ->
                                                                 case a2 of {
-                                                                 Ascii b23
-                                                                  b24 b25 b26
-                                                                  b27 b28 b29
+                                                                 Ascii b23 b24 b25 b26 b27 b28 b29
                                                                   b30 ->
                                                                   case b23 of {
-                                                                   True ->
-                                                                    VARCHAR;
+                                                                   True -> VARCHAR;
                                                                    False ->
                                                                     case b24 of {
-                                                                     True ->
-                                                                    VARCHAR;
+                                                                     True -> VARCHAR;
                                                                      False ->
-                                                                    case b25 of {
-                                                                     True ->
-                                                                    case b26 of {
-                                                                     True ->
-                                                                    case b27 of {
-                                                                     True ->
-                                                                    VARCHAR;
-                                                                     False ->
-                                                                    case b28 of {
-                                                                     True ->
-                                                                    case b29 of {
-                                                                     True ->
-                                                                    case b30 of {
-                                                                     True ->
-                                                                    VARCHAR;
-                                                                     False ->
-                                                                    case s2 of {
-                                                                     EmptyString ->
-                                                                    VARCHAR;
-                                                                     String0 a3
-                                                                    s3 ->
-                                                                    case a3 of {
-                                                                     Ascii b31
-                                                                    b32 b33
-                                                                    b34 b35
-                                                                    b36 b37
-                                                                    b38 ->
-                                                                    case b31 of {
-                                                                     True ->
-                                                                    case b32 of {
-                                                                     True ->
-                                                                    VARCHAR;
-                                                                     False ->
-                                                                    case b33 of {
-                                                                     True ->
-                                                                    case b34 of {
-                                                                     True ->
-                                                                    VARCHAR;
-                                                                     False ->
-                                                                    case b35 of {
-                                                                     True ->
-                                                                    VARCHAR;
-                                                                     False ->
-                                                                    case b36 of {
-                                                                     True ->
-                                                                    case b37 of {
-                                                                     True ->
-                                                                    case b38 of {
-                                                                     True ->
-                                                                    VARCHAR;
-                                                                     False ->
-                                                                    case s3 of {
-                                                                     EmptyString ->
-                                                                    VARCHAR;
-                                                                     String0 a4
-                                                                    s4 ->
-                                                                    case a4 of {
-                                                                     Ascii b39
-                                                                    b40 b41
-                                                                    b42 b43
-                                                                    b44 b45
-                                                                    b46 ->
-                                                                    case b39 of {
-                                                                     True ->
-                                                                    case b40 of {
-                                                                     True ->
-                                                                    VARCHAR;
-                                                                     False ->
-                                                                    case b41 of {
-                                                                     True ->
-                                                                    VARCHAR;
-                                                                     False ->
-                                                                    case b42 of {
-                                                                     True ->
-                                                                    VARCHAR;
-                                                                     False ->
-                                                                    case b43 of {
-                                                                     True ->
-                                                                    VARCHAR;
-                                                                     False ->
-                                                                    case b44 of {
-                                                                     True ->
-                                                                    case b45 of {
-                                                                     True ->
-                                                                    case b46 of {
-                                                                     True ->
-                                                                    VARCHAR;
-                                                                     False ->
-                                                                    case s4 of {
-                                                                     EmptyString ->
-                                                                    VARCHAR;
-                                                                     String0 a5
-                                                                    s5 ->
-                                                                    case a5 of {
-                                                                     Ascii b47
-                                                                    b48 b49
-                                                                    b50 b51
-                                                                    b52 b53
-                                                                    b54 ->
-                                                                    case b47 of {
-                                                                     True ->
-                                                                    VARCHAR;
-                                                                     False ->
-                                                                    case b48 of {
-                                                                     True ->
-                                                                    case b49 of {
-                                                                     True ->
-                                                                    case b50 of {
-                                                                     True ->
-                                                                    case b51 of {
-                                                                     True ->
-                                                                    VARCHAR;
-                                                                     False ->
-                                                                    case b52 of {
-                                                                     True ->
-                                                                    case b53 of {
-                                                                     True ->
-                                                                    case b54 of {
-                                                                     True ->
-                                                                    VARCHAR;
-                                                                     False ->
-                                                                    case s5 of {
-                                                                     EmptyString ->
-                                                                    BOOLEAN;
-                                                                     String0 a6
-                                                                    s6 ->
-                                                                    VARCHAR}};
-                                                                     False ->
-                                                                    VARCHAR};
-                                                                     False ->
-                                                                    VARCHAR}};
-                                                                     False ->
-                                                                    VARCHAR};
-                                                                     False ->
-                                                                    VARCHAR};
-                                                                     False ->
-                                                                    VARCHAR}}}}};
-                                                                     False ->
-                                                                    VARCHAR};
-                                                                     False ->
-                                                                    VARCHAR}}}}};
-                                                                     False ->
-                                                                    VARCHAR}}}};
-                                                                     False ->
-                                                                    VARCHAR};
-                                                                     False ->
-                                                                    VARCHAR}}};
-                                                                     False ->
-                                                                    VARCHAR}};
-                                                                     False ->
-                                                                    VARCHAR}}}};
-                                                                     False ->
-                                                                    VARCHAR};
-                                                                     False ->
-                                                                    VARCHAR}};
-                                                                     False ->
-                                                                    VARCHAR};
-                                                                     False ->
-                                                                    VARCHAR}}}}}};
+                                                                      case b25 of {
+                                                                       True ->
+                                                                        case b26 of {
+                                                                         True ->
+                                                                          case b27 of {
+                                                                           True -> VARCHAR;
+                                                                           False ->
+                                                                            case b28 of {
+                                                                             True ->
+                                                                              case b29 of {
+                                                                               True ->
+                                                                                case b30 of {
+                                                                                 True -> VARCHAR;
+                                                                                 False ->
+                                                                                  case s2 of {
+                                                                                   EmptyString ->
+                                                                                    VARCHAR;
+                                                                                   String0 a3 s3 ->
+                                                                                    case a3 of {
+                                                                                     Ascii b31 b32
+                                                                                      b33 b34 b35 b36
+                                                                                      b37 b38 ->
+                                                                                      case b31 of {
+                                                                                       True ->
+                                                                                        case b32 of {
+                                                                                         True ->
+                                                                                          VARCHAR;
+                                                                                         False ->
+                                                                                          case b33 of {
+                                                                                           True ->
+                                                                                            case b34 of {
+                                                                                             True ->
+                                                                                            VARCHAR;
+                                                                                             False ->
+                                                                                            case b35 of {
+                                                                                             True ->
+                                                                                            VARCHAR;
+                                                                                             False ->
+                                                                                            case b36 of {
+                                                                                             True ->
+                                                                                            case b37 of {
+                                                                                             True ->
+                                                                                            case b38 of {
+                                                                                             True ->
+                                                                                            VARCHAR;
+                                                                                             False ->
+                                                                                            case s3 of {
+                                                                                             EmptyString ->
+                                                                                            VARCHAR;
+                                                                                             String0 a4
+                                                                                            s4 ->
+                                                                                            case a4 of {
+                                                                                             Ascii b39
+                                                                                            b40 b41
+                                                                                            b42 b43
+                                                                                            b44 b45
+                                                                                            b46 ->
+                                                                                            case b39 of {
+                                                                                             True ->
+                                                                                            case b40 of {
+                                                                                             True ->
+                                                                                            VARCHAR;
+                                                                                             False ->
+                                                                                            case b41 of {
+                                                                                             True ->
+                                                                                            VARCHAR;
+                                                                                             False ->
+                                                                                            case b42 of {
+                                                                                             True ->
+                                                                                            VARCHAR;
+                                                                                             False ->
+                                                                                            case b43 of {
+                                                                                             True ->
+                                                                                            VARCHAR;
+                                                                                             False ->
+                                                                                            case b44 of {
+                                                                                             True ->
+                                                                                            case b45 of {
+                                                                                             True ->
+                                                                                            case b46 of {
+                                                                                             True ->
+                                                                                            VARCHAR;
+                                                                                             False ->
+                                                                                            case s4 of {
+                                                                                             EmptyString ->
+                                                                                            VARCHAR;
+                                                                                             String0 a5
+                                                                                            s5 ->
+                                                                                            case a5 of {
+                                                                                             Ascii b47
+                                                                                            b48 b49
+                                                                                            b50 b51
+                                                                                            b52 b53
+                                                                                            b54 ->
+                                                                                            case b47 of {
+                                                                                             True ->
+                                                                                            VARCHAR;
+                                                                                             False ->
+                                                                                            case b48 of {
+                                                                                             True ->
+                                                                                            case b49 of {
+                                                                                             True ->
+                                                                                            case b50 of {
+                                                                                             True ->
+                                                                                            case b51 of {
+                                                                                             True ->
+                                                                                            VARCHAR;
+                                                                                             False ->
+                                                                                            case b52 of {
+                                                                                             True ->
+                                                                                            case b53 of {
+                                                                                             True ->
+                                                                                            case b54 of {
+                                                                                             True ->
+                                                                                            VARCHAR;
+                                                                                             False ->
+                                                                                            case s5 of {
+                                                                                             EmptyString ->
+                                                                                            BOOLEAN;
+                                                                                             String0 a6
+                                                                                            s6 ->
+                                                                                            VARCHAR}};
+                                                                                             False ->
+                                                                                            VARCHAR};
+                                                                                             False ->
+                                                                                            VARCHAR}};
+                                                                                             False ->
+                                                                                            VARCHAR};
+                                                                                             False ->
+                                                                                            VARCHAR};
+                                                                                             False ->
+                                                                                            VARCHAR}}}}};
+                                                                                             False ->
+                                                                                            VARCHAR};
+                                                                                             False ->
+                                                                                            VARCHAR}}}}};
+                                                                                             False ->
+                                                                                            VARCHAR}}}};
+                                                                                             False ->
+                                                                                            VARCHAR};
+                                                                                             False ->
+                                                                                            VARCHAR}}};
+                                                                                           False ->
+                                                                                            VARCHAR}};
+                                                                                       False ->
+                                                                                        VARCHAR}}}};
+                                                                               False -> VARCHAR};
+                                                                             False -> VARCHAR}};
+                                                                         False -> VARCHAR};
+                                                                       False -> VARCHAR}}}}}};
                                                            False -> VARCHAR};
                                                          False -> VARCHAR}};
                                                      False -> VARCHAR};
@@ -919,17 +883,15 @@ primitiveTypeToSqlType name =
                    False -> VARCHAR}}}}};
          False -> VARCHAR}}}}
 
-build_PrimitiveAttributeToColumn :: Attribute -> PrimitiveDataType -> String
-                                    -> Column
+build_PrimitiveAttributeToColumn :: Attribute -> PrimitiveDataType -> String -> Column
 build_PrimitiveAttributeToColumn a p prefix =
-  Build_Column (project_Attribute_OID_nat (project_Attribute_oid a))
-    (Build_ModelElement0
+  Build_Column (project_Attribute_OID_nat (project_Attribute_oid a)) (Build_ModelElement0
     (case prefix of {
       EmptyString -> project_Attribute_name a;
       String0 a0 s ->
        append prefix
-         (append (String0 (Ascii True True True True True False True False)
-           EmptyString) (project_Attribute_name a))}) EmptyString)
+         (append (String0 (Ascii True True True True True False True False) EmptyString)
+           (project_Attribute_name a))}) EmptyString)
     (primitiveTypeToSqlType (project_PrimitiveDataType_name p)) Nil Nil
 
 establish_AttributeToColumn :: Class -> String -> List Column
@@ -956,9 +918,8 @@ establish_AttributeToColumn c prefix =
               app
                 (establish_AttributeToColumn tc
                   (append prefix
-                    (append (String0 (Ascii True True True True True False
-                      True False) EmptyString) (project_Attribute_name a))))
-                (complexAttributeToColumn l');
+                    (append (String0 (Ascii True True True True True False True False) EmptyString)
+                      (project_Attribute_name a)))) (complexAttributeToColumn l');
              Inr p -> complexAttributeToColumn l'}}}
        in complexAttributeToColumn (project_Class_attributes c))
       (case project_Class_general c of {
@@ -967,31 +928,25 @@ establish_AttributeToColumn c prefix =
 
 build_AssocToColumn :: Class -> Class -> Association -> Column
 build_AssocToColumn c1 c2 a =
-  Build_Column (project_Association_OID_nat (project_Association_oid a))
-    (Build_ModelElement0
+  Build_Column (project_Association_OID_nat (project_Association_oid a)) (Build_ModelElement0
     (append
       (append (project_Class_name c1)
-        (append (String0 (Ascii True True True True True False True False)
-          EmptyString)
+        (append (String0 (Ascii True True True True True False True False) EmptyString)
           (append (project_Association_name a)
-            (append (String0 (Ascii True True True True True False True
-              False) EmptyString) (project_Class_name c2))))) (String0 (Ascii
-      True True True True True False True False) (String0 (Ascii False False
-      True False True True True False) (String0 (Ascii True False False True
-      False True True False) (String0 (Ascii False False True False False
-      True True False) EmptyString))))) EmptyString) NUMBER Nil Nil
+            (append (String0 (Ascii True True True True True False True False) EmptyString)
+              (project_Class_name c2))))) (String0 (Ascii True True True True True False True False)
+      (String0 (Ascii False False True False True True True False) (String0 (Ascii True False False
+      True False True True False) (String0 (Ascii False False True False False True True False)
+      EmptyString))))) EmptyString) NUMBER Nil Nil
 
 build_AssocToFKey :: Class -> Class -> Association -> ForeignKey
 build_AssocToFKey c1 c2 a =
-  Build_ForeignKey (project_Association_OID_nat (project_Association_oid a))
-    (Build_ModelElement0
+  Build_ForeignKey (project_Association_OID_nat (project_Association_oid a)) (Build_ModelElement0
     (append (project_Class_name c1)
-      (append (String0 (Ascii True True True True True False True False)
-        EmptyString)
+      (append (String0 (Ascii True True True True True False True False) EmptyString)
         (append (project_Association_name a)
-          (append (String0 (Ascii True True True True True False True False)
-            EmptyString) (project_Class_name c2))))) EmptyString)
-    (project_Class_OID_nat (project_Class_oid c1))
+          (append (String0 (Ascii True True True True True False True False) EmptyString)
+            (project_Class_name c2))))) EmptyString) (project_Class_OID_nat (project_Class_oid c1))
     (project_Class_OID_nat (project_Class_oid c2)) (Cons
     (project_Association_OID_nat (project_Association_oid a)) Nil)
 
@@ -1011,8 +966,8 @@ establish_AssocToFKey uml le =
        None -> Nil};
      None -> Nil}) le
 
-establish_AssocToColumn :: UML -> (List Association) -> List Column
-establish_AssocToColumn uml la =
+establish_AssocToColumn :: UML -> (List Association) -> Class -> List Column
+establish_AssocToColumn uml la sc =
   flat_map (\a ->
     case dereference_Class uml (project_Association_source a) of {
      Some c1 ->
@@ -1021,48 +976,47 @@ establish_AssocToColumn uml la =
         case project_Class_kind c1 of {
          PERSISTENT ->
           case project_Class_kind c2 of {
-           PERSISTENT -> Cons (build_AssocToColumn c1 c2 a) Nil;
+           PERSISTENT ->
+            case beq_nat (project_Class_OID_nat (project_Class_oid c1))
+                   (project_Class_OID_nat (project_Class_oid sc)) of {
+             True -> Cons (build_AssocToColumn c1 c2 a) Nil;
+             False -> Nil};
            OTHER -> Nil};
          OTHER -> Nil};
        None -> Nil};
      None -> Nil}) la
 
-build_ClassToTable :: UML -> Package -> Class -> String -> Table
-build_ClassToTable uml p c prefix =
-  Build_Table (project_Class_OID_nat (project_Class_oid c))
-    (Build_ModelElement0 (project_Class_name c) EmptyString) (Cons
-    (Build_Column (project_Class_OID_nat (project_Class_oid c))
-    (Build_ModelElement0
-    (append (project_Class_name c) (String0 (Ascii True True True True True
-      False True False) (String0 (Ascii False False True False True True True
-      False) (String0 (Ascii True False False True False True True False)
-      (String0 (Ascii False False True False False True True False)
+build_ClassToTable :: UML -> Class -> String -> Table
+build_ClassToTable uml c prefix =
+  Build_Table (project_Class_OID_nat (project_Class_oid c)) (Build_ModelElement0
+    (project_Class_name c) EmptyString) (Cons (Build_Column
+    (project_Class_OID_nat (project_Class_oid c)) (Build_ModelElement0
+    (append (project_Class_name c) (String0 (Ascii True True True True True False True False)
+      (String0 (Ascii False False True False True True True False) (String0 (Ascii True False False
+      True False True True False) (String0 (Ascii False False True False False True True False)
       EmptyString))))) EmptyString) NUMBER Nil Nil)
     (app (establish_AttributeToColumn c prefix)
       (establish_AssocToColumn uml
-        (filter_Association (project_Package_elements p))))) (Some (Build_Key
-    (project_Class_OID_nat (project_Class_oid c)) (Build_ModelElement0
-    (append (project_Class_name c) (String0 (Ascii True True True True True
-      False True False) (String0 (Ascii False False False False True True
-      True False) (String0 (Ascii True True False True False True True False)
-      EmptyString)))) EmptyString) (Cons
+        (flat_map (\p -> filter_Association (project_Package_elements p)) (allInstances_Package uml))
+        c))) (Some (Build_Key (project_Class_OID_nat (project_Class_oid c)) (Build_ModelElement0
+    (append (project_Class_name c) (String0 (Ascii True True True True True False True False)
+      (String0 (Ascii False False False False True True True False) (String0 (Ascii True True False
+      True False True True False) EmptyString)))) EmptyString) (Cons
     (project_Class_OID_nat (project_Class_oid c)) Nil)))
 
-establish_ClassToTable :: UML -> Package -> (List Class) -> List Table
-establish_ClassToTable uml p lc =
+establish_ClassToTable :: UML -> (List Class) -> List Table
+establish_ClassToTable uml lc =
   flat_map (\c ->
     case project_Class_kind c of {
-     PERSISTENT -> Cons (build_ClassToTable uml p c EmptyString) Nil;
+     PERSISTENT -> Cons (build_ClassToTable uml c EmptyString) Nil;
      OTHER -> Nil}) lc
 
 build_PackageToSchema :: UML -> Package -> Schema
 build_PackageToSchema uml p =
-  Build_Schema (project_Package_OID_nat (project_Package_oid p))
-    (Build_ModelElement0 (project_Package_name p) EmptyString)
-    (establish_ClassToTable uml p
-      (filter_Class (project_Package_elements p)))
-    (establish_AssocToFKey uml
-      (filter_Association (project_Package_elements p)))
+  Build_Schema (project_Package_OID_nat (project_Package_oid p)) (Build_ModelElement0
+    (project_Package_name p) EmptyString)
+    (establish_ClassToTable uml (filter_Class (project_Package_elements p)))
+    (establish_AssocToFKey uml (filter_Association (project_Package_elements p)))
 
 establish_PackageToSchema :: UML -> RDBMS
 establish_PackageToSchema uml =
@@ -1072,160 +1026,3 @@ transform :: UML -> RDBMS
 transform uml =
   establish_PackageToSchema uml
 
--- added for YHC
-main =
-  transform build_UML_MediaLibrary
-
-----------------------------------------------------------------------------------
--- Recursive Extract Build_UML_MediaLibrary.
-----------------------------------------------------------------------------------
-
-build_UML_INTEGER :: PrimitiveDataType
-build_UML_INTEGER =
-  Build_PrimitiveDataType O (Build_Classifier (Build_PackageElement
-    (Build_ModelElement PERSISTENT (String0 (Ascii True False False True
-    False False True False) (String0 (Ascii False True True True False False
-    True False) (String0 (Ascii False False True False True False True False)
-    (String0 (Ascii True False True False False False True False) (String0
-    (Ascii True True True False False False True False) (String0 (Ascii True
-    False True False False False True False) (String0 (Ascii False True False
-    False True False True False) EmptyString))))))))))
-
-build_UML_STRING :: PrimitiveDataType
-build_UML_STRING =
-  Build_PrimitiveDataType (S O) (Build_Classifier (Build_PackageElement
-    (Build_ModelElement PERSISTENT (String0 (Ascii True True False False True
-    False True False) (String0 (Ascii False False True False True False True
-    False) (String0 (Ascii False True False False True False True False)
-    (String0 (Ascii True False False True False False True False) (String0
-    (Ascii False True True True False False True False) (String0 (Ascii True
-    True True False False False True False) EmptyString)))))))))
-
-build_UML_Library :: Class
-build_UML_Library =
-  Build_Class O (Build_Classifier (Build_PackageElement (Build_ModelElement
-    PERSISTENT (String0 (Ascii False False True True False False True False)
-    (String0 (Ascii True False False True False True True False) (String0
-    (Ascii False True False False False True True False) (String0 (Ascii
-    False True False False True True True False) (String0 (Ascii True False
-    False False False True True False) (String0 (Ascii False True False False
-    True True True False) (String0 (Ascii True False False True True True
-    True False) EmptyString)))))))))) None Nil
-
-build_UML_Author :: Class
-build_UML_Author =
-  Build_Class (S (S (S (S O)))) (Build_Classifier (Build_PackageElement
-    (Build_ModelElement PERSISTENT (String0 (Ascii True False False False
-    False False True False) (String0 (Ascii True False True False True True
-    True False) (String0 (Ascii False False True False True True True False)
-    (String0 (Ascii False False False True False True True False) (String0
-    (Ascii True True True True False True True False) (String0 (Ascii False
-    True False False True True True False) EmptyString))))))))) None (Cons
-    (Build_Attribute (S O) (Build_ModelElement PERSISTENT (String0 (Ascii
-    False True True True False True True False) (String0 (Ascii True False
-    False False False True True False) (String0 (Ascii True False True True
-    False True True False) (String0 (Ascii True False True False False True
-    True False) EmptyString))))) (Inr build_UML_STRING)) Nil)
-
-build_UML_Medium :: Class
-build_UML_Medium =
-  Build_Class (S O) (Build_Classifier (Build_PackageElement
-    (Build_ModelElement PERSISTENT (String0 (Ascii True False True True False
-    False True False) (String0 (Ascii True False True False False True True
-    False) (String0 (Ascii False False True False False True True False)
-    (String0 (Ascii True False False True False True True False) (String0
-    (Ascii True False True False True True True False) (String0 (Ascii True
-    False True True False True True False) EmptyString))))))))) None (Cons
-    (Build_Attribute O (Build_ModelElement PERSISTENT (String0 (Ascii True
-    False False False False True True False) (String0 (Ascii True False True
-    False True True True False) (String0 (Ascii False False True False True
-    True True False) (String0 (Ascii False False False True False True True
-    False) (String0 (Ascii True True True True False True True False)
-    (String0 (Ascii False True False False True True True False)
-    EmptyString))))))) (Inl build_UML_Author)) Nil)
-
-build_UML_Book :: Class
-build_UML_Book =
-  Build_Class (S (S (S O))) (Build_Classifier (Build_PackageElement
-    (Build_ModelElement PERSISTENT (String0 (Ascii False True False False
-    False False True False) (String0 (Ascii True True True True False True
-    True False) (String0 (Ascii True True True True False True True False)
-    (String0 (Ascii True True False True False True True False)
-    EmptyString))))))) (Some build_UML_Medium) (Cons (Build_Attribute O
-    (Build_ModelElement PERSISTENT (String0 (Ascii False True True True False
-    True True False) (String0 (Ascii True False True False True True True
-    False) (String0 (Ascii True False True True False True True False)
-    (String0 (Ascii False True False False False True True False) (String0
-    (Ascii True False True False False True True False) (String0 (Ascii False
-    True False False True True True False) (String0 (Ascii True True True
-    True False False True False) (String0 (Ascii False True True False False
-    True True False) (String0 (Ascii False False False False True False True
-    False) (String0 (Ascii True False False False False True True False)
-    (String0 (Ascii True True True False False True True False) (String0
-    (Ascii True False True False False True True False) (String0 (Ascii True
-    True False False True True True False) EmptyString)))))))))))))) (Inr
-    build_UML_INTEGER)) Nil)
-
-build_UML_NonPersistantClass :: Class
-build_UML_NonPersistantClass =
-  Build_Class (S (S (S (S (S O))))) (Build_Classifier (Build_PackageElement
-    (Build_ModelElement OTHER (String0 (Ascii False True True True False
-    False True False) (String0 (Ascii True True True True False True True
-    False) (String0 (Ascii False True True True False True True False)
-    (String0 (Ascii False False False False True False True False) (String0
-    (Ascii True False True False False True True False) (String0 (Ascii False
-    True False False True True True False) (String0 (Ascii True True False
-    False True True True False) (String0 (Ascii True False False True False
-    True True False) (String0 (Ascii True True False False True True True
-    False) (String0 (Ascii False False True False True True True False)
-    (String0 (Ascii True False False False False True True False) (String0
-    (Ascii False True True True False True True False) (String0 (Ascii False
-    False True False True True True False) (String0 (Ascii True True False
-    False False False True False) (String0 (Ascii False False True True False
-    True True False) (String0 (Ascii True False False False False True True
-    False) (String0 (Ascii True True False False True True True False)
-    (String0 (Ascii True True False False True True True False)
-    EmptyString))))))))))))))))))))) None Nil
-
-build_UML_LibraryToMedium :: Association
-build_UML_LibraryToMedium =
-  Build_Association O (Build_PackageElement (Build_ModelElement PERSISTENT
-    (String0 (Ascii False False True True False False True False) (String0
-    (Ascii True False False True False True True False) (String0 (Ascii False
-    True False False False True True False) (String0 (Ascii False True False
-    False True True True False) (String0 (Ascii True False False False False
-    True True False) (String0 (Ascii False True False False True True True
-    False) (String0 (Ascii True False False True True True True False)
-    (String0 (Ascii False False True False True False True False) (String0
-    (Ascii True True True True False True True False) (String0 (Ascii True
-    False True True False False True False) (String0 (Ascii True False True
-    False False True True False) (String0 (Ascii False False True False False
-    True True False) (String0 (Ascii True False False True False True True
-    False) (String0 (Ascii True False True False True True True False)
-    (String0 (Ascii True False True True False True True False)
-    EmptyString))))))))))))))))) O (S O)
-
-build_UML_DVD :: Class
-build_UML_DVD =
-  Build_Class (S (S O)) (Build_Classifier (Build_PackageElement
-    (Build_ModelElement PERSISTENT (String0 (Ascii False False True False
-    False False True False) (String0 (Ascii False True True False True False
-    True False) (String0 (Ascii False False True False False False True
-    False) EmptyString)))))) (Some build_UML_Medium) Nil
-
-build_UML_MediaLibrary :: UML
-build_UML_MediaLibrary =
-  Cons (Build_Package O (Build_ModelElement OTHER (String0 (Ascii True False
-    True True False True True False) (String0 (Ascii True False False True
-    True True True False) (String0 (Ascii False False False False True False
-    True False) (String0 (Ascii True False False False False True True False)
-    (String0 (Ascii True True False False False True True False) (String0
-    (Ascii True True False True False True True False) (String0 (Ascii True
-    False False False False True True False) (String0 (Ascii True True True
-    False False True True False) (String0 (Ascii True False True False False
-    True True False) EmptyString)))))))))) (Cons (Inl (Inr
-    build_UML_INTEGER)) (Cons (Inl (Inr build_UML_STRING)) (Cons (Inl (Inl
-    build_UML_Library)) (Cons (Inl (Inl build_UML_Medium)) (Cons (Inl (Inl
-    build_UML_DVD)) (Cons (Inl (Inl build_UML_Book)) (Cons (Inl (Inl
-    build_UML_Author)) (Cons (Inl (Inl build_UML_NonPersistantClass)) (Cons
-    (Inr build_UML_LibraryToMedium) Nil)))))))))) Nil

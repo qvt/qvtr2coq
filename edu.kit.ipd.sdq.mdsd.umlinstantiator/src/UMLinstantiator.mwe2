@@ -1,0 +1,69 @@
+module UMLinstantiator
+
+import org.eclipse.emf.mwe.utils.*
+import org.eclipse.xtext.mwe.* 
+import org.eclipse.xtext.ecore.*
+
+var outputModelName = "*"//"result1" // Can be set from commandline using '-p outputModelName=...' 
+
+var numberOfInstances = "100"
+var outputModelPath = "models"
+var outputMetamodelEcore = "umlMM.UmlMMPackage"
+var outputModelEcore = "${outputModelName}.ecore.umlmm_"
+var outputMetamodelEmof = "umlMM_.UmlMMPackage"
+var outputModelEmof = "${outputModelName}.emof.umlmm" //.emof.xmi"
+var outputMetamodelDtd = "uml.UmlPackage"
+var outputModelDtd = "${outputModelName}.uml.xml"
+
+Workflow {
+	bean = org.eclipse.emf.mwe.utils.StandaloneSetup { 
+		scanClassPath = true
+//		platformUri = "../.."
+		
+		registerGeneratedEPackage = outputMetamodelEcore
+		registerGeneratedEPackage = outputMetamodelEmof
+		registerGeneratedEPackage = outputMetamodelDtd
+//		registerEcoreFile = "metamodels/uml.ecore"
+//		registerEcoreFile = "metamodels/umlMM.xml.emof"
+	}
+
+	// Either: Create random Ecore instances
+//	component = transformation.UMLecoreInstantiatorTransformer {
+//		numberOfInstances = numberOfInstances
+//		uriBaseFilename = "result"
+//		outputSlot = "instantiatedEcoreModels"
+//	}
+//	component = transformation.BulkWriter {
+//		modelSlot = "instantiatedEcoreModels"
+//		multipleResourcesInCaseOfList = true
+//		uri = "${outputModelPath}/${outputModelEcore}"
+//	}
+	// Or: Read previously created models instances
+	component = transformation.BulkReader {
+		modelSlot = "instantiatedEcoreModels"
+		uri = "${outputModelPath}/${outputModelEcore}"
+	}
+
+	// Transform to EMOF and save
+	component = transformation.UMLecore2UMLemofTransformer {
+		inputSlot = "instantiatedEcoreModels"
+		outputSlot = "transformedEmofModels"
+	}
+	component = transformation.BulkWriter {
+		modelSlot = "transformedEmofModels"
+		multipleResourcesInCaseOfList = true
+		uri = "${outputModelPath}/${outputModelEmof}"
+	}
+
+	// Transform to DTD and save
+	component = transformation.UMLecore2UMLdtdTransformer {
+		inputSlot = "instantiatedEcoreModels"
+		outputSlot = "transformedDtdModels"
+	}
+	component = transformation.BulkWriter {
+		modelSlot = "transformedDtdModels"
+		multipleResourcesInCaseOfList = true
+		uri = "${outputModelPath}/${outputModelDtd}"
+	}
+
+}

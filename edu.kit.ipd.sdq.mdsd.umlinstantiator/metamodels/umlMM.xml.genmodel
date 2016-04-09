@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/edu.kit.ipd.sdq.mdsd.umlinstantiator/src" editDirectory="/edu.kit.ipd.sdq.mdsd.umlinstantiator.edit/src"
+    editorDirectory="/edu.kit.ipd.sdq.mdsd.umlinstantiator.editor/src" modelPluginID="edu.kit.ipd.sdq.mdsd.umlinstantiator"
+    modelName="UmlMM" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    editPluginID="edu.kit.ipd.sdq.mdsd.umlinstantiator.edit" editorPluginID="edu.kit.ipd.sdq.mdsd.umlinstantiator.editor"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>umlMM.xml.emof</foreignModel>
+  <genPackages prefix="UmlMM" resource="XMI" disposableProviderFactory="true" fileExtensions="umlmm_"
+      ecorePackage="umlMM.xml.emof#umlMM" publicationLocation="">
+    <genClasses ecoreClass="umlMM.xml.emof#umlMM.Package">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute umlMM.xml.emof#umlMM.Package.name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference umlMM.xml.emof#umlMM.Package.classifier"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference umlMM.xml.emof#umlMM.Package.association"/>
+    </genClasses>
+    <genClasses ecoreClass="umlMM.xml.emof#umlMM.Class">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute umlMM.xml.emof#umlMM.Class.kind"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference umlMM.xml.emof#umlMM.Class.attribute"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference umlMM.xml.emof#umlMM.Class.general"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference umlMM.xml.emof#umlMM.Class.subclass"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference umlMM.xml.emof#umlMM.Class.sourceOf"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference umlMM.xml.emof#umlMM.Class.destinationOf"/>
+    </genClasses>
+    <genClasses ecoreClass="umlMM.xml.emof#umlMM.Attribute">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute umlMM.xml.emof#umlMM.Attribute.name"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference umlMM.xml.emof#umlMM.Attribute.owner"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference umlMM.xml.emof#umlMM.Attribute.type"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="umlMM.xml.emof#umlMM.Classifier">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute umlMM.xml.emof#umlMM.Classifier.name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference umlMM.xml.emof#umlMM.Classifier.typeOf"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference umlMM.xml.emof#umlMM.Classifier.namespace"/>
+    </genClasses>
+    <genClasses ecoreClass="umlMM.xml.emof#umlMM.PrimitiveDataType"/>
+    <genClasses ecoreClass="umlMM.xml.emof#umlMM.Association">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute umlMM.xml.emof#umlMM.Association.name"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference umlMM.xml.emof#umlMM.Association.namespace"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference umlMM.xml.emof#umlMM.Association.source"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference umlMM.xml.emof#umlMM.Association.destination"/>
+    </genClasses>
+    <genClasses ecoreClass="umlMM.xml.emof#umlMM.dummy">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference umlMM.xml.emof#umlMM.dummy.containsPackage"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

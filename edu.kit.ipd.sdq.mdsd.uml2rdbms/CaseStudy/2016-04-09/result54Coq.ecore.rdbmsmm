@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ASCII"?>
+<null:dummy xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:null="rdbmsMM" xsi:schemaLocation="rdbmsMM java://rdbmsMM.RdbmsMMPackage">
+  <containsSchema name="Object0">
+    <table name="Object1" hasForeignKey="//@containsSchema.0/@foreignKey.0">
+      <column name="Object1_tid" type="NUMBER" hasKey="//@containsSchema.0/@table.0/@hasKey"/>
+      <column name="Object2" type="VARCHAR"/>
+      <column name="Object3" type="VARCHAR"/>
+      <column name="Object4" type="VARCHAR"/>
+      <column name="Object5" type="VARCHAR"/>
+      <column name="Object6" type="VARCHAR"/>
+      <column name="Object7" type="VARCHAR"/>
+      <column name="Object8" type="VARCHAR"/>
+      <column name="Object9" type="VARCHAR"/>
+      <column name="Object1_Object22_Object1_tid" type="NUMBER" hasForeignKey="//@containsSchema.0/@foreignKey.0"/>
+      <hasKey name="Object1_pk" column="//@containsSchema.0/@table.0/@column.0" referedBy="//@containsSchema.0/@foreignKey.0"/>
+    </table>
+    <foreignKey refersTo="//@containsSchema.0/@table.0/@hasKey" name="Object1_Object22_Object1" owner="//@containsSchema.0/@table.0" column="//@containsSchema.0/@table.0/@column.9"/>
+  </containsSchema>
+</null:dummy>

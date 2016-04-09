@@ -1,0 +1,79 @@
+module RDBMScomparator
+
+import org.eclipse.emf.mwe.utils.*
+import org.eclipse.xtext.mwe.* 
+import org.eclipse.xtext.ecore.*
+
+// TODO: Make this call the transformation in batch on all models within the folder (=> ArrayList<EObject>)
+// Trigger as an ANT task? https://www.eclipse.org/forums/index.php/t/781820/
+
+var inputModelName = "*"//"result1" // Can be set from commandline using '-p inputModelName=...' 
+
+var inputModelPath = "models"
+var inputMetamodelEmof = "rdbmsMM.RdbmsMMPackage"
+var inputModelEmof = "${inputModelName}.emof.rdbmsmm"  // Input from ModelMorf
+var inputMetamodelDtd = "rdbms.RdbmsPackage"
+var inputModelDtd = "${inputModelName}.rdbms.xml"  // Input from Coq/Haskell
+var outputModelDtdEmof = "${inputModelName}Coq.ecore.rdbmsmm"
+var reportComparison = "${inputModelName}Report.txt"
+//var outputMetamodelEcore = "rdbmsMM_.RdbmsMMPackage"
+//var outputModelDtdEcore = "${inputModelName}Dtd.ecore.rdbmsmm_"
+//var outputModelEmofEcore = "${inputModelName}Emof.ecore.rdbmsmm_"
+
+Workflow {
+//	bean = transformation.CustomStandaloneSetup {
+	bean = org.eclipse.emf.mwe.utils.StandaloneSetup { 
+//		scanClassPath = true
+//		platformUri = "../.."
+
+//		registerGeneratedEPackage = inputMetamodelEcore
+		registerGeneratedEPackage = inputMetamodelEmof
+		registerGeneratedEPackage = inputMetamodelDtd
+//		registerEcoreFile = "metamodels/rdbms.ecore"
+//		registerEcoreFile = "metamodels/rdbmsMM.xml.emof"
+	}
+
+	// Read the DTD instance, transform to Emof and save
+	component = transformation.BulkReader {
+		modelSlot = "rdbmsDtdModels"
+		uri = "${inputModelPath}/${inputModelDtd}"
+	}
+	component = transformation.RDBMSdtd2RDBMSemofTransformer {
+		inputSlot = "rdbmsDtdModels"
+		outputSlot = "rdbmsDtdEmofModels"
+	}
+	component = transformation.BulkWriter {
+		modelSlot = "rdbmsDtdEmofModels"
+		multipleResourcesInCaseOfList = true
+		uri = "${inputModelPath}/${outputModelDtdEmof}"
+	}
+
+	// Read the EMOF instance, transform to Ecore and save
+	component = transformation.BulkReader {
+		modelSlot = "rdbmsEmofModels"
+		uri = "${inputModelPath}/${inputModelEmof}"
+		firstElementOnly = false  // ModelMorf does not use dummy root object but collects all schemas under root! We must consider this.
+	}
+//	component = transformation.RDBMSemof2RDBMSecoreTransformer {
+//		inputSlot = "rdbmsEmofModels"
+//		outputSlot = "rdbmsEmofEcoreModels"
+//	}
+//	component = org.eclipse.emf.mwe.utils.Writer {
+//		modelSlot = "rdbmsEmofEcoreModel"
+//		multipleResourcesInCaseOfList = true
+//		uri = "${inputModelPath}/${inputModelEmofEcore}"
+//	}
+
+	// Compare both Emof variants and output result
+	component = transformation.RDBMSemofComparatorTransformer {
+		inputSlot1 = "rdbmsDtdEmofModels"
+		inputSlot2 = "rdbmsEmofModels"
+		outputSlot = "comparisonReports"
+	}
+	component = transformation.BulkWriter {
+		modelSlot = "comparisonReports"
+		multipleResourcesInCaseOfList = true
+		uri = "${inputModelPath}/${reportComparison}"
+	}
+
+}

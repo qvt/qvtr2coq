@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated rdbmsMM -->
+      <package
+            uri="rdbmsMM"
+            class="rdbmsMM.RdbmsMMPackage"
+            genModel="metamodels/rdbmsMM.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated RDBMS -->
+      <package
+            uri="rdbms"
+            class="rdbms.RdbmsPackage"
+            genModel="metamodels/RDBMS.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated RDBMS -->
+      <parser
+            type="rdbms"
+            class="rdbms.util.RdbmsResourceFactoryImpl"/>
+   </extension>
+</plugin>

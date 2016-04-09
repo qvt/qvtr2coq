@@ -375,13 +375,13 @@ Definition Top_ClassToTable (uml : UML) (rdbms : RDBMS) : Prop :=
 			}
 		};
 		enforce domain rdbms fk : RDBMS::ForeignKey {
-			-- schema = s:Schema {}, -- fix from QVTd's version
+			schema = s : Schema { },
 			name = fkn,
 			owner = srcTbl, -- backward reference
 			columns = fc : RDBMS::Column {
-				-- owner=srcTbl, -- fix from QVTd's version
 				name = fcn,
-				type = 'NUMBER'
+				type = 'NUMBER',
+				owner = srcTbl
 			},
 			refersTo = pKey;
 		};
@@ -597,9 +597,9 @@ Function Build_AssocToFKey (c1 : UML.Class) (c2 : UML.Class) (a : UML.Associatio
 Function Establish_AssocToFKey (uml : UML) (le : list UML.Association) : list RDBMS.ForeignKey :=
 	flat_map (fun assoc: UML.Association => 
 		match (UML.Dereference_Class uml (UML.Project_Association_source assoc)), (UML.Dereference_Class uml (UML.Project_Association_destination assoc)) with 
-		| Some c1, Some c2 =>  (* ...where source and destination classes are persistent *)
+		| Some c1, Some c2 =>	(* ...where source and destination classes are persistent *)
 			match (UML.Project_Class_kind c1), (UML.Project_Class_kind c2) with
-			| UML.PERSISTENT, UML.PERSISTENT => (Build_AssocToFKey c1 c2 assoc)::nil
+			| UML.PERSISTENT, UML.PERSISTENT => (Build_AssocToFKey c1 c2 assoc) :: nil
  			| _, _ => nil
 			end
 		| _, _ => nil 
@@ -607,7 +607,7 @@ Function Establish_AssocToFKey (uml : UML) (le : list UML.Association) : list RD
 		le
 .
 
-Function Establish_AssocToColumn (uml : UML) (la : list UML.Association) : list RDBMS.Column :=
+Function Establish_AssocToColumn (uml : UML) (la : list UML.Association) (sc : UML.Class) : list RDBMS.Column :=
 	flat_map (fun a : UML.Association => 
 		match (UML.Dereference_Class uml (UML.Project_Association_source a)) with 
 		| Some c1 => 
@@ -615,7 +615,13 @@ Function Establish_AssocToColumn (uml : UML) (la : list UML.Association) : list 
 			| Some c2 => 
 				(* ...where source and destination classes are persistent *)
 				match (UML.Project_Class_kind c1), (UML.Project_Class_kind c2) with
-				| UML.PERSISTENT, UML.PERSISTENT => (Build_AssocToColumn c1 c2 a) :: nil
+				| UML.PERSISTENT, UML.PERSISTENT => 
+					(*	...where this is applied in context of the source class *)
+					match (beq_nat (Project_Class_OID_nat (Project_Class_oid c1))
+						(Project_Class_OID_nat (Project_Class_oid sc))) with
+					| true => (Build_AssocToColumn c1 c2 a) :: nil
+					| false => nil
+					end
 				| _, _ => nil
 				end
 			| None => nil 
@@ -625,7 +631,7 @@ Function Establish_AssocToColumn (uml : UML) (la : list UML.Association) : list 
 	) la
 .
 
-Function Build_ClassToTable (uml : UML) (p : UML.Package) (c : UML.Class) (prefix : string) : RDBMS.Table :=
+Function Build_ClassToTable (uml : UML) (c : UML.Class) (prefix : string) : RDBMS.Table :=
 	(RDBMS.Build_Table 
 		(* oid *) (RDBMS.Build_Table_OID (UML.Project_Class_OID_nat (UML.Project_Class_oid c))) 
 		(* super *) (RDBMS.Build_ModelElement 
@@ -642,7 +648,7 @@ Function Build_ClassToTable (uml : UML) (p : UML.Package) (c : UML.Class) (prefi
 			(* keys *) nil
 			(* foreignKeys *) nil
 		) :: ((Establish_AttributeToColumn (*uml*) c prefix) ++ 
-			(Establish_AssocToColumn uml (Filter_Association (UML.Project_Package_elements p)))))
+			(Establish_AssocToColumn uml (flat_map (fun p : UML.Package => Filter_Association(UML.Project_Package_elements p)) (UML.AllInstances_Package uml)) c)))
 		(* hasKey *) (Some (RDBMS.Build_Key
 			(* oid *) (RDBMS.Build_Key_OID (UML.Project_Class_OID_nat (UML.Project_Class_oid c))) 
 			(* super *) (RDBMS.Build_ModelElement
@@ -654,10 +660,10 @@ Function Build_ClassToTable (uml : UML) (p : UML.Package) (c : UML.Class) (prefi
 	)
 .
 
-Definition Establish_ClassToTable (uml : UML) (p : UML.Package) (lc : list UML.Class) : list RDBMS.Table :=
+Definition Establish_ClassToTable (uml : UML) (lc : list UML.Class) : list RDBMS.Table :=
 	flat_map (fun c : UML.Class => 
 		match (UML.Project_Class_kind c) with 
-		| UML.PERSISTENT => (Build_ClassToTable uml p c EmptyString) :: nil
+		| UML.PERSISTENT => (Build_ClassToTable uml c EmptyString) :: nil
 		| _ => nil
 		end
 	) lc
@@ -670,7 +676,7 @@ Function Build_PackageToSchema (uml : UML) (p : UML.Package) : RDBMS.Schema :=
 			(* name *) (UML.Project_Package_name p)
 			(* kind *) EmptyString
 		)
-		(* tables *) (Establish_ClassToTable uml p (UML.Filter_Class (UML.Project_Package_elements p))) 
+		(* tables *) (Establish_ClassToTable uml (UML.Filter_Class (UML.Project_Package_elements p))) 
 		(* foreignKeys *) (Establish_AssocToFKey uml (UML.Filter_Association (UML.Project_Package_elements p)))
 	)
 .
@@ -828,7 +834,7 @@ Proof.
 	apply (UnliftPastFlatMaps Class Table t1 
 		(fun c : Class =>
 			match Project_Class_kind c with
-			| PERSISTENT => Build_ClassToTable uml x0 c EmptyString :: nil
+			| PERSISTENT => Build_ClassToTable uml c EmptyString :: nil
 			| OTHER => nil
 			end)
 		(Filter_Class (Project_Package_elements x0))) in H1. 
@@ -857,7 +863,7 @@ Proof.
 			apply (UnliftPastFlatMaps Class Table t2 
 				(fun c : Class =>
 					match Project_Class_kind c with
-					| PERSISTENT => Build_ClassToTable uml x3 c EmptyString :: nil
+					| PERSISTENT => Build_ClassToTable uml c EmptyString :: nil
 					| OTHER => nil
 					end)
 				(Filter_Class (Project_Package_elements x3))) in H2.
@@ -901,15 +907,15 @@ Proof.
 								apply (beq_nat_true_iff (Project_Class_OID_nat (Project_Class_oid x4)) (Project_Class_OID_nat (Project_Class_oid x4))).
 								reflexivity.
 
-					assert (x0 = x3).
+					(*assert (x0 = x3).
 						apply (PackagesContainClasses uml x0 x3 x1).
 						split.
 						assumption.
 						rewrite H12.
-						assumption.
+						assumption.*)
 
 					rewrite H12 in H1.
-					rewrite H13 in H1.
+					(*rewrite H13 in H1.*)
 
 					rewrite <- H1.
 					assumption.
@@ -1168,14 +1174,14 @@ Proof.
 	apply (UnliftPastFlatMaps Class Table t1 
 		(fun c : Class =>
 			match Project_Class_kind c with
-			| PERSISTENT => Build_ClassToTable uml p1 c EmptyString :: nil
+			| PERSISTENT => Build_ClassToTable uml c EmptyString :: nil
 			| OTHER => nil
 			end)
 		(Filter_Class (Project_Package_elements p1))) in H2b.
 	apply (UnliftPastFlatMaps Class Table t2 
 		(fun c : Class =>
 			match Project_Class_kind c with
-			| PERSISTENT => Build_ClassToTable uml p2 c EmptyString :: nil
+			| PERSISTENT => Build_ClassToTable uml c EmptyString :: nil
 			| OTHER => nil
 			end)
 		(Filter_Class (Project_Package_elements p2))) in H3b.
@@ -1246,35 +1252,45 @@ Proof.
 					(* co1 := {|...|} /\ In co2 (Establish_AttributeToColumn c2 "" ++
 					Establish_AssocToColumn uml (Filter_Association (Project_Package_elements p2))) *)
 					apply (SplitList Column co2 (Establish_AttributeToColumn c2 "") (*++*)
-						(Establish_AssocToColumn uml (Filter_Association (Project_Package_elements p2)))) in H3.
+						(Establish_AssocToColumn uml (flat_map (fun p : Package => Filter_Association(Project_Package_elements p)) (AllInstances_Package uml)) c2)) in H3.
 					destruct H3.
 						(* co1 := {|...|} /\ In co2 (Establish_AttributeToColumn c2 "") *)
 						unfold Establish_AttributeToColumn in H3.
 						(* This cannot be true, because Class and Attribute's oids are unique *)
-(**)				  admit.
+(**)					admit.
 						(* co1 := {|...|} /\ In co2 Establish_AssocToColumn uml (Filter_Association (Project_Package_elements p2)) *)
 						unfold Establish_AssocToColumn in H3.
 						apply (UnliftPastFlatMaps Association Column co2 
 							(fun a : Association =>
-								match Dereference_Class uml (Project_Association_source a) with
-								| Some c1 =>
-									match Dereference_Class uml (Project_Association_destination a) with
-									| Some c2 =>
-										match Project_Class_kind c1 with
-										| PERSISTENT =>
-											match Project_Class_kind c2 with
-											| PERSISTENT => Build_AssocToColumn c1 c2 a :: nil
-											| OTHER => nil
-											end
-										| OTHER => nil
-										end
-									| None => nil
-									end
-								| None => nil
-								end) 
-							(Filter_Association (Project_Package_elements p2))) in H3.
+							 match Dereference_Class uml (Project_Association_source a) with
+							 | Some c0 =>
+									 match
+										 Dereference_Class uml (Project_Association_destination a)
+									 with
+									 | Some c3 =>
+											 match Project_Class_kind c0 with
+											 | PERSISTENT =>
+													 match Project_Class_kind c3 with
+													 | PERSISTENT =>
+															 if beq_nat
+																		(Project_Class_OID_nat (Project_Class_oid c0))
+																		(Project_Class_OID_nat (Project_Class_oid c2))
+															 then Build_AssocToColumn c0 c3 a :: nil
+															 else nil
+													 | OTHER => nil
+													 end
+											 | OTHER => nil
+											 end
+									 | None => nil
+									 end
+							 | None => nil
+							 end)
+							(flat_map
+								 (fun p : Package =>
+									Filter_Association (Project_Package_elements p))
+								 (AllInstances_Package uml))) in H3.
 						destruct H3 as [a H3].
-						destruct H3 as [H3a H3b].
+						destruct H3 as [H3a H3b]. 
 						case_eq (Dereference_Class uml (Project_Association_source a)).
 							intros c3 H3g; rewrite H3g in H3a.
 							case_eq (Dereference_Class uml (Project_Association_destination a)).
@@ -1283,25 +1299,28 @@ Proof.
 									intros H3i; rewrite H3i in H3a.
 									case_eq (Project_Class_kind c4).
 										intros H3j; rewrite H3j in H3a.
-										simpl In in H3a; destruct H3a.
-											rewrite <- H2, <- H3.
+											case_eq (beq_nat (Project_Class_OID_nat (Project_Class_oid c3)) (Project_Class_OID_nat (Project_Class_oid c2))).
+											intros H3k; rewrite H3k in H3a.
 
-											(* This cannot be true, because Class and Association's oids are unique *)
-											apply ColumnsAreEqual.
-											split. simpl Project_Column_OID_nat.
-											contradiction (ClassAssociationOIDsAreUnique uml c1 a). admit.
-											apply (LiftPastFlatMaps Package Class p1 c1 (fun p0 : Package =>
-													Filter_Class (Project_Package_elements p0))
-												(AllInstances_Package uml)) in H2e.
-											apply (LiftPastFlatMaps Package Association p2 a (fun p0 : Package =>
-													Filter_Association (Project_Package_elements p0))
-												(AllInstances_Package uml)) in H3b.
-											generalize H2e, H3b.
+											simpl In in H3a; destruct H3a.
+												rewrite <- H2, <- H3.
 
-											(*contradict (ClassAssociationOIDsAreUnique uml c1 a).*)
+												(* This cannot be true, because Class and Association's oids are unique *)
+												apply ColumnsAreEqual.
+												split. simpl Project_Column_OID_nat.
+												contradiction (ClassAssociationOIDsAreUnique uml c1 a).
+(**)											admit.
+												apply (LiftPastFlatMaps Package Class p1 c1 (fun p0 : Package =>
+														Filter_Class (Project_Package_elements p0))
+													(AllInstances_Package uml)) in H2e.
 
-(**)									  admit. admit. admit. admit. admit.
-										elim H3.
+												generalize H2e, H3b.
+
+												(*contradict (ClassAssociationOIDsAreUnique uml c1 a).*)
+
+(**)											admit. admit. admit.
+											elim H3.
+										intro H3k; rewrite H3k in H3a; elim H3a.
 									intro H3j; rewrite H3j in H3a; elim H3a.
 								intro H3i; rewrite H3i in H3a; elim H3a.
 							intro H3h; rewrite H3h in H3a; elim H3a.
@@ -1310,69 +1329,98 @@ Proof.
 				(* co2 := {|...|} /\ In co1 (Establish_AttributeToColumn c1 "" ++
 					Establish_A	ssocToColumn uml (Filter_Association (Project_Package_elements p1))) *)
 				(* Same procedure as above *)
-(**)		  admit.
+(**)			admit.
 
 				(* In co1 (Establish_AttributeToColumn c1 "" ++ Establish_AssocToColumn uml (Filter_Association (Project_Package_elements p1))) /\
 					In co2 (Establish_AttributeToColumn c2 "" ++ Establish_AssocToColumn uml (Filter_Association (Project_Package_elements p2))) *)
 				apply (SplitList Column co1 (Establish_AttributeToColumn c1 "") (*++*)
-					(Establish_AssocToColumn uml (Filter_Association (Project_Package_elements p1)))) in H2.
+					(Establish_AssocToColumn uml (flat_map
+						 (fun p : Package =>
+							Filter_Association (Project_Package_elements p))
+						 (AllInstances_Package uml)) c1)) in H2.
 				destruct H2.
 					apply (SplitList Column co2 (Establish_AttributeToColumn c2 "") (*++*)
-						(Establish_AssocToColumn uml (Filter_Association (Project_Package_elements p2)))) in H3.
+						(Establish_AssocToColumn uml (flat_map
+						 (fun p : Package =>
+							Filter_Association (Project_Package_elements p))
+						 (AllInstances_Package uml)) c2)) in H3.
 					destruct H3.
 						(* In co1 (Establish_AttributeToColumn c1 "") /\ 
 							In co2 (Establish_AttributeToColumn c2 "") *)
-(**)				  admit.
+(**)					admit.
 						(* In co1 (Establish_AttributeToColumn c1 "") /\ 
 							In co2 (Establish_AssocToColumn uml (Filter_Association (Project_Package_elements p2))) *)
-(**)				  admit.
+(**)					admit.
 					apply (SplitList Column co2 (Establish_AttributeToColumn c2 "") (*++*)
-						(Establish_AssocToColumn uml (Filter_Association (Project_Package_elements p2)))) in H3.
+						(Establish_AssocToColumn uml (flat_map
+						 (fun p : Package =>
+							Filter_Association (Project_Package_elements p))
+						 (AllInstances_Package uml)) c2)) in H3.
 					destruct H3.
 						(* In co2 (Establish_AttributeToColumn c1 "") /\ 
 							In co1 (Establish_AssocToColumn uml (Filter_Association (Project_Package_elements p2))) *)
-(**)				  admit.
+(**)					admit.
 						(* In co2 (Establish_AssocToColumn uml (Filter_Association (Project_Package_elements p1))) /\ 
 							In co1 (Establish_AssocToColumn uml (Filter_Association (Project_Package_elements p2))) *)
 						unfold Establish_AssocToColumn in H2, H3.
 						apply (UnliftPastFlatMaps Association Column co1 
 							(fun a : Association =>
-								match Dereference_Class uml (Project_Association_source a) with
-								| Some c1 =>
-									match Dereference_Class uml (Project_Association_destination a) with
-										| Some c2 =>
-											match Project_Class_kind c1 with
-											| PERSISTENT =>
-												match Project_Class_kind c2 with
-												| PERSISTENT => Build_AssocToColumn c1 c2 a :: nil
-												| OTHER => nil
-												end
-											| OTHER => nil
-											end
-										| None => nil
-									end
-								| None => nil
-								end) 
-									 (Filter_Association (Project_Package_elements p1))) in H2.
+							 match Dereference_Class uml (Project_Association_source a) with
+							 | Some c0 =>
+									 match
+										 Dereference_Class uml (Project_Association_destination a)
+									 with
+									 | Some c2 =>
+											 match Project_Class_kind c0 with
+											 | PERSISTENT =>
+													 match Project_Class_kind c2 with
+													 | PERSISTENT =>
+															 if beq_nat
+																		(Project_Class_OID_nat (Project_Class_oid c0))
+																		(Project_Class_OID_nat (Project_Class_oid c1))
+															 then Build_AssocToColumn c0 c2 a :: nil
+															 else nil
+													 | OTHER => nil
+													 end
+											 | OTHER => nil
+											 end
+									 | None => nil
+									 end
+							 | None => nil
+							 end)
+							(flat_map
+								 (fun p : Package =>
+									Filter_Association (Project_Package_elements p))
+								 (AllInstances_Package uml))) in H2.
 						apply (UnliftPastFlatMaps Association Column co2 
-							(fun a : Association =>
-								match Dereference_Class uml (Project_Association_source a) with
-								| Some c1 =>
-									match Dereference_Class uml (Project_Association_destination a) with
-									| Some c2 =>
-										match Project_Class_kind c1 with
-										| PERSISTENT =>
-											match Project_Class_kind c2 with
-											| PERSISTENT => Build_AssocToColumn c1 c2 a :: nil
-											| OTHER => nil
-											end
-										| OTHER => nil
-										end
-									| None => nil
-									end
-								| None => nil
-								end) 
-							(Filter_Association (Project_Package_elements p2))) in H3.
+								(fun a : Association =>
+								 match Dereference_Class uml (Project_Association_source a) with
+								 | Some c0 =>
+										 match
+											 Dereference_Class uml (Project_Association_destination a)
+										 with
+										 | Some c3 =>
+												 match Project_Class_kind c0 with
+												 | PERSISTENT =>
+														 match Project_Class_kind c3 with
+														 | PERSISTENT =>
+																 if beq_nat
+																			(Project_Class_OID_nat (Project_Class_oid c0))
+																			(Project_Class_OID_nat (Project_Class_oid c2))
+																 then Build_AssocToColumn c0 c3 a :: nil
+																 else nil
+														 | OTHER => nil
+														 end
+												 | OTHER => nil
+												 end
+										 | None => nil
+										 end
+								 | None => nil
+							 end)
+							(flat_map
+								 (fun p : Package =>
+									Filter_Association (Project_Package_elements p))
+								 (AllInstances_Package uml))) in H3.
 						destruct H2 as [a1 H2].
 						destruct H2 as [H2a H2b].
 						destruct H3 as [a2 H3].
@@ -1389,45 +1437,47 @@ Proof.
 									case_eq (Project_Class_kind c4).
 									case_eq (Project_Class_kind c6).
 										intros H3j H2j; rewrite H3j in H3a; rewrite H2j in H2a.
-										simpl In in H2a; destruct H2a.
-										simpl In in H3a; destruct H3a.
-											rewrite <- H2, <- H3.
-											unfold Build_AssocToColumn.
-											(* This is true exactly if a1 = a2 /\ c3 = c5 /\ c4 = c6 *)
-											assert (a1 = a2).
-												apply (AssociationOIDsAreUnique uml a1 a2); repeat split.
-													unfold AllInstances_Association.
-													apply (LiftPastFlatMaps Package Association p1 a1 (fun p0 : Package =>
-															Filter_Association (Project_Package_elements p0))
-														(AllInstances_Package uml)).
-													assumption.
-													assumption.
+										case_eq (beq_nat (Project_Class_OID_nat (Project_Class_oid c3)) (Project_Class_OID_nat (Project_Class_oid c1))).
+										case_eq (beq_nat (Project_Class_OID_nat (Project_Class_oid c5)) (Project_Class_OID_nat (Project_Class_oid c2))).
+											intros H3k H2k; rewrite H3k in H3a; rewrite H2k in H2a.
+											simpl In in H2a; destruct H2a.
+											simpl In in H3a; destruct H3a.
+												rewrite <- H2, <- H3.
+												unfold Build_AssocToColumn.
+												(* This is true exactly if a1 = a2 /\ c3 = c5 /\ c4 = c6 *)
+												assert (a1 = a2).
+													apply (AssociationOIDsAreUnique uml a1 a2); repeat split.
+														unfold AllInstances_Association.
+														assumption.
+														assumption.
+														apply beq_nat_true_iff.
 
-													unfold AllInstances_Association.
-													apply (LiftPastFlatMaps Package Association p2 a2 (fun p0 : Package =>
-															Filter_Association (Project_Package_elements p0))
-														(AllInstances_Package uml)).
-													assumption.
-													assumption.
+														(*apply (LiftPastFlatMaps Package Association p2 a2 (fun p0 : Package =>
+																Filter_Association (Project_Package_elements p0))
+															(AllInstances_Package uml)).
+														assumption.
+														assumption.
 
-													apply beq_nat_true_iff.
+														apply beq_nat_true_iff.*)
 
-													(*rewrite <- H7 in H6.
-													assert (forall x y, x = y -> Project_ForeignKey_OID_nat (Project_ForeignKey_oid x) = Project_ForeignKey_OID_nat (Project_ForeignKey_oid y)).
-														intros. rewrite H8. reflexivity.
-													apply (H8 (Build_AssocToFKey c c0 a3) (Build_AssocToFKey c1 c2 a4)).
-													assumption.
+														(*rewrite <- H7 in H6.
+														assert (forall x y, x = y -> Project_ForeignKey_OID_nat (Project_ForeignKey_oid x) = Project_ForeignKey_OID_nat (Project_ForeignKey_oid y)).
+															intros. rewrite H8. reflexivity.
+														apply (H8 (Build_AssocToFKey c c0 a3) (Build_AssocToFKey c1 c2 a4)).
+														assumption.
 
-													assert (p1 = p2).
-													rewrite H8 in HA3b.
-													apply (PackagesContainAssociations uml p1 p2 a4).
-													split. assumption. assumption.
+														assert (p1 = p2).
+														rewrite H8 in HA3b.
+														apply (PackagesContainAssociations uml p1 p2 a4).
+														split. assumption. assumption.
 
-													rewrite H9; reflexivity.*)
+														rewrite H9; reflexivity.*)
 
-(**)									admit. admit.
-										elim H3.
-										elim H2.
+(**)										admit. admit.
+											elim H3.
+											elim H2.
+										intro H3k; rewrite H3k in H3a; elim H3a.
+										intro H2k; rewrite H2k in H2a; elim H2a.
 									intro H3j; rewrite H3j in H3a; elim H3a.
 									intro H2j; rewrite H2j in H2a; elim H2a.
 								intro H3i; rewrite H3i in H3a; elim H3a.
@@ -1488,14 +1538,14 @@ Proof.
 	apply (UnliftPastFlatMaps Class Table t1 
 		(fun c : Class =>
 			match Project_Class_kind c with
-			| PERSISTENT => Build_ClassToTable uml p1 c EmptyString :: nil
+			| PERSISTENT => Build_ClassToTable uml c EmptyString :: nil
 			| OTHER => nil
 			end)
 		(Filter_Class (Project_Package_elements p1))) in H2b.
 	apply (UnliftPastFlatMaps Class Table t2 
 		(fun c : Class =>
 			match Project_Class_kind c with
-			| PERSISTENT => Build_ClassToTable uml p2 c EmptyString :: nil
+			| PERSISTENT => Build_ClassToTable uml c EmptyString :: nil
 			| OTHER => nil
 			end)
 		(Filter_Class (Project_Package_elements p2))) in H3b.
@@ -1562,7 +1612,7 @@ Proof.
 					rewrite H2 in H3.
 
 					(* Keys k1, k2 are equal *)
-					rewrite H6, H7 in H.
+					rewrite H6 in H.
 					rewrite H0 in H.
 					assumption.
 				elim H3.
@@ -1606,7 +1656,7 @@ Proof.
 	apply (UnliftPastFlatMaps Class Table t 
 		(fun c : Class =>
 			match Project_Class_kind c with
-			| PERSISTENT => Build_ClassToTable uml x c EmptyString :: nil
+			| PERSISTENT => Build_ClassToTable uml c EmptyString :: nil
 			| OTHER => nil
 			end)
 		(Filter_Class (Project_Package_elements x))) in H2.
@@ -1631,7 +1681,7 @@ Proof.
 			apply (UnliftPastFlatMaps Class Table t 
 				(fun c : Class =>
 					match Project_Class_kind c with
-					| PERSISTENT => Build_ClassToTable uml x1 c EmptyString :: nil
+					| PERSISTENT => Build_ClassToTable uml c EmptyString :: nil
 					| OTHER => nil
 					end)
 				(Filter_Class (Project_Package_elements x1))) in H3.
@@ -1644,7 +1694,7 @@ Proof.
 				destruct H3.
 					assert (x0 = x2).
 						assert ((Project_Class_OID_nat (Project_Class_oid x0)) = (Project_Class_OID_nat (Project_Class_oid x2))).
-							assert ((Project_Table_oid (Build_ClassToTable uml x x0 EmptyString)) = (Project_Table_oid (Build_ClassToTable uml x1 x2 EmptyString))).
+							assert ((Project_Table_oid (Build_ClassToTable uml x0 EmptyString)) = (Project_Table_oid (Build_ClassToTable uml x2 EmptyString))).
 								rewrite H3.
 								rewrite H2.
 								reflexivity.
@@ -1759,7 +1809,7 @@ Proof.
 				end
 			| None => nil
 			end)
-		  (Filter_Association (Project_Package_elements p1))) in HA3.
+			(Filter_Association (Project_Package_elements p1))) in HA3.
 	destruct HA3 as [a3 HA3].
 	destruct HA3 as [HA3a HA3b].
 	case_eq (Dereference_Class uml (Project_Association_source a3)).
@@ -1811,7 +1861,7 @@ Proof.
 										destruct HA4a.
 											assert (a3 = a4).
 											apply (AssociationOIDsAreUnique uml a3 a4); repeat split.
-		  
+			
 											unfold AllInstances_Association.
 											apply (LiftPastFlatMaps Package Association p1 a3 (fun p0 : Package =>
 													Filter_Association (Project_Package_elements p0))
@@ -1960,18 +2010,18 @@ Lemma SchemaInRDBMS :
 		PackageToSchema uml (Establish_PackageToSchema uml) p s ->
 		In s (AllInstances_Schema rdbms).
 Proof.
-   intros uml rdbms H1eq p s Hs H2.
-   rewrite H1eq.
-   unfold AllInstances_Schema.
-   unfold Establish_PackageToSchema.
-   simpl Content.
+	 intros uml rdbms H1eq p s Hs H2.
+	 rewrite H1eq.
+	 unfold AllInstances_Schema.
+	 unfold Establish_PackageToSchema.
+	 simpl Content.
 
-   apply (LiftPastMaps Package Schema p s (Build_PackageToSchema uml) (AllInstances_Package uml)).
-   trivial.
+	 apply (LiftPastMaps Package Schema p s (Build_PackageToSchema uml) (AllInstances_Package uml)).
+	 trivial.
 
-   unfold PackageToSchema in H2.
-   destruct H2 as [H2a H2b].
-   assumption.
+	 unfold PackageToSchema in H2.
+	 destruct H2 as [H2a H2b].
+	 assumption.
 Qed.
 
 Lemma ForeignKeyInRDBMS :
@@ -2064,7 +2114,7 @@ Lemma ForeignKeyInRDBMS :
 		(* Some p = Dereference_Association_namespace uml a *)
 		assumption.
 	}
-	{  (* In s (AllInstances_Schema (Establish_PackageToSchema uml)) *)
+	{	(* In s (AllInstances_Schema (Establish_PackageToSchema uml)) *)
 		unfold AllInstances_Schema.
 		unfold Establish_PackageToSchema.
 		simpl Content.
@@ -2126,12 +2176,12 @@ Proof.
 	unfold Establish_ClassToTable in HA1a, HA2a.
 	apply (UnliftPastFlatMaps Class Table t1 (fun c : Class =>
 		 match Project_Class_kind c with
-		 | PERSISTENT => Build_ClassToTable uml p1 c EmptyString :: nil
+		 | PERSISTENT => Build_ClassToTable uml c EmptyString :: nil
 		 | OTHER => nil
 		 end) (Filter_Class (Project_Package_elements p1))) in HA1a.
 	apply (UnliftPastFlatMaps Class Table t2 (fun c : Class =>
 		 match Project_Class_kind c with
-		 | PERSISTENT => Build_ClassToTable uml p2 c EmptyString :: nil
+		 | PERSISTENT => Build_ClassToTable uml c EmptyString :: nil
 		 | OTHER => nil
 		 end) (Filter_Class (Project_Package_elements p2))) in HA2a.
 	destruct HA1a as [c1 HA1a].
@@ -2158,7 +2208,11 @@ Proof.
 						Project_Column_hasKeys := nil;
 						Project_Column_hasForeignKeys := nil 
 					|} :: Establish_AttributeToColumn c1 "" )(*++*)(
-					Establish_AssocToColumn uml (Filter_Association (Project_Package_elements p1))) ) in HA3.
+						Establish_AssocToColumn uml
+							(flat_map
+								(fun p : Package =>
+									Filter_Association (Project_Package_elements p))
+								(AllInstances_Package uml)) c1)) in HA3.
 				apply (SplitList Column c0 ({| 
 							Project_Column_oid := {| Project_Column_OID_nat := Project_Class_OID_nat (Project_Class_oid c2) |};
 						Project_Column_super := {| 
@@ -2168,7 +2222,11 @@ Proof.
 						Project_Column_hasKeys := nil;
 						Project_Column_hasForeignKeys := nil 
 					|} :: Establish_AttributeToColumn c2 "")
-					(Establish_AssocToColumn uml (Filter_Association (Project_Package_elements p2)))) in HA4.
+					(Establish_AssocToColumn uml
+						(flat_map
+							(fun p : Package =>
+								Filter_Association (Project_Package_elements p))
+							(AllInstances_Package uml)) c2)) in HA4.
 				simpl In in HA3, HA4.
 				(* Seven combinations appear when creating columns c1 and c2, based on pattern 1 :: 2 ++ 3, we have:
 					1&1, 1&2, 2&1, 2&2, 1&3, 3&1, 3&3 *)
@@ -2202,23 +2260,23 @@ Proof.
 							intros.
 							rewrite H3 in H2.
 							case_eq l. intro. rewrite H4 in H2. case_eq o. intros. rewrite H5 in H2.*)
-	(**)						  admit.  (* This case should elim somehow *)
+	(**)							admit.	(* This case should elim somehow *)
 
 						(* 2&1 Build_ClassToTable's column & Establish_AttributeToColumn *)
-	(**)						  admit.  (* This case should elim somehow *)
+	(**)							admit.	(* This case should elim somehow *)
 
 						(* 2&2: Establish_AttributeToColumn & Establish_AttributeToColumn *)
-	(**)						  admit.  (* This case should match certain columns *)
+	(**)							admit.	(* This case should match certain columns *)
 
 						(* 1&3: Build_ClassToTable's column & Establish_AssocToColumn *)
-	(**)						  admit.  (* This case should match certain columns *)
+	(**)							admit.	(* This case should match certain columns *)
 
 						(* 3&1: Build_ClassToTable's column & Establish_AssocToColumn *)
-	(**)						  admit.  (* This case should match certain columns *)
+	(**)							admit.	(* This case should match certain columns *)
 
 						(* 3&3 Establish_AssocToColumn & Establish_AssocToColumn *)
 
-	(**)						  admit.  (* This case should match certain elements *)
+	(**)							admit.	(* This case should match certain elements *)
 
 					elim H0.
 				elim H.
@@ -2252,7 +2310,7 @@ Proof.
 	{
 		(* PrimitiveAttributeToColumn *)
 
-		exists (Build_ClassToTable uml p' (Build_Class oid super general attributes) prefix).
+		exists (Build_ClassToTable uml (Build_Class oid super general attributes) prefix).
 		unfold Project_Class_attributes.
 		intros an pn a H1.
 		induction attributes as [| a' l IHl].
@@ -2413,7 +2471,7 @@ Proof.
 			{
 				exists (prefix ++ "_" ++ an)%string.
 				exact (FIX tc t (prefix ++ "_" ++ an)%string).
-		  }
+			}
 			exact I.
 		}
 		exact IHl.
@@ -2479,7 +2537,7 @@ Proof.
 	intros H2 ClassToTable_cn ClassToTable_prefix ClassToTable_c H4 H5eq H6eq H7eq.
 	unfold PackageToSchema in H2.
 	destruct H2 as [H2 H8].
-	set (ClassToTable_t_witness := (Build_ClassToTable uml ClassToTable_p ClassToTable_c EmptyString)).
+	set (ClassToTable_t_witness := (Build_ClassToTable uml ClassToTable_c EmptyString)).
 	exists ClassToTable_t_witness.	
 	assert (ClassInPackage : In ClassToTable_c (Filter_Class (Project_Package_elements ClassToTable_p))).
 	{
@@ -2515,7 +2573,7 @@ Proof.
 				ClassToTable_c ClassToTable_t_witness
 				(fun c : Class =>
 					match Project_Class_kind c with
-					| PERSISTENT => Build_ClassToTable uml ClassToTable_p c EmptyString :: nil
+					| PERSISTENT => Build_ClassToTable uml c EmptyString :: nil
 					| OTHER => nil
 					end)
 				(Filter_Class (Project_Package_elements ClassToTable_p))).
@@ -2542,7 +2600,7 @@ Proof.
 		exact H2.
 	}
 	split.
-	{  (* In ClassToTable_t_witness (AllInstances_Table rdbms) *)
+	{	(* In ClassToTable_t_witness (AllInstances_Table rdbms) *)
 		rewrite H1eq in TableInRDBMS.
 		exact TableInRDBMS.
 	}
@@ -2559,7 +2617,7 @@ Proof.
 		((RDBMS.Build_Column_OID (UML.Project_Class_OID_nat (UML.Project_Class_oid ClassToTable_c))) :: nil)).
 	exists ClassToTable_k_witness.
 	split.
-	{  (* Project_Table_name ClassToTable_t_witness = ClassToTable_cn *)
+	{	(* Project_Table_name ClassToTable_t_witness = ClassToTable_cn *)
 		unfold ClassToTable_t_witness.
 		unfold Build_ClassToTable.
 		unfold Project_Table_name.
@@ -2568,7 +2626,7 @@ Proof.
 		exact H7eq.
 	}
 	split.
-	{  (* Some ClassToTable_s_witness = Dereference_Table_schema rdbms ClassToTable_t_witness *)
+	{	(* Some ClassToTable_s_witness = Dereference_Table_schema rdbms ClassToTable_t_witness *)
 		assert (TheseSchemasContainTables: forall s1 s2 : Schema,
 			forall t : Table,
 				In s1 (AllInstances_Schema rdbms) /\ In s2 (AllInstances_Schema rdbms) /\
@@ -2635,7 +2693,7 @@ Proof.
 			ClassToTable_c ClassToTable_t_witness
 			(fun c : Class =>
 				match Project_Class_kind c with
-				| PERSISTENT => Build_ClassToTable uml ClassToTable_p c EmptyString :: nil
+				| PERSISTENT => Build_ClassToTable uml c EmptyString :: nil
 				| OTHER => nil
 				end)
 			(Filter_Class (Project_Package_elements ClassToTable_p))).
@@ -2646,9 +2704,9 @@ Proof.
 			reflexivity.
 		}
 		exact ClassInPackage.
-	}  
+	}	
 	split.
-	{  (* In ClassToTable_cl_witness (Project_Table_columns ClassToTable_t_witness) *)
+	{	(* In ClassToTable_cl_witness (Project_Table_columns ClassToTable_t_witness) *)
 		unfold ClassToTable_t_witness.
 		unfold Build_ClassToTable.
 		left.
@@ -2656,7 +2714,7 @@ Proof.
 		reflexivity.
 	}
 	split.
-	{  (* Some ClassToTable_k_witness = Project_Table_hasKey ClassToTable_t_witness *)
+	{	(* Some ClassToTable_k_witness = Project_Table_hasKey ClassToTable_t_witness *)
 		unfold ClassToTable_t_witness.
 		unfold Build_ClassToTable.
 		subst ClassToTable_k_witness.
@@ -2664,14 +2722,14 @@ Proof.
 		reflexivity.
 	}
 	split.
-	{  (* Project_Column_name ClassToTable_cl_witness = (Project_Class_name ClassToTable_c ++ "_tid")%string *)
+	{	(* Project_Column_name ClassToTable_cl_witness = (Project_Class_name ClassToTable_c ++ "_tid")%string *)
 		unfold ClassToTable_cl_witness.
 		unfold Project_Column_name.
 		simpl Project_ModelElement_name.
 		reflexivity.
 	}
 	split.
-	{  (* Project_Column_type ClassToTable_cl_witness = NUMBER *)
+	{	(* Project_Column_type ClassToTable_cl_witness = NUMBER *)
 		unfold ClassToTable_cl_witness.
 		simpl.
 		reflexivity.
@@ -2679,7 +2737,7 @@ Proof.
 	unfold ClassToTable_k_witness.
 	unfold ClassToTable_cl_witness.
 	split.
-	{  (* In (Project_Column_oid ClassToTable_cl_witness) (Project_Key_columns ClassToTable_k_witness) *)
+	{	(* In (Project_Column_oid ClassToTable_cl_witness) (Project_Key_columns ClassToTable_k_witness) *)
 		simpl.
 		left.
 		reflexivity.
@@ -2702,7 +2760,7 @@ Proof.
 		apply eq_sym.
 		apply (WeakLiftPastFind Column ClassToTable_cl_witness (fun oid' : Column =>
 			beq_nat (Project_Column_OID_nat (Project_Column_oid oid'))
-					  (Project_Class_OID_nat (Project_Class_oid ClassToTable_c)))
+						(Project_Class_OID_nat (Project_Class_oid ClassToTable_c)))
 			(AllInstances_Column (Establish_PackageToSchema uml))).
 		{
 			unfold ClassToTable_cl_witness.
@@ -2717,35 +2775,35 @@ Proof.
 			exact H1eq.
 			unfold AllInstances_Column.
 			apply (LiftPastFlatMaps Table Column ClassToTable_t_witness ClassToTable_cl_witness Project_Table_columns (AllInstances_Table rdbms)).
-			{  (* In ClassToTable_cl_witness (Project_Table_columns ClassToTable_t_witness) *)
+			{	(* In ClassToTable_cl_witness (Project_Table_columns ClassToTable_t_witness) *)
 				unfold ClassToTable_t_witness.
 				unfold Build_ClassToTable.
 				left.
 				subst ClassToTable_cl_witness.
 				reflexivity.
 			}
-			{  (* In ClassToTable_t_witness (AllInstances_Table rdbms) *)
+			{	(* In ClassToTable_t_witness (AllInstances_Table rdbms) *)
 				assumption.
 			}
-			{  (* In cl (AllInstances_Column rdbms) *)
+			{	(* In cl (AllInstances_Column rdbms) *)
 				rewrite H1eq; assumption.
 			}
 			unfold ClassToTable_cl_witness.
 			rewrite H10eq.
 			reflexivity.
 		}
-		{  (* In ClassToTable_cl_witness (AllInstances_Column (Establish_PackageToSchema uml)) *)
+		{	(* In ClassToTable_cl_witness (AllInstances_Column (Establish_PackageToSchema uml)) *)
 			unfold AllInstances_Column.
 			rewrite <- H1eq.
 			apply (LiftPastFlatMaps Table Column ClassToTable_t_witness ClassToTable_cl_witness Project_Table_columns (AllInstances_Table rdbms)).
-			{  (* In ClassToTable_cl_witness (Project_Table_columns ClassToTable_t_witness) *)
+			{	(* In ClassToTable_cl_witness (Project_Table_columns ClassToTable_t_witness) *)
 				unfold ClassToTable_t_witness.
 				unfold Build_ClassToTable.
 				left.
 				subst ClassToTable_cl_witness.
 				reflexivity.
 			}
-			{  (* In ClassToTable_t_witness (AllInstances_Table rdbms) *)
+			{	(* In ClassToTable_t_witness (AllInstances_Table rdbms) *)
 				assumption.
 			}
 		}
@@ -2770,8 +2828,8 @@ Proof.
 	rewrite H1eq.
 	unfold Top_AssocToFKey.
 	intros p sc dc pKey.
-	set (srcTbl_witness := (Build_ClassToTable uml p sc EmptyString)).
-	set (destTbl_witness := (Build_ClassToTable uml p dc EmptyString)).
+	set (srcTbl_witness := (Build_ClassToTable uml sc EmptyString)).
+	set (destTbl_witness := (Build_ClassToTable uml dc EmptyString)).
 	set (s_witness := (Build_PackageToSchema uml p)).
 	exists srcTbl_witness, destTbl_witness, s_witness.
 	intros H2 H3 H4 H5.
@@ -2792,7 +2850,7 @@ Proof.
 	exists fc, fkn, fcn.
 	split.
 	split.
-	{  (* Some s_witness = Dereference_ForeignKey_schema (Establish_PackageToSchema uml) fk *)
+	{	(* Some s_witness = Dereference_ForeignKey_schema (Establish_PackageToSchema uml) fk *)
 		(* Backward containment reference => reduce to forward direction, which is then easy to proof. *)
 
 		assert (ForeignKeyOIDsAreUniqueInRDBMS: forall fk1 fk2 : ForeignKey, 
@@ -2821,23 +2879,23 @@ Proof.
 			(SchemasContainForeignKeysInRDBMS uml rdbms H1eq)
 			ForeignKeyOIDsAreUniqueInRDBMS).
 
-		{  (* In s_witness (AllInstances_Schema rdbms) *)
+		{	(* In s_witness (AllInstances_Schema rdbms) *)
 			assert (Hs_witness : s_witness = Build_PackageToSchema uml p). unfold s_witness. reflexivity.
 			apply (SchemaInRDBMS uml rdbms H1eq p s_witness Hs_witness H2).
 		}
-		{  (* In fk (AllInstances_ForeignKey rdbms) *)
+		{	(* In fk (AllInstances_ForeignKey rdbms) *)
 			assert (Hs_witness : s_witness = Build_PackageToSchema uml p). unfold s_witness. reflexivity.
 			apply (ForeignKeyInRDBMS uml rdbms H1eq p s_witness Hs_witness H2 a H6 H6eq sc dc H8eq H9eq H11eq H12eq fk).
 			reflexivity.
 		}
-		{  (* In fk (Project_Schema_foreignKeys s_witness) *)
+		{	(* In fk (Project_Schema_foreignKeys s_witness) *)
 			assert (Hs_witness : s_witness = Build_PackageToSchema uml p). unfold s_witness. reflexivity.
 			apply (ForeignKeyInSchema uml rdbms H1eq p s_witness Hs_witness H2 a H6 H6eq sc dc H8eq H9eq H11eq H12eq fk).
 			reflexivity.
 		}
 	}
 	split.
-	{  (* Project_ForeignKey_name fk = fkn *)
+	{	(* Project_ForeignKey_name fk = fkn *)
 		unfold fk.
 		unfold Build_AssocToFKey.
 		unfold Project_ForeignKey_name.
@@ -2846,7 +2904,7 @@ Proof.
 		trivial.
 	}
 	split.
-	{  (* Some srcTbl_witness = Dereference_ForeignKey_owner (Establish_PackageToSchema uml) fk *)
+	{	(* Some srcTbl_witness = Dereference_ForeignKey_owner (Establish_PackageToSchema uml) fk *)
 		(* Forward non-containment reference => get to the point where the Table_OID is defined on both sides of the association. *)
 
 		(* Find the table t that is referenced by the given foreign key fk and then resolved. *)
@@ -2855,16 +2913,16 @@ Proof.
 		unfold Find_Table.
 		apply (WeakLiftPastFind Table srcTbl_witness (fun oid' : Table =>
 			beq_nat (Project_Table_OID_nat (Project_Table_oid oid'))
-			  (Project_Table_OID_nat (Project_ForeignKey_owner fk)))
-		  (AllInstances_Table (Establish_PackageToSchema uml))).
+				(Project_Table_OID_nat (Project_ForeignKey_owner fk)))
+			(AllInstances_Table (Establish_PackageToSchema uml))).
 		apply beq_nat_true_iff.
 		reflexivity.
 
 		(* Now show that srcTable_witness just has that Table_OID of t defined. *)
 		intros t Ht1 Ht2.
 		Lemma ResolveSrcTbl: forall {uml : UML} {rdbms : RDBMS}
-			{srcTbl : Table} {t : Table} {fk : ForeignKey} {sc dc : Class} {p : Package} {a : Association}
-			(srcTbl_witness : srcTbl = Build_ClassToTable uml p sc EmptyString) 
+			{srcTbl : Table} {t : Table} {fk : ForeignKey} {sc dc : Class} {a : Association}
+			(srcTbl_witness : srcTbl = Build_ClassToTable uml sc EmptyString) 
 			(fk_witness : fk = Build_AssocToFKey sc dc a)
 			(H1eq : rdbms = Establish_PackageToSchema uml)
 			(H3: ClassToTable uml (Establish_PackageToSchema uml) sc srcTbl)
@@ -2872,7 +2930,7 @@ Proof.
 			(Ht2: beq_nat (Project_Table_OID_nat (Project_Table_oid t)) (Project_Table_OID_nat (Project_ForeignKey_owner fk)) = true),
 
 			srcTbl = t.
-		{  Proof.
+		{	Proof.
 			intros.
 			apply beq_nat_true_iff in Ht2.
 			apply (TableOIDsAreUnique uml rdbms srcTbl t).
@@ -2891,11 +2949,11 @@ Proof.
 			rewrite srcTbl_witness; unfold Build_ClassToTable; simpl Project_Table_oid.
 			rewrite fk_witness; unfold Build_AssocToFKey; simpl Project_Table_OID_nat.
 			reflexivity.
-		}  Qed.
-		assert (Hs: srcTbl_witness = Build_ClassToTable uml p sc EmptyString). trivial.
+		}	Qed.
+		assert (Hs: srcTbl_witness = Build_ClassToTable uml sc EmptyString). trivial.
 		assert (Hf: fk = Build_AssocToFKey sc dc a). trivial.
 		apply (ResolveSrcTbl Hs Hf H1eq H3 Ht1 Ht2).
-		{  (* In srcTbl_witness (AllInstances_Table rdbms) *)
+		{	(* In srcTbl_witness (AllInstances_Table rdbms) *)
 			unfold ClassToTable in H3.
 			destruct H3 as [H3a H3b].
 			destruct H3b as [H3b H3c].
@@ -2903,7 +2961,7 @@ Proof.
 		}
 	}
 	split.
-	{  (* In (Some fc) (Dereference_ForeignKey_columns (Establish_PackageToSchema uml) fk) *)
+	{	(* In (Some fc) (Dereference_ForeignKey_columns (Establish_PackageToSchema uml) fk) *)
 		(* Forward non-containment reference => get to the point where the Column_OID is defined on both sides of the association. *)
 
 		(* Find the column c that is referenced by the given foreign key fk and then resolved. *)
@@ -2915,7 +2973,7 @@ Proof.
 		unfold Find_Column.
 		apply (WeakLiftPastFind Column fc (fun oid' : Column =>
 			beq_nat (Project_Column_OID_nat (Project_Column_oid oid'))
-					  (Project_Column_OID_nat (Project_Column_oid fc)))
+						(Project_Column_OID_nat (Project_Column_oid fc)))
 			(AllInstances_Column (Establish_PackageToSchema uml))).
 		apply beq_nat_true_iff.
 		reflexivity.
@@ -2924,7 +2982,7 @@ Proof.
 		intros c Hc1 Hc2.
 		Lemma ResolveColumn: forall {uml : UML} {rdbms : RDBMS}
 			{srcTbl : Table} {s : Schema} {fc c : Column} {sc dc : Class} {p : Package} {a : Association}
-			(srcTbl_witness : srcTbl = Build_ClassToTable uml p sc EmptyString) 
+			(srcTbl_witness : srcTbl = Build_ClassToTable uml sc EmptyString) 
 			(fc_witness : fc = Build_AssocToColumn sc dc a)
 			(H1eq : rdbms = Establish_PackageToSchema uml)
 			(H2: PackageToSchema uml (Establish_PackageToSchema uml) p s)
@@ -2939,7 +2997,7 @@ Proof.
 			(Hc2: beq_nat (Project_Column_OID_nat (Project_Column_oid c)) (Project_Column_OID_nat (Project_Column_oid fc)) = true),
 
 			fc = c.
-		{  Proof.
+		{	Proof.
 			intros.
 			apply beq_nat_true_iff in Hc2.
 			apply (ColumnOIDsAreUnique uml rdbms fc c).
@@ -2964,44 +3022,62 @@ Proof.
 				Project_Column_hasForeignKeys := nil |}
 				:: Establish_AttributeToColumn sc "")
 					(Establish_AssocToColumn uml
-					  (Filter_Association
-						  (Project_Package_elements p)))).
+						(flat_map
+							 (fun p0 : Package =>
+								Filter_Association (Project_Package_elements p0))
+							 (AllInstances_Package uml)) sc)).
 			unfold Establish_AssocToColumn.
-			apply (LiftPastFlatMaps Association Column a fc (fun a0 : Association =>
+			apply (LiftPastFlatMaps Association Column a fc
+			 (fun a0 : Association =>
 				match Dereference_Class uml (Project_Association_source a0) with
 				| Some c1 =>
-					 match
-						Dereference_Class uml (Project_Association_destination a0)
-					 with
-					 | Some c2 =>
-						  match Project_Class_kind c1 with
-						  | PERSISTENT =>
-								match Project_Class_kind c2 with
-								| PERSISTENT => Build_AssocToColumn c1 c2 a0 :: nil
+						match
+							Dereference_Class uml (Project_Association_destination a0)
+						with
+						| Some c2 =>
+								match Project_Class_kind c1 with
+								| PERSISTENT =>
+										match Project_Class_kind c2 with
+										| PERSISTENT =>
+												if beq_nat
+														 (Project_Class_OID_nat (Project_Class_oid c1))
+														 (Project_Class_OID_nat (Project_Class_oid sc))
+												then Build_AssocToColumn c1 c2 a0 :: nil
+												else nil
+										| OTHER => nil
+										end
 								| OTHER => nil
 								end
-						  | OTHER => nil
-						  end
-					 | None => nil
-					 end
+						| None => nil
+						end
 				| None => nil
-				end) (Filter_Association (Project_Package_elements p))).
+				end)
+			 (flat_map
+					(fun p0 : Package => Filter_Association (Project_Package_elements p0))
+					(AllInstances_Package uml))).
 			rewrite H8eq.
 			rewrite H11eq.
 			rewrite H9eq.
 			rewrite H12eq.
+			rewrite <- beq_nat_refl.
 			simpl.
 			left.
 			rewrite fc_witness.
 			reflexivity.
 
-			(* In a (Filter_Association (Project_Package_elements p)) *)
+			(* In a (flat_map (fun p0 : Package => Filter_Association (Project_Package_elements p0)) (AllInstances_Package uml)) *)
+			apply (LiftPastFlatMaps Package Association p a (fun p0 : Package => Filter_Association (Project_Package_elements p0)) (AllInstances_Package uml)).
 			apply (Consistent_Dereference_Association_namespace AssociationOIDsAreUnique uml p a).
 
 			unfold PackageToSchema in H2.
 			destruct H2 as [H2a H2b].
 			assumption.
 			assumption.
+			assumption.
+
+			(* In p (AllInstances_Package uml) *)
+			unfold PackageToSchema in H2.
+			destruct H2 as [H2a H2b].
 			assumption.
 
 			(* In srcTbl_witness (AllInstances_Table rdbms) *)
@@ -3016,10 +3092,10 @@ Proof.
 
 			congruence.
 		} Qed.
-		assert (Hs: srcTbl_witness = Build_ClassToTable uml p sc EmptyString). trivial.
+		assert (Hs: srcTbl_witness = Build_ClassToTable uml sc EmptyString). trivial.
 		assert (Hfc: fc = Build_AssocToColumn sc dc a). trivial.
 		apply (ResolveColumn Hs Hfc H1eq H2 H3 H6 H6eq H8eq H9eq H11eq H12eq Hc1 Hc2).
-		{  (* In fc (AllInstances_Column (Establish_PackageToSchema uml)) *)
+		{	(* In fc (AllInstances_Column (Establish_PackageToSchema uml)) *)
 			(* This goal has been created by one of the lifting lemmata *)
 			(* TODO: Proof is just a copy from right above, and should better be factored out. *)
 			unfold fc.
@@ -3039,36 +3115,51 @@ Proof.
 				Project_Column_hasKeys := nil;
 				Project_Column_hasForeignKeys := nil |}
 				:: Establish_AttributeToColumn sc "") 
-				(Establish_AssocToColumn uml (Filter_Association (Project_Package_elements p)))).
+				(Establish_AssocToColumn uml
+					(flat_map
+						 (fun p0 : Package =>
+							Filter_Association (Project_Package_elements p0))
+						 (AllInstances_Package uml)) sc)).
 			unfold Establish_AssocToColumn.
-			apply (LiftPastFlatMaps Association Column a fc (fun a0 : Association =>
+			apply (LiftPastFlatMaps Association Column a fc
+			 (fun a0 : Association =>
 				match Dereference_Class uml (Project_Association_source a0) with
 				| Some c1 =>
-					 match
-						Dereference_Class uml (Project_Association_destination a0)
-					 with
-					 | Some c2 =>
-						  match Project_Class_kind c1 with
-						  | PERSISTENT =>
-								match Project_Class_kind c2 with
-								| PERSISTENT => Build_AssocToColumn c1 c2 a0 :: nil
+						match
+							Dereference_Class uml (Project_Association_destination a0)
+						with
+						| Some c2 =>
+								match Project_Class_kind c1 with
+								| PERSISTENT =>
+										match Project_Class_kind c2 with
+										| PERSISTENT =>
+												if beq_nat
+														 (Project_Class_OID_nat (Project_Class_oid c1))
+														 (Project_Class_OID_nat (Project_Class_oid sc))
+												then Build_AssocToColumn c1 c2 a0 :: nil
+												else nil
+										| OTHER => nil
+										end
 								| OTHER => nil
 								end
-						  | OTHER => nil
-						  end
-					 | None => nil
-					 end
+						| None => nil
+						end
 				| None => nil
-				end) (Filter_Association (Project_Package_elements p))).
+				end)
+			 (flat_map
+					(fun p0 : Package => Filter_Association (Project_Package_elements p0))
+					(AllInstances_Package uml))).
 			rewrite H8eq.
 			rewrite H11eq.
 			rewrite H9eq.
 			rewrite H12eq.
+			rewrite <- beq_nat_refl.
 			simpl.
 			left.
 			reflexivity.
 
-			(* In a (Filter_Association (Project_Package_elements p)) *)
+			(* In a (flat_map (fun p0 : Package => Filter_Association (Project_Package_elements p0)) (AllInstances_Package uml)) *)
+			apply (LiftPastFlatMaps Package Association p a (fun p0 : Package => Filter_Association (Project_Package_elements p0)) (AllInstances_Package uml)).
 			apply (Consistent_Dereference_Association_namespace AssociationOIDsAreUnique uml p a).
 
 			unfold PackageToSchema in H2.
@@ -3077,13 +3168,18 @@ Proof.
 			assumption.
 			assumption.
 
+			(* In p (AllInstances_Package uml) *)
+			unfold PackageToSchema in H2.
+			destruct H2 as [H2a H2b].
+			assumption.
+
 			(* In srcTbl_witness (AllInstances_Table (Establish_PackageToSchema uml)) *)
 			unfold ClassToTable in H3.
 			destruct H3 as [H3a H3b].
 			destruct H3b as [H3b H3c].
 			assumption.
 		}
-		{  (* In (Project_Column_oid fc) (Project_ForeignKey_columns fk) *)
+		{	(* In (Project_Column_oid fc) (Project_ForeignKey_columns fk) *)
 			(* This goal has been created by one of the lifting lemmata. *)
 			unfold fc, Build_AssocToColumn; simpl Project_Column_oid.
 			unfold fk, Build_AssocToFKey; simpl Project_ForeignKey_columns.
@@ -3091,7 +3187,7 @@ Proof.
 		}
 	}
 	split.
-	{  (* Project_Column_name fc = fcn *)
+	{	(* Project_Column_name fc = fcn *)
 		unfold fc.
 		unfold Build_AssocToColumn.
 		unfold Project_Column_name.
@@ -3101,14 +3197,14 @@ Proof.
 		trivial.
 	}
 	split.
-	{  (* Project_Column_type fc = NUMBER *)
+	{	(* Project_Column_type fc = NUMBER *)
 		unfold fc.
 		unfold Build_AssocToColumn.
 		simpl.
 		reflexivity.
 	}
 	split.
-	{  (* Some srcTbl = Dereference_Column_owner (Establish_PackageToSchema uml) fc *)
+	{	(* Some srcTbl = Dereference_Column_owner (Establish_PackageToSchema uml) fc *)
 		(* Backward containment reference => reduce to forward direction, which is then easy to proof. *)
 
 		assert (ColumnOIDsAreUniqueInRDBMS: forall c1 c2 : Column, 
@@ -3137,14 +3233,14 @@ Proof.
 			(TablesContainColumnsInRDBMS uml rdbms H1eq)
 			ColumnOIDsAreUniqueInRDBMS).
 
-		{  (* In srcTbl_witness (AllInstances_Table rdbms) *)
+		{	(* In srcTbl_witness (AllInstances_Table rdbms) *)
 			unfold ClassToTable in H3.
 			destruct H3 as [H3a H3b].
 			destruct H3b as [H3b H3c].
 			rewrite H1eq.
 			assumption.
 		}
-		{  (* In fc (AllInstances_Column rdbms) *)
+		{	(* In fc (AllInstances_Column rdbms) *)
 			unfold fc.
 			rewrite H1eq.
 			unfold Establish_PackageToSchema.
@@ -3161,45 +3257,61 @@ Proof.
 			simpl.
 			right.
 			apply (RightExpandList Column fc (Establish_AttributeToColumn sc "")
-				(Establish_AssocToColumn uml (Filter_Association (Project_Package_elements p)))).
+				(Establish_AssocToColumn uml (flat_map
+				(fun p0 : Package => Filter_Association (Project_Package_elements p0))
+				(AllInstances_Package uml)) sc)).
 			unfold Establish_AssocToColumn.
-			apply (LiftPastFlatMaps 
-				Association 
-				Column
-				a fc
-				(fun assoc : Association =>
-					match Dereference_Class uml (Project_Association_source assoc) with
-					| Some c1 =>
-						match Dereference_Class uml (Project_Association_destination assoc) with
+			apply (LiftPastFlatMaps Association Column a fc
+			 (fun a0 : Association =>
+				match Dereference_Class uml (Project_Association_source a0) with
+				| Some c1 =>
+						match
+							Dereference_Class uml (Project_Association_destination a0)
+						with
 						| Some c2 =>
-							match Project_Class_kind c1 with
-							| PERSISTENT =>
-								match Project_Class_kind c2 with
-								| PERSISTENT => Build_AssocToColumn c1 c2 assoc :: nil
+								match Project_Class_kind c1 with
+								| PERSISTENT =>
+										match Project_Class_kind c2 with
+										| PERSISTENT =>
+												if beq_nat
+														 (Project_Class_OID_nat (Project_Class_oid c1))
+														 (Project_Class_OID_nat (Project_Class_oid sc))
+												then Build_AssocToColumn c1 c2 a0 :: nil
+												else nil
+										| OTHER => nil
+										end
 								| OTHER => nil
 								end
-							| OTHER => nil
-							end
 						| None => nil
 						end
-					| None => nil
-					end) (Filter_Association (Project_Package_elements p))).
+				| None => nil
+				end)
+			 (flat_map
+					(fun p0 : Package => Filter_Association (Project_Package_elements p0))
+					(AllInstances_Package uml))).
 			rewrite H8eq.
 			rewrite H11eq.
 			rewrite H9eq.
 			rewrite H12eq.
 			unfold fc.
+			rewrite <- beq_nat_refl.
 			simpl.
 			left.
 			congruence.
 
-			(* In a (AllInstances_Association uml) *)
+			(* In a (flat_map (fun p0 : Package => Filter_Association (Project_Package_elements p0)) (AllInstances_Package uml)) *)
+			apply (LiftPastFlatMaps Package Association p a (fun p0 : Package => Filter_Association (Project_Package_elements p0)) (AllInstances_Package uml)).
 			apply (Consistent_Dereference_Association_namespace AssociationOIDsAreUnique uml p a).
 
 			unfold PackageToSchema in H2.
 			destruct H2 as [H2a H2b].
 			assumption.
 			assumption.
+			assumption.
+
+			(* In p (AllInstances_Package uml) *)
+			unfold PackageToSchema in H2.
+			destruct H2 as [H2a H2b].
 			assumption.
 
 			(* In srcTbl_witness (AllInstances_Table (Establish_PackageToSchema uml)) *)
@@ -3208,52 +3320,79 @@ Proof.
 			destruct H3b as [H3b H3c].
 			assumption.
 		}
-		{  (* In fc (Project_Table_columns srcTbl_witness) *)
+		{	(* In fc (Project_Table_columns srcTbl_witness) *)
 			simpl. right.
 			apply (RightExpandList Column fc (Establish_AttributeToColumn sc "")
-				(Establish_AssocToColumn uml (Filter_Association (Project_Package_elements p)))).
+				(Establish_AssocToColumn uml (flat_map
+				(fun p0 : Package => Filter_Association (Project_Package_elements p0))
+				(AllInstances_Package uml)) sc)).
 			unfold srcTbl_witness, Build_ClassToTable; simpl Project_Table_columns.
 			unfold Establish_AssocToColumn.
-			apply (LiftPastFlatMaps Association Column a fc (fun a0 : Association =>
+			apply (LiftPastFlatMaps Association Column a fc
+			 (fun a0 : Association =>
 				match Dereference_Class uml (Project_Association_source a0) with
 				| Some c1 =>
-					match Dereference_Class uml (Project_Association_destination a0) with
-					| Some c2 =>
-						match Project_Class_kind c1 with
-						| PERSISTENT =>
-							match Project_Class_kind c2 with
-							| PERSISTENT => Build_AssocToColumn c1 c2 a0 :: nil
-							| OTHER => nil
-							end
-						| OTHER => nil
+						match
+							Dereference_Class uml (Project_Association_destination a0)
+						with
+						| Some c2 =>
+								match Project_Class_kind c1 with
+								| PERSISTENT =>
+										match Project_Class_kind c2 with
+										| PERSISTENT =>
+												if beq_nat
+														 (Project_Class_OID_nat (Project_Class_oid c1))
+														 (Project_Class_OID_nat (Project_Class_oid sc))
+												then Build_AssocToColumn c1 c2 a0 :: nil
+												else nil
+										| OTHER => nil
+										end
+								| OTHER => nil
+								end
+						| None => nil
 						end
-					| None => nil
-					end
 				| None => nil
-				end) (Filter_Association (Project_Package_elements p))).
+				end)
+			 (flat_map
+					(fun p0 : Package => Filter_Association (Project_Package_elements p0))
+					(AllInstances_Package uml))).
 			rewrite H8eq.
 			rewrite H11eq.
 			rewrite H9eq.
 			rewrite H12eq.
+			rewrite <- beq_nat_refl.
 			unfold fc, Build_AssocToColumn; simpl; left; trivial.
 
-			(* In a (Filter_Association (Project_Package_elements p)) *)
+			(* In a (flat_map (fun p0 : Package => Filter_Association (Project_Package_elements p0)) (AllInstances_Package uml)) *)
+			apply (LiftPastFlatMaps Package Association p a (fun p0 : Package => Filter_Association (Project_Package_elements p0)) (AllInstances_Package uml)).
 			apply (Consistent_Dereference_Association_namespace AssociationOIDsAreUnique uml p a).
 
+			(* In p (AllInstances_Package uml) *)
 			unfold PackageToSchema in H2.
 			destruct H2 as [H2a H2b].
 			assumption.
+
+			(* In a (AllInstances_Association uml) *)
+			unfold PackageToSchema in H2.
+			destruct H2 as [H2a H2b].
 			assumption.
+
+			(* Some p = Dereference_Association_namespace uml a *)
+			assumption.
+
+			(* In p (AllInstances_Package uml) *)
+			unfold PackageToSchema in H2.
+			destruct H2 as [H2a H2b].
 			assumption.
 		}
 	}
-	{  (* Dereference_ForeignKey_refersTo (Establish_PackageToSchema uml) fk = Some pKey *)
+	{	(* Dereference_ForeignKey_refersTo (Establish_PackageToSchema uml) fk = Some pKey *)
 		unfold Dereference_ForeignKey_refersTo.
 		unfold Dereference_Key.
 		unfold Find_Key.
 		apply (WeakLiftPastFind Key pKey (fun oid' : Key =>
 			beq_nat (Project_Key_OID_nat (Project_Key_oid oid'))
-					  (Project_Key_OID_nat (Project_ForeignKey_refersTo fk)))
+						(Project_Key_OID_nat (Project_ForeignKey_refersTo fk)))
 			(AllInstances_Key (Establish_PackageToSchema uml))).
 		apply beq_nat_true_iff.
 
@@ -3303,7 +3442,7 @@ Proof.
 			reflexivity.
 		}
 		assumption.
-		{  (* In pKey (AllInstances_Key rdbms) *)
+		{	(* In pKey (AllInstances_Key rdbms) *)
 			(* Repeating what we've done above *)
 			unfold AllInstances_Key.
 			apply (LiftPastFlatMaps Table Key destTbl_witness pKey (fun o : Table => 
@@ -3320,11 +3459,11 @@ Proof.
 		}
 	}
 	split.
-	{  (* fkn = (scn ++ "_" ++ an ++ "_" ++ dcn)%string *)
+	{	(* fkn = (scn ++ "_" ++ an ++ "_" ++ dcn)%string *)
 		trivial.
 	}
-	{  (* fcn = (fkn ++ "_tid")%string *)
-	  trivial.
+	{	(* fcn = (fkn ++ "_tid")%string *)
+		trivial.
 	}
 Qed.
 
@@ -3446,7 +3585,7 @@ End UML2RDBMS.
 (********************************************************************
  Extract program from proof (see Curry-Howard Isomorphism).
  ********************************************************************)
-Extraction Language  Ocaml. (*Haskell.*)
+Extraction Language	Haskell. (*Ocaml.*) (*Haskell.*)
 Set Extraction Optimize.
 Set Extraction AccessOpaque.
 Recursive Extraction Transform.

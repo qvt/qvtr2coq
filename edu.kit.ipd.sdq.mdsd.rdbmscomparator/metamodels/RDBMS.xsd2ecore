@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xsd2ecore:XSD2EcoreMappingRoot xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsd2ecore="http://www.eclipse.org/emf/2002/XSD2Ecore" inputs="RDBMS.xsd#/" outputs="rdbms.ecore#/" topToBottom="true">
+  <nested inputs="RDBMS.xsd#//OID;XSDElementDeclaration=7/XSDComplexTypeDefinition"
+      outputs="rdbms.ecore#//OIDType"/>
+  <nested inputs="RDBMS.xsd#//keys_NOTREALLY;XSDElementDeclaration=8/XSDComplexTypeDefinition"
+      outputs="rdbms.ecore#//KeysNOTREALLYType">
+    <nested inputs="RDBMS.xsd#//keys_NOTREALLY;XSDElementDeclaration=8/XSDComplexTypeDefinition/XSDParticle"
+        outputs="rdbms.ecore#//KeysNOTREALLYType/group"/>
+    <nested inputs="RDBMS.xsd#//keys_NOTREALLY;XSDElementDeclaration=8/XSDComplexTypeDefinition/XSDParticle/XSDModelGroup/XSDParticle"
+        outputs="rdbms.ecore#//KeysNOTREALLYType/oID"/>
+  </nested>
+  <nested inputs="RDBMS.xsd#//hasForeignKeys_ONLYONE;XSDElementDeclaration=6/XSDComplexTypeDefinition"
+      outputs="rdbms.ecore#//HasForeignKeysONLYONEType">
+    <nested inputs="RDBMS.xsd#//hasForeignKeys_ONLYONE;XSDElementDeclaration=6/XSDComplexTypeDefinition/XSDParticle"
+        outputs="rdbms.ecore#//HasForeignKeysONLYONEType/group"/>
+    <nested inputs="RDBMS.xsd#//hasForeignKeys_ONLYONE;XSDElementDeclaration=6/XSDComplexTypeDefinition/XSDParticle/XSDModelGroup/XSDParticle"
+        outputs="rdbms.ecore#//HasForeignKeysONLYONEType/oID"/>
+  </nested>
+  <nested inputs="bundleentry://659.fwk1116264846/cache/www.w3.org/2000/10/XMLSchema.xsd#//string;XSDSimpleTypeDefinition=9"
+      outputs="http://www.eclipse.org/emf/2003/XMLType#//String"/>
+  <nested inputs="RDBMS.xsd#//Column;XSDElementDeclaration=9/XSDComplexTypeDefinition"
+      outputs="rdbms.ecore#//ColumnType">
+    <nested inputs="RDBMS.xsd#//Column;XSDElementDeclaration=9/XSDComplexTypeDefinition/XSDParticle/XSDModelGroup/XSDParticle"
+        outputs="rdbms.ecore#//ColumnType/keysNOTREALLY"/>
+    <nested inputs="RDBMS.xsd#//Column;XSDElementDeclaration=9/XSDComplexTypeDefinition/XSDParticle/XSDModelGroup/XSDParticle=1"
+        outputs="rdbms.ecore#//ColumnType/hasForeignKeysONLYONE"/>
+    <nested inputs="RDBMS.xsd#//Column;XSDElementDeclaration=9/XSDComplexTypeDefinition/XSDAttributeUse=2"
+        outputs="rdbms.ecore#//ColumnType/kind"/>
+    <nested inputs="RDBMS.xsd#//Column;XSDElementDeclaration=9/XSDComplexTypeDefinition/XSDAttributeUse=1"
+        outputs="rdbms.ecore#//ColumnType/name"/>
+    <nested inputs="RDBMS.xsd#//Column;XSDElementDeclaration=9/XSDComplexTypeDefinition/XSDAttributeUse"
+        outputs="rdbms.ecore#//ColumnType/oID"/>
+    <nested inputs="RDBMS.xsd#//Column;XSDElementDeclaration=9/XSDComplexTypeDefinition/XSDAttributeUse=3"
+        outputs="rdbms.ecore#//ColumnType/type"/>
+  </nested>
+  <nested inputs="RDBMS.xsd#//Column;XSDElementDeclaration=9" outputs="rdbms.ecore#//DocumentRoot/column"/>
+  <nested inputs="RDBMS.xsd#//columns;XSDElementDeclaration=10/XSDComplexTypeDefinition"
+      outputs="rdbms.ecore#//ColumnsType1">
+    <nested inputs="RDBMS.xsd#//columns;XSDElementDeclaration=10/XSDComplexTypeDefinition/XSDParticle"
+        outputs="rdbms.ecore#//ColumnsType1/group"/>
+    <nested inputs="RDBMS.xsd#//columns;XSDElementDeclaration=10/XSDComplexTypeDefinition/XSDParticle/XSDModelGroup/XSDParticle"
+        outputs="rdbms.ecore#//ColumnsType1/column"/>
+  </nested>
+  <nested inputs="RDBMS.xsd#//columns;XSDElementDeclaration=10" outputs="rdbms.ecore#//DocumentRoot/columns"/>
+  <nested inputs="RDBMS.xsd#//columns_;XSDElementDeclaration/XSDComplexTypeDefinition"
+      outputs="rdbms.ecore#//ColumnsType">
+    <nested inputs="RDBMS.xsd#//columns_;XSDElementDeclaration/XSDComplexTypeDefinition/XSDParticle"
+        outputs="rdbms.ecore#//ColumnsType/group"/>
+    <nested inputs="RDBMS.xsd#//columns_;XSDElementDeclaration/XSDComplexTypeDefinition/XSDParticle/XSDModelGroup/XSDParticle"
+        outputs="rdbms.ecore#//ColumnsType/oID"/>
+  </nested>
+  <nested inputs="RDBMS.xsd#//columns_;XSDElementDeclaration" outputs="rdbms.ecore#//DocumentRoot/columns1"/>
+  <nested inputs="RDBMS.xsd#//columns_NOTREALLY;XSDElementDeclaration=3/XSDComplexTypeDefinition"
+      outputs="rdbms.ecore#//ColumnsNOTREALLYType">
+    <nested inputs="RDBMS.xsd#//columns_NOTREALLY;XSDElementDeclaration=3/XSDComplexTypeDefinition/XSDParticle/XSDModelGroup/XSDParticle"
+        outputs="rdbms.ecore#//ColumnsNOTREALLYType/oID"/>
+  </nested>
+  <nested inputs="RDBMS.xsd#//columns_NOTREALLY;XSDElementDeclaration=3" outputs="rdbms.ecore#//DocumentRoot/columnsNOTREALLY"/>
+  <nested inputs="RDBMS.xsd#//ForeignKey;XSDElementDeclaration=1/XSDComplexTypeDefinition"
+      outputs="rdbms.ecore#//ForeignKeyType">
+    <nested inputs="RDBMS.xsd#//ForeignKey;XSDElementDeclaration=1/XSDComplexTypeDefinition/XSDParticle/XSDModelGroup/XSDParticle"
+        outputs="rdbms.ecore#//ForeignKeyType/columns"/>
+    <nested inputs="RDBMS.xsd#//ForeignKey;XSDElementDeclaration=1/XSDComplexTypeDefinition/XSDAttributeUse=2"
+        outputs="rdbms.ecore#//ForeignKeyType/kind"/>
+    <nested inputs="RDBMS.xsd#//ForeignKey;XSDElementDeclaration=1/XSDComplexTypeDefinition/XSDAttributeUse=1"
+        outputs="rdbms.ecore#//ForeignKeyType/name"/>
+    <nested inputs="RDBMS.xsd#//ForeignKey;XSDElementDeclaration=1/XSDComplexTypeDefinition/XSDAttributeUse"
+        outputs="rdbms.ecore#//ForeignKeyType/oID"/>
+    <nested inputs="RDBMS.xsd#//ForeignKey;XSDElementDeclaration=1/XSDComplexTypeDefinition/XSDAttributeUse=3"
+        outputs="rdbms.ecore#//ForeignKeyType/owner"/>
+    <nested inputs="RDBMS.xsd#//ForeignKey;XSDElementDeclaration=1/XSDComplexTypeDefinition/XSDAttributeUse=4"
+        outputs="rdbms.ecore#//ForeignKeyType/refersTo"/>
+  </nested>
+  <nested inputs="RDBMS.xsd#//ForeignKey;XSDElementDeclaration=1" outputs="rdbms.ecore#//DocumentRoot/foreignKey"/>
+  <nested inputs="RDBMS.xsd#//foreignKeys;XSDElementDeclaration=2/XSDComplexTypeDefinition"
+      outputs="rdbms.ecore#//ForeignKeysType">
+    <nested inputs="RDBMS.xsd#//foreignKeys;XSDElementDeclaration=2/XSDComplexTypeDefinition/XSDParticle"
+        outputs="rdbms.ecore#//ForeignKeysType/group"/>
+    <nested inputs="RDBMS.xsd#//foreignKeys;XSDElementDeclaration=2/XSDComplexTypeDefinition/XSDParticle/XSDModelGroup/XSDParticle"
+        outputs="rdbms.ecore#//ForeignKeysType/foreignKey"/>
+  </nested>
+  <nested inputs="RDBMS.xsd#//foreignKeys;XSDElementDeclaration=2" outputs="rdbms.ecore#//DocumentRoot/foreignKeys"/>
+  <nested inputs="RDBMS.xsd#//hasForeignKeys_ONLYONE;XSDElementDeclaration=6" outputs="rdbms.ecore#//DocumentRoot/hasForeignKeysONLYONE"/>
+  <nested inputs="RDBMS.xsd#//Key;XSDElementDeclaration=4/XSDComplexTypeDefinition"
+      outputs="rdbms.ecore#//KeyType">
+    <nested inputs="RDBMS.xsd#//Key;XSDElementDeclaration=4/XSDComplexTypeDefinition/XSDParticle/XSDModelGroup/XSDParticle"
+        outputs="rdbms.ecore#//KeyType/columnsNOTREALLY"/>
+    <nested inputs="RDBMS.xsd#//Key;XSDElementDeclaration=4/XSDComplexTypeDefinition/XSDAttributeUse=2"
+        outputs="rdbms.ecore#//KeyType/kind"/>
+    <nested inputs="RDBMS.xsd#//Key;XSDElementDeclaration=4/XSDComplexTypeDefinition/XSDAttributeUse=1"
+        outputs="rdbms.ecore#//KeyType/name"/>
+    <nested inputs="RDBMS.xsd#//Key;XSDElementDeclaration=4/XSDComplexTypeDefinition/XSDAttributeUse"
+        outputs="rdbms.ecore#//KeyType/oID"/>
+  </nested>
+  <nested inputs="RDBMS.xsd#//key;XSDElementDeclaration=5/XSDComplexTypeDefinition"
+      outputs="rdbms.ecore#//KeyType1">
+    <nested inputs="RDBMS.xsd#//key;XSDElementDeclaration=5/XSDComplexTypeDefinition/XSDParticle/XSDModelGroup/XSDParticle"
+        outputs="rdbms.ecore#//KeyType1/key"/>
+  </nested>
+  <nested inputs="RDBMS.xsd#//key;XSDElementDeclaration=5" outputs="rdbms.ecore#//DocumentRoot/key"/>
+  <nested inputs="RDBMS.xsd#//Key;XSDElementDeclaration=4" outputs="rdbms.ecore#//DocumentRoot/key1"/>
+  <nested inputs="RDBMS.xsd#//keys_NOTREALLY;XSDElementDeclaration=8" outputs="rdbms.ecore#//DocumentRoot/keysNOTREALLY"/>
+  <nested inputs="RDBMS.xsd#//OID;XSDElementDeclaration=7" outputs="rdbms.ecore#//DocumentRoot/oID"/>
+  <nested inputs="RDBMS.xsd#//Table;XSDElementDeclaration=11/XSDComplexTypeDefinition"
+      outputs="rdbms.ecore#//TableType">
+    <nested inputs="RDBMS.xsd#//Table;XSDElementDeclaration=11/XSDComplexTypeDefinition/XSDParticle/XSDModelGroup/XSDParticle"
+        outputs="rdbms.ecore#//TableType/columns"/>
+    <nested inputs="RDBMS.xsd#//Table;XSDElementDeclaration=11/XSDComplexTypeDefinition/XSDParticle/XSDModelGroup/XSDParticle=1"
+        outputs="rdbms.ecore#//TableType/key"/>
+    <nested inputs="RDBMS.xsd#//Table;XSDElementDeclaration=11/XSDComplexTypeDefinition/XSDAttributeUse=2"
+        outputs="rdbms.ecore#//TableType/kind"/>
+    <nested inputs="RDBMS.xsd#//Table;XSDElementDeclaration=11/XSDComplexTypeDefinition/XSDAttributeUse=1"
+        outputs="rdbms.ecore#//TableType/name"/>
+    <nested inputs="RDBMS.xsd#//Table;XSDElementDeclaration=11/XSDComplexTypeDefinition/XSDAttributeUse"
+        outputs="rdbms.ecore#//TableType/oID"/>
+  </nested>
+  <nested inputs="RDBMS.xsd#//tables;XSDElementDeclaration=12/XSDComplexTypeDefinition"
+      outputs="rdbms.ecore#//TablesType">
+    <nested inputs="RDBMS.xsd#//tables;XSDElementDeclaration=12/XSDComplexTypeDefinition/XSDParticle"
+        outputs="rdbms.ecore#//TablesType/group"/>
+    <nested inputs="RDBMS.xsd#//tables;XSDElementDeclaration=12/XSDComplexTypeDefinition/XSDParticle/XSDModelGroup/XSDParticle"
+        outputs="rdbms.ecore#//TablesType/table"/>
+  </nested>
+  <nested inputs="RDBMS.xsd#//Schema;XSDElementDeclaration=13/XSDComplexTypeDefinition"
+      outputs="rdbms.ecore#//SchemaType">
+    <nested inputs="RDBMS.xsd#//Schema;XSDElementDeclaration=13/XSDComplexTypeDefinition/XSDParticle/XSDModelGroup/XSDParticle"
+        outputs="rdbms.ecore#//SchemaType/tables"/>
+    <nested inputs="RDBMS.xsd#//Schema;XSDElementDeclaration=13/XSDComplexTypeDefinition/XSDParticle/XSDModelGroup/XSDParticle=1"
+        outputs="rdbms.ecore#//SchemaType/foreignKeys"/>
+    <nested inputs="RDBMS.xsd#//Schema;XSDElementDeclaration=13/XSDComplexTypeDefinition/XSDAttributeUse=2"
+        outputs="rdbms.ecore#//SchemaType/kind"/>
+    <nested inputs="RDBMS.xsd#//Schema;XSDElementDeclaration=13/XSDComplexTypeDefinition/XSDAttributeUse=1"
+        outputs="rdbms.ecore#//SchemaType/name"/>
+    <nested inputs="RDBMS.xsd#//Schema;XSDElementDeclaration=13/XSDComplexTypeDefinition/XSDAttributeUse"
+        outputs="rdbms.ecore#//SchemaType/oID"/>
+  </nested>
+  <nested inputs="RDBMS.xsd#//RDBMS;XSDElementDeclaration=14/XSDComplexTypeDefinition"
+      outputs="rdbms.ecore#//RDBMSType">
+    <nested inputs="RDBMS.xsd#//RDBMS;XSDElementDeclaration=14/XSDComplexTypeDefinition/XSDParticle"
+        outputs="rdbms.ecore#//RDBMSType/group"/>
+    <nested inputs="RDBMS.xsd#//RDBMS;XSDElementDeclaration=14/XSDComplexTypeDefinition/XSDParticle/XSDModelGroup/XSDParticle"
+        outputs="rdbms.ecore#//RDBMSType/schema"/>
+  </nested>
+  <nested inputs="RDBMS.xsd#//RDBMS;XSDElementDeclaration=14" outputs="rdbms.ecore#//DocumentRoot/rDBMS"/>
+  <nested inputs="RDBMS.xsd#//Schema;XSDElementDeclaration=13" outputs="rdbms.ecore#//DocumentRoot/schema"/>
+  <nested inputs="RDBMS.xsd#//Table;XSDElementDeclaration=11" outputs="rdbms.ecore#//DocumentRoot/table"/>
+  <nested inputs="RDBMS.xsd#//tables;XSDElementDeclaration=12" outputs="rdbms.ecore#//DocumentRoot/tables"/>
+</xsd2ecore:XSD2EcoreMappingRoot>

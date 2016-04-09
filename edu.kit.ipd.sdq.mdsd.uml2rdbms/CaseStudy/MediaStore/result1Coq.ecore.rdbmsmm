@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="ASCII"?>
+<null:dummy xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:null="rdbmsMM" xsi:schemaLocation="rdbmsMM java://rdbmsMM.RdbmsMMPackage">
+  <containsSchema name="myPackage">
+    <table name="Library" hasForeignKey="//@containsSchema.0/@foreignKey.0">
+      <column name="Library_tid" type="NUMBER" hasKey="//@containsSchema.0/@table.0/@hasKey"/>
+      <column name="Library_LibraryToMedium_Medium_tid" type="NUMBER" hasForeignKey="//@containsSchema.0/@foreignKey.0"/>
+      <hasKey name="Library_pk" column="//@containsSchema.0/@table.0/@column.0"/>
+    </table>
+    <table name="Medium">
+      <column name="Medium_tid" type="NUMBER" hasKey="//@containsSchema.0/@table.1/@hasKey"/>
+      <column name="_author_name" type="VARCHAR"/>
+      <column name="numberOfPages" type="NUMBER"/>
+      <hasKey name="Medium_pk" column="//@containsSchema.0/@table.1/@column.0" referedBy="//@containsSchema.0/@foreignKey.0"/>
+    </table>
+    <table name="DVD">
+      <column name="DVD_tid" type="NUMBER" hasKey="//@containsSchema.0/@table.2/@hasKey"/>
+      <hasKey name="DVD_pk" column="//@containsSchema.0/@table.2/@column.0"/>
+    </table>
+    <table name="Book">
+      <column name="Book_tid" type="NUMBER" hasKey="//@containsSchema.0/@table.3/@hasKey"/>
+      <column name="numberOfPages" type="NUMBER"/>
+      <hasKey name="Book_pk" column="//@containsSchema.0/@table.3/@column.0"/>
+    </table>
+    <table name="Author">
+      <column name="Author_tid" type="NUMBER" hasKey="//@containsSchema.0/@table.4/@hasKey"/>
+      <column name="name" type="VARCHAR"/>
+      <hasKey name="Author_pk" column="//@containsSchema.0/@table.4/@column.0"/>
+    </table>
+    <foreignKey refersTo="//@containsSchema.0/@table.1/@hasKey" name="Library_LibraryToMedium_Medium" owner="//@containsSchema.0/@table.0" column="//@containsSchema.0/@table.0/@column.1"/>
+  </containsSchema>
+</null:dummy>

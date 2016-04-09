@@ -1,0 +1,1 @@
+After running the Eclipse workflow UMLinstantiator, copy the output from the project’s local models folder into this folder. Then run CompileUml2RdbmsAndCreateXsdFiles.sh and TransformAllInstantiatorResults.sh.

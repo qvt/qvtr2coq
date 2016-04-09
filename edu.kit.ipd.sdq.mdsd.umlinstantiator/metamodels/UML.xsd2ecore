@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xsd2ecore:XSD2EcoreMappingRoot xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsd2ecore="http://www.eclipse.org/emf/2002/XSD2Ecore" inputs="UML.ecore.xsd#/" outputs="uml.ecore#/" topToBottom="true">
+  <nested inputs="bundleentry://659.fwk1116264846/cache/www.w3.org/2000/10/XMLSchema.xsd#//string;XSDSimpleTypeDefinition=9"
+      outputs="http://www.eclipse.org/emf/2003/XMLType#//String"/>
+  <nested inputs="UML.ecore.xsd#//association;XSDElementDeclaration/XSDComplexTypeDefinition"
+      outputs="uml.ecore#//association">
+    <nested inputs="UML.ecore.xsd#//association;XSDElementDeclaration/XSDComplexTypeDefinition/XSDAttributeUse=4"
+        outputs="uml.ecore#//association/destination"/>
+    <nested inputs="UML.ecore.xsd#//association;XSDElementDeclaration/XSDComplexTypeDefinition/XSDAttributeUse=1"
+        outputs="uml.ecore#//association/kind"/>
+    <nested inputs="UML.ecore.xsd#//association;XSDElementDeclaration/XSDComplexTypeDefinition/XSDAttributeUse=2"
+        outputs="uml.ecore#//association/name"/>
+    <nested inputs="UML.ecore.xsd#//association;XSDElementDeclaration/XSDComplexTypeDefinition/XSDAttributeUse"
+        outputs="uml.ecore#//association/oID"/>
+    <nested inputs="UML.ecore.xsd#//association;XSDElementDeclaration/XSDComplexTypeDefinition/XSDAttributeUse=3"
+        outputs="uml.ecore#//association/source"/>
+  </nested>
+  <nested inputs="UML.ecore.xsd#//association;XSDElementDeclaration" outputs="uml.ecore#//DocumentRoot/association"/>
+  <nested inputs="UML.ecore.xsd#//generalClass;XSDElementDeclaration=5/XSDComplexTypeDefinition"
+      outputs="uml.ecore#//generalClass">
+    <nested inputs="UML.ecore.xsd#//generalClass;XSDElementDeclaration=5/XSDComplexTypeDefinition/XSDParticle/XSDModelGroup/XSDParticle"
+        outputs="uml.ecore#//generalClass/class"/>
+  </nested>
+  <nested inputs="UML.ecore.xsd#//attributes;XSDElementDeclaration=4/XSDComplexTypeDefinition"
+      outputs="uml.ecore#//attributes">
+    <nested inputs="UML.ecore.xsd#//attributes;XSDElementDeclaration=4/XSDComplexTypeDefinition/XSDParticle"
+        outputs="uml.ecore#//attributes/group"/>
+    <nested inputs="UML.ecore.xsd#//attributes;XSDElementDeclaration=4/XSDComplexTypeDefinition/XSDParticle/XSDModelGroup/XSDParticle"
+        outputs="uml.ecore#//attributes/attribute"/>
+  </nested>
+  <nested inputs="UML.ecore.xsd#//class_;XSDElementDeclaration=6/XSDComplexTypeDefinition"
+      outputs="uml.ecore#//class_">
+    <nested inputs="UML.ecore.xsd#//class_;XSDElementDeclaration=6/XSDComplexTypeDefinition/XSDParticle/XSDModelGroup/XSDParticle"
+        outputs="uml.ecore#//class_/generalClass"/>
+    <nested inputs="UML.ecore.xsd#//class_;XSDElementDeclaration=6/XSDComplexTypeDefinition/XSDParticle/XSDModelGroup/XSDParticle=1"
+        outputs="uml.ecore#//class_/attributes"/>
+    <nested inputs="UML.ecore.xsd#//class_;XSDElementDeclaration=6/XSDComplexTypeDefinition/XSDAttributeUse=1"
+        outputs="uml.ecore#//class_/kind"/>
+    <nested inputs="UML.ecore.xsd#//class_;XSDElementDeclaration=6/XSDComplexTypeDefinition/XSDAttributeUse=2"
+        outputs="uml.ecore#//class_/name"/>
+    <nested inputs="UML.ecore.xsd#//class_;XSDElementDeclaration=6/XSDComplexTypeDefinition/XSDAttributeUse"
+        outputs="uml.ecore#//class_/oID"/>
+  </nested>
+  <nested inputs="UML.ecore.xsd#//primitiveDataType;XSDElementDeclaration=1/XSDComplexTypeDefinition"
+      outputs="uml.ecore#//primitiveDataType">
+    <nested inputs="UML.ecore.xsd#//primitiveDataType;XSDElementDeclaration=1/XSDComplexTypeDefinition/XSDAttributeUse=1"
+        outputs="uml.ecore#//primitiveDataType/kind"/>
+    <nested inputs="UML.ecore.xsd#//primitiveDataType;XSDElementDeclaration=1/XSDComplexTypeDefinition/XSDAttributeUse=2"
+        outputs="uml.ecore#//primitiveDataType/name"/>
+    <nested inputs="UML.ecore.xsd#//primitiveDataType;XSDElementDeclaration=1/XSDComplexTypeDefinition/XSDAttributeUse"
+        outputs="uml.ecore#//primitiveDataType/oID"/>
+  </nested>
+  <nested inputs="UML.ecore.xsd#//ownerClassifier;XSDElementDeclaration=2/XSDComplexTypeDefinition"
+      outputs="uml.ecore#//ownerClassifier">
+    <nested inputs="UML.ecore.xsd#//ownerClassifier;XSDElementDeclaration=2/XSDComplexTypeDefinition/XSDParticle/XSDModelGroup/XSDParticle"
+        outputs="uml.ecore#//ownerClassifier/class"/>
+    <nested inputs="UML.ecore.xsd#//ownerClassifier;XSDElementDeclaration=2/XSDComplexTypeDefinition/XSDParticle/XSDModelGroup/XSDParticle=1"
+        outputs="uml.ecore#//ownerClassifier/primitiveDataType"/>
+  </nested>
+  <nested inputs="UML.ecore.xsd#//attribute;XSDElementDeclaration=3/XSDComplexTypeDefinition"
+      outputs="uml.ecore#//attribute">
+    <nested inputs="UML.ecore.xsd#//attribute;XSDElementDeclaration=3/XSDComplexTypeDefinition/XSDParticle/XSDModelGroup/XSDParticle"
+        outputs="uml.ecore#//attribute/ownerClassifier"/>
+    <nested inputs="UML.ecore.xsd#//attribute;XSDElementDeclaration=3/XSDComplexTypeDefinition/XSDAttributeUse=1"
+        outputs="uml.ecore#//attribute/kind"/>
+    <nested inputs="UML.ecore.xsd#//attribute;XSDElementDeclaration=3/XSDComplexTypeDefinition/XSDAttributeUse=2"
+        outputs="uml.ecore#//attribute/name"/>
+    <nested inputs="UML.ecore.xsd#//attribute;XSDElementDeclaration=3/XSDComplexTypeDefinition/XSDAttributeUse"
+        outputs="uml.ecore#//attribute/oID"/>
+  </nested>
+  <nested inputs="UML.ecore.xsd#//attribute;XSDElementDeclaration=3" outputs="uml.ecore#//DocumentRoot/attribute"/>
+  <nested inputs="UML.ecore.xsd#//attributes;XSDElementDeclaration=4" outputs="uml.ecore#//DocumentRoot/attributes"/>
+  <nested inputs="UML.ecore.xsd#//class_;XSDElementDeclaration=6" outputs="uml.ecore#//DocumentRoot/class"/>
+  <nested inputs="UML.ecore.xsd#//classifiersAndAssociations;XSDElementDeclaration=7/XSDComplexTypeDefinition"
+      outputs="uml.ecore#//classifiersAndAssociations">
+    <nested inputs="UML.ecore.xsd#//classifiersAndAssociations;XSDElementDeclaration=7/XSDComplexTypeDefinition/XSDParticle"
+        outputs="uml.ecore#//classifiersAndAssociations/group"/>
+    <nested inputs="UML.ecore.xsd#//classifiersAndAssociations;XSDElementDeclaration=7/XSDComplexTypeDefinition/XSDParticle/XSDModelGroup/XSDParticle"
+        outputs="uml.ecore#//classifiersAndAssociations/class"/>
+    <nested inputs="UML.ecore.xsd#//classifiersAndAssociations;XSDElementDeclaration=7/XSDComplexTypeDefinition/XSDParticle/XSDModelGroup/XSDParticle=1"
+        outputs="uml.ecore#//classifiersAndAssociations/primitiveDataType"/>
+    <nested inputs="UML.ecore.xsd#//classifiersAndAssociations;XSDElementDeclaration=7/XSDComplexTypeDefinition/XSDParticle/XSDModelGroup/XSDParticle=2"
+        outputs="uml.ecore#//classifiersAndAssociations/association"/>
+  </nested>
+  <nested inputs="UML.ecore.xsd#//classifiersAndAssociations;XSDElementDeclaration=7"
+      outputs="uml.ecore#//DocumentRoot/classifiersAndAssociations"/>
+  <nested inputs="UML.ecore.xsd#//generalClass;XSDElementDeclaration=5" outputs="uml.ecore#//DocumentRoot/generalClass"/>
+  <nested inputs="UML.ecore.xsd#//ownerClassifier;XSDElementDeclaration=2" outputs="uml.ecore#//DocumentRoot/ownerClassifier"/>
+  <nested inputs="UML.ecore.xsd#//package_;XSDElementDeclaration=8/XSDComplexTypeDefinition"
+      outputs="uml.ecore#//package_">
+    <nested inputs="UML.ecore.xsd#//package_;XSDElementDeclaration=8/XSDComplexTypeDefinition/XSDParticle/XSDModelGroup/XSDParticle"
+        outputs="uml.ecore#//package_/classifiersAndAssociations"/>
+    <nested inputs="UML.ecore.xsd#//package_;XSDElementDeclaration=8/XSDComplexTypeDefinition/XSDAttributeUse=1"
+        outputs="uml.ecore#//package_/kind"/>
+    <nested inputs="UML.ecore.xsd#//package_;XSDElementDeclaration=8/XSDComplexTypeDefinition/XSDAttributeUse=2"
+        outputs="uml.ecore#//package_/name"/>
+    <nested inputs="UML.ecore.xsd#//package_;XSDElementDeclaration=8/XSDComplexTypeDefinition/XSDAttributeUse"
+        outputs="uml.ecore#//package_/oID"/>
+  </nested>
+  <nested inputs="UML.ecore.xsd#//package_;XSDElementDeclaration=8" outputs="uml.ecore#//DocumentRoot/package"/>
+  <nested inputs="UML.ecore.xsd#//packages;XSDElementDeclaration=9/XSDComplexTypeDefinition"
+      outputs="uml.ecore#//packages">
+    <nested inputs="UML.ecore.xsd#//packages;XSDElementDeclaration=9/XSDComplexTypeDefinition/XSDParticle"
+        outputs="uml.ecore#//packages/group"/>
+    <nested inputs="UML.ecore.xsd#//packages;XSDElementDeclaration=9/XSDComplexTypeDefinition/XSDParticle/XSDModelGroup/XSDParticle"
+        outputs="uml.ecore#//packages/package"/>
+  </nested>
+  <nested inputs="UML.ecore.xsd#//packages;XSDElementDeclaration=9" outputs="uml.ecore#//DocumentRoot/packages"/>
+  <nested inputs="UML.ecore.xsd#//primitiveDataType;XSDElementDeclaration=1" outputs="uml.ecore#//DocumentRoot/primitiveDataType"/>
+  <nested inputs="UML.ecore.xsd#//UML;XSDElementDeclaration=10/XSDComplexTypeDefinition"
+      outputs="uml.ecore#//UML">
+    <nested inputs="UML.ecore.xsd#//UML;XSDElementDeclaration=10/XSDComplexTypeDefinition/XSDParticle/XSDModelGroup/XSDParticle"
+        outputs="uml.ecore#//UML/packages"/>
+  </nested>
+  <nested inputs="UML.ecore.xsd#//UML;XSDElementDeclaration=10" outputs="uml.ecore#//DocumentRoot/uML"/>
+</xsd2ecore:XSD2EcoreMappingRoot>

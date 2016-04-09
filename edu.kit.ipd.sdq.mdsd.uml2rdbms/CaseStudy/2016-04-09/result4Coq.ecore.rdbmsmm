@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="ASCII"?>
+<null:dummy xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:null="rdbmsMM" xsi:schemaLocation="rdbmsMM java://rdbmsMM.RdbmsMMPackage">
+  <containsSchema name="Object0">
+    <table name="Object1" hasForeignKey="//@containsSchema.0/@foreignKey.1">
+      <column name="Object1_tid" type="NUMBER" hasKey="//@containsSchema.0/@table.0/@hasKey"/>
+      <column name="Object2" type="VARCHAR"/>
+      <column name="Object3" type="VARCHAR"/>
+      <column name="Object4" type="VARCHAR"/>
+      <column name="Object1_Object30_Object12_tid" type="NUMBER" hasForeignKey="//@containsSchema.0/@foreignKey.1"/>
+      <hasKey name="Object1_pk" column="//@containsSchema.0/@table.0/@column.0" referedBy="//@containsSchema.0/@foreignKey.0 //@containsSchema.0/@foreignKey.2"/>
+    </table>
+    <table name="Object5" hasForeignKey="//@containsSchema.0/@foreignKey.0">
+      <column name="Object5_tid" type="NUMBER" hasKey="//@containsSchema.0/@table.1/@hasKey"/>
+      <column name="Object7" type="VARCHAR"/>
+      <column name="Object8" type="VARCHAR"/>
+      <column name="Object9" type="VARCHAR"/>
+      <column name="Object11" type="VARCHAR"/>
+      <column name="_Object6_Object2" type="VARCHAR"/>
+      <column name="_Object6_Object3" type="VARCHAR"/>
+      <column name="_Object6_Object4" type="VARCHAR"/>
+      <column name="_Object10_Object13" type="VARCHAR"/>
+      <column name="_Object10_Object14" type="VARCHAR"/>
+      <column name="_Object10_Object15" type="VARCHAR"/>
+      <column name="Object5_Object29_Object1_tid" type="NUMBER" hasForeignKey="//@containsSchema.0/@foreignKey.0"/>
+      <hasKey name="Object5_pk" column="//@containsSchema.0/@table.1/@column.0"/>
+    </table>
+    <table name="Object12" hasForeignKey="//@containsSchema.0/@foreignKey.2">
+      <column name="Object12_tid" type="NUMBER" hasKey="//@containsSchema.0/@table.2/@hasKey"/>
+      <column name="Object13" type="VARCHAR"/>
+      <column name="Object14" type="VARCHAR"/>
+      <column name="Object15" type="VARCHAR"/>
+      <column name="Object12_Object31_Object1_tid" type="NUMBER" hasForeignKey="//@containsSchema.0/@foreignKey.2"/>
+      <hasKey name="Object12_pk" column="//@containsSchema.0/@table.2/@column.0" referedBy="//@containsSchema.0/@foreignKey.1"/>
+    </table>
+    <foreignKey refersTo="//@containsSchema.0/@table.0/@hasKey" name="Object5_Object29_Object1" owner="//@containsSchema.0/@table.1" column="//@containsSchema.0/@table.1/@column.11"/>
+    <foreignKey refersTo="//@containsSchema.0/@table.2/@hasKey" name="Object1_Object30_Object12" owner="//@containsSchema.0/@table.0" column="//@containsSchema.0/@table.0/@column.4"/>
+    <foreignKey refersTo="//@containsSchema.0/@table.0/@hasKey" name="Object12_Object31_Object1" owner="//@containsSchema.0/@table.2" column="//@containsSchema.0/@table.2/@column.4"/>
+  </containsSchema>
+</null:dummy>

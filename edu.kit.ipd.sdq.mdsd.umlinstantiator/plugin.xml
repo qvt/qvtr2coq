@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated umlMM.xml -->
+      <package
+            uri="umlMM"
+            class="umlMM.UmlMMPackage"
+            genModel="metamodels/umlMM.xml.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated umlMM.xml -->
+      <parser
+            type="umlmm_"
+            class="umlMM.util.UmlMMResourceFactoryImpl"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated umlMM -->
+      <package
+            uri="umlMM_"
+            class="umlMM_.UmlMMPackage"
+            genModel="metamodels/umlMM.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated UML -->
+      <package
+            uri="uml"
+            class="uml.UmlPackage"
+            genModel="metamodels/UML.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated UML -->
+      <parser
+            type="xml"
+            class="uml.util.UmlResourceFactoryImpl"/>
+   </extension>
+</plugin>

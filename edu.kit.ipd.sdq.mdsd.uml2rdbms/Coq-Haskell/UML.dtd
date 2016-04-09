@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE UML [
+<!ELEMENT association EMPTY >
+<!ELEMENT primitiveDataType EMPTY >
+<!ELEMENT ownerClassifier (class_ | primitiveDataType) >
+<!ELEMENT attribute (ownerClassifier) >
+<!ELEMENT attributes (attribute)* >
+<!ELEMENT generalClass (class_)? >
+<!ELEMENT class_ (generalClass, attributes) >
+<!ELEMENT classifiersAndAssociations (class_ | primitiveDataType | association)* >
+<!ELEMENT package_ (classifiersAndAssociations) >
+<!ELEMENT packages (package_)* >
+<!ELEMENT UML (packages) >
+<!ATTLIST association oID CDATA #REQUIRED >
+<!ATTLIST association kind CDATA #REQUIRED >
+<!ATTLIST association name CDATA #REQUIRED >
+<!ATTLIST association source CDATA #REQUIRED >
+<!ATTLIST association destination CDATA #REQUIRED >
+<!ATTLIST primitiveDataType oID CDATA #REQUIRED >
+<!ATTLIST primitiveDataType kind CDATA #REQUIRED >
+<!ATTLIST primitiveDataType name CDATA #REQUIRED >
+<!ATTLIST attribute oID CDATA #REQUIRED >
+<!ATTLIST attribute kind CDATA #REQUIRED >
+<!ATTLIST attribute name CDATA #REQUIRED >
+<!ATTLIST class_ oID CDATA #REQUIRED >
+<!ATTLIST class_ kind CDATA #REQUIRED >
+<!ATTLIST class_ name CDATA #REQUIRED >
+<!ATTLIST package_ oID CDATA #REQUIRED >
+<!ATTLIST package_ kind CDATA #REQUIRED >
+<!ATTLIST package_ name CDATA #REQUIRED >
+]>
+

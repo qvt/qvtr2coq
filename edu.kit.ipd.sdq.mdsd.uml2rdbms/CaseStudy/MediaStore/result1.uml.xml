@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<UML>
+  <packages>
+    <package_ kind="OTHER" name="myPackage" oID="0">
+      <classifiersAndAssociations>
+        <class_ kind="PERSISTENT" name="Library" oID="1">
+          <generalClass/>
+          <attributes/>
+        </class_>
+        <class_ kind="PERSISTENT" name="Medium" oID="2">
+          <generalClass>
+            <class_ kind="PERSISTENT" name="Book" oID="7">
+              <generalClass/>
+              <attributes>
+                <attribute kind="OTHER" name="numberOfPages" oID="8">
+                  <ownerClassifier>
+                    <primitiveDataType kind="OTHER" name="Integer" oID="9"/>
+                  </ownerClassifier>
+                </attribute>
+              </attributes>
+            </class_>
+          </generalClass>
+          <attributes>
+            <attribute kind="OTHER" name="author" oID="3">
+              <ownerClassifier>
+                <class_ kind="PERSISTENT" name="Author" oID="4">
+                  <generalClass/>
+                  <attributes>
+                    <attribute kind="OTHER" name="name" oID="5">
+                      <ownerClassifier>
+                        <primitiveDataType kind="OTHER" name="String" oID="6"/>
+                      </ownerClassifier>
+                    </attribute>
+                  </attributes>
+                </class_>
+              </ownerClassifier>
+            </attribute>
+          </attributes>
+        </class_>
+        <class_ kind="PERSISTENT" name="DVD" oID="10">
+          <generalClass/>
+          <attributes/>
+        </class_>
+        <class_ kind="PERSISTENT" name="Book" oID="7">
+          <generalClass/>
+          <attributes>
+            <attribute kind="OTHER" name="numberOfPages" oID="8">
+              <ownerClassifier>
+                <primitiveDataType kind="OTHER" name="Integer" oID="9"/>
+              </ownerClassifier>
+            </attribute>
+          </attributes>
+        </class_>
+        <class_ kind="PERSISTENT" name="Author" oID="4">
+          <generalClass/>
+          <attributes>
+            <attribute kind="OTHER" name="name" oID="5">
+              <ownerClassifier>
+                <primitiveDataType kind="OTHER" name="String" oID="6"/>
+              </ownerClassifier>
+            </attribute>
+          </attributes>
+        </class_>
+        <class_ kind="OTHER" name="NonPersistentClass" oID="11">
+          <generalClass/>
+          <attributes/>
+        </class_>
+        <primitiveDataType kind="OTHER" name="Integer" oID="9"/>
+        <primitiveDataType kind="OTHER" name="String" oID="6"/>
+        <association destination="2" kind="OTHER" name="LibraryToMedium" oID="12" source="1"/>
+      </classifiersAndAssociations>
+    </package_>
+  </packages>
+</UML>

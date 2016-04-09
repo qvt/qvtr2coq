@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ASCII"?>
+<umlMM:dummy xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:umlMM="umlMM" xsi:schemaLocation="umlMM java://umlMM.UmlMMPackage" xmi:id="__jdL4fUlEeWO3cjj4fIKQA">
+  <containsPackage xmi:id="__jdy8PUlEeWO3cjj4fIKQA" name="myPackage">
+    <classifier xsi:type="umlMM:Class" xmi:id="__jdy8fUlEeWO3cjj4fIKQA" name="Library" kind="Persistent" sourceOf="__jdy_PUlEeWO3cjj4fIKQA"/>
+    <classifier xsi:type="umlMM:Class" xmi:id="__jdy8vUlEeWO3cjj4fIKQA" name="Medium" kind="Persistent" general="__jdy9fUlEeWO3cjj4fIKQA" destinationOf="__jdy_PUlEeWO3cjj4fIKQA">
+      <attribute xmi:id="__jdy8_UlEeWO3cjj4fIKQA" name="author" type="__jdy9_UlEeWO3cjj4fIKQA"/>
+    </classifier>
+    <classifier xsi:type="umlMM:Class" xmi:id="__jdy9PUlEeWO3cjj4fIKQA" name="DVD" kind="Persistent"/>
+    <classifier xsi:type="umlMM:Class" xmi:id="__jdy9fUlEeWO3cjj4fIKQA" name="Book" kind="Persistent" subclass="__jdy8vUlEeWO3cjj4fIKQA">
+      <attribute xmi:id="__jdy9vUlEeWO3cjj4fIKQA" name="numberOfPages" type="__jdy-vUlEeWO3cjj4fIKQA"/>
+    </classifier>
+    <classifier xsi:type="umlMM:Class" xmi:id="__jdy9_UlEeWO3cjj4fIKQA" name="Author" typeOf="__jdy8_UlEeWO3cjj4fIKQA" kind="Persistent">
+      <attribute xmi:id="__jdy-PUlEeWO3cjj4fIKQA" name="name" type="__jdy-_UlEeWO3cjj4fIKQA"/>
+    </classifier>
+    <classifier xsi:type="umlMM:Class" xmi:id="__jdy-fUlEeWO3cjj4fIKQA" name="NonPersistentClass" kind="Other"/>
+    <classifier xsi:type="umlMM:PrimitiveDataType" xmi:id="__jdy-vUlEeWO3cjj4fIKQA" name="INTEGER" typeOf="__jdy9vUlEeWO3cjj4fIKQA"/>
+    <classifier xsi:type="umlMM:PrimitiveDataType" xmi:id="__jdy-_UlEeWO3cjj4fIKQA" name="STRING" typeOf="__jdy-PUlEeWO3cjj4fIKQA"/>
+    <association xmi:id="__jdy_PUlEeWO3cjj4fIKQA" name="LibraryToMedium" source="__jdy8fUlEeWO3cjj4fIKQA" destination="__jdy8vUlEeWO3cjj4fIKQA"/>
+  </containsPackage>
+</umlMM:dummy>
