@@ -5,7 +5,8 @@ The result currently lacks a functional implementation and a proof that the impl
 
 ## Steps
 
-1. Install the QVTd project (the 2012 version, the QVTr metamodel of later versions are no longer compatible)
+1. Install Eclipse Luna Modeling Edition and click on Install Modeling Components to install:
+  * QVTd project (the 2014 version, the QVTr metamodel of later versions might be incompatible)
 2. Run the transformation on an input QVTr transformation script (e.g., Uml2Rdbms.qvtr) by starting the Eclipse workflow QVTrelation2Coq
 3. Add a functional implementation based on the output Coq templated
 4. Provide a proof that the functional implementation adheres to the functional implementation

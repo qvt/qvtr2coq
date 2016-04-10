@@ -8,7 +8,6 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.EMOFResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
@@ -17,10 +16,9 @@ import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.model.OCLstdlib;
-import org.eclipse.ocl.examples.xtext.oclinecore.OCLinEcoreStandaloneSetup;
-import org.eclipse.uml2.uml.profile.l2.L2Package;
+import org.eclipse.uml2.uml.profile.standard.StandardPackage;
+//import org.eclipse.uml2.uml.profile.l2.L2Package;
 import org.eclipse.uml2.uml.resource.UML302UMLResource;
-import org.eclipse.uml2.uml.resource.UMLResource;
 
 public class UmlResourceSet extends ResourceSetImpl {
 	public UmlResourceSet() {
@@ -41,7 +39,7 @@ public class UmlResourceSet extends ResourceSetImpl {
 
     	// setup UML
 //		debugPrintln("-----Starting " + getClass().getSimpleName() + "." + getName() + "-----");
-		EPackage.Registry.INSTANCE.put(UML302UMLResource.STANDARD_PROFILE_NS_URI, L2Package.eINSTANCE);
+		EPackage.Registry.INSTANCE.put(UML302UMLResource.STANDARD_PROFILE_NS_URI, /*L2Package.eINSTANCE*/ StandardPackage.eINSTANCE);
 
 		// setup QVTcore
 //		QVTcoreStandaloneSetup.doSetup();

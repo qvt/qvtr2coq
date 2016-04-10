@@ -6,12 +6,12 @@ Our approach integrates five steps into an almost fully automatized workflow:
 
 * Grouping of Xtend scripts into two projects with a single MWE workflow each, UMLinstantiator and RDBMScomparator
 * Custom MWE2 MweBulkReader + MweBulkTransformer + MweBulkWriter components and
-	* MweBulkReader: Read a list of ResourceSets from a folder and put into output slot 
-	* MweBulkTransformer: Take a list of ResourceSets, and for each transform the model contained, and finally return a list of new ResourceSets (same order, old URI?)
-	* MweBulkWriter: Output a list of ResourceSets into a folder using the input ResourceSet's name URI (but replace/append file ending?)
+  * MweBulkReader: Read a list of ResourceSets from a folder and put into output slot 
+  * MweBulkTransformer: Take a list of ResourceSets, and for each transform the model contained, and finally return a list of new ResourceSets (same order, old URI?)
+  * MweBulkWriter: Output a list of ResourceSets into a folder using the input ResourceSet's name URI (but replace/append file ending?)
 * CoqBulkTransform.sh + ModelMorfBulkTransform.bat
-	* TransformAllInstantorResults.sh: Run script on each file following pattern *.uml.xml
-	* transformInstantiatorResults.bat: Run script on each file following pattern *.emof.umlmm
+  * TransformAllInstantorResults.sh: Run script on each file following pattern *.uml.xml
+  * transformInstantiatorResults.bat: Run script on each file following pattern *.emof.umlmm
 
 Note: Transformation engines mediniQVT and Eclipse QVTd are not yet supported.
 
@@ -40,8 +40,9 @@ Script TransformAllInstantorResults.sh: Transform the generated UML models with 
 * Run TransformAllInstantorResults.sh which transforms ./models/*.uml.xml into ./models/*.rdbms.xml
 
 Script TransformInstantiatorResults.bat: Run the ModelMorf transformation
-* ModelMorf must be installed under Windows, because there is a JVM incompatibility that causes an exception under OSX   
+* Get ModelMorf from https://web.archive.org/web/20120323171429/http://www.tcs-trddc.com/trddc_website/ModelMorf/ModelMorf.htm and obtain a license from the developers
 * Extract the ModelMorf.zip file on a Windows OS with Java installed
+  ModelMorf must be installed under Windows, because there is a JVM incompatibility that causes an exception under OSX   
 * Copy the file ModelMorf\Example\UmlToRdbms\TransformInstantiatorResults.bat to the folder ModelMorf\Example\UmlToRdbms
 * Copy the models folder from the previous step into the folder ModelMorf\Example\UmlToRdbms where the script transformInstantiatorResults.bat resides
 * Run the batch file TransformInstantiatorResults.bat to transform .\models\*.emof.umlmm into .\models\*.emof.rdbmsmm - This can take many hours!
@@ -115,7 +116,7 @@ No differences found:
   * .xmi models from Medini for Ecore and .xml models from ModelMorf for Emof => MWE2 workflow and Xtend script
     * The QVT-O project defines an EMFdiffer to compare models for their unit tests, useful? Probably too much effort involved!
     * Wrote a custom differ for RDBMS model instances
-	* Created diff report file per file set, i.e. result1.* -> result1.txt, result2.* -> result2.txt, ...
+    * Created diff report file per file set, i.e. result1.* -> result1.txt, result2.* -> result2.txt, ...
 
 ## Literature and Links
 UML2RDBMS under Willinks QVTi implementation: http://dev.eclipse.org/mhonarc/lists/qvtd-dev/msg00107.html

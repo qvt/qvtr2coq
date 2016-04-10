@@ -3,7 +3,7 @@ package edu.kit.ipd.sdq.mdsd.qvtrelation2coq
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.resource.Resource
-import org.eclipse.qvtd.xtext.qvtrelationcst.TopLevelCS
+import org.eclipse.qvtd.xtext.qvtrelation.qvtrelationcs.TopLevelCS
 import org.eclipse.xtext.generator.IFileSystemAccess
 import org.eclipse.xtext.generator.IGenerator
 import javax.inject.Inject
@@ -22,7 +22,7 @@ class Generator implements IGenerator {
 	 
 	///////////////////////////////////////////////////////////////////////////
 	// Catch unhandled input resources
-	def dispatch void compile(EObject eObject, IFileSystemAccess fsa) {
+	def dispatch compile(EObject eObject, IFileSystemAccess fsa) {
 		println("Warning, no generator defined for input resource " + eObject.toString)
 	}
 
