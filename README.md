@@ -26,7 +26,7 @@ Additionally, we provide a verified implementation of *UML2RDBMS* as an example 
 * *UML2RDBMS* contains a Haskell implementation with a thin XML wrapper around the UML2RDBMS implementation extracted from the proof.
 * *RDBMScomparator* compares the output of the ModelMorf engine against the output of our own Haskell implementation.
 
-The study demonstrates that all 100 randomly generated model instances result in RDBMS model instances equal on ModelMorf and our verified implementation. It is possible to verify additional QVT-R execution engines, like Eclipse QVTd or qvtMedini. Results can be found in folder **[CaseStudy](http://github.com/qvt/qvtr2coq/tree/master//Users/Andreas/Code/git/qvtr2coq/edu.kit.ipd.sdq.mdsd.uml2rdbms/CaseStudy/2016-04-09)**.
+The study demonstrates that all 100 randomly generated model instances result in RDBMS model instances equal on ModelMorf and our verified implementation. It is possible to verify additional QVT-R execution engines, like Eclipse QVTd or qvtMedini. Results can be found in folder **[CaseStudy](http://github.com/qvt/qvtr2coq/tree/master/edu.kit.ipd.sdq.mdsd.uml2rdbms/CaseStudy/2016-04-09)**.
 
 ### Installing
 
