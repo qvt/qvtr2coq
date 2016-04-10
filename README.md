@@ -20,7 +20,13 @@ The project consists of three Xtend-based model transformations for encoding QVT
 * *Ecore2Coq* translates Ecore metamodels to Coq specifications;
 * *XMI2Coq* translates Ecore instances to Coq specifications.
 
-Additionally, we provide a verified implementation of *UML2RDBMS* as an example use case.
+Additionally, we provide a verified implementation of *UML2RDBMS* as an example use case. We made a case study that compares the behavior of ModelMorf against our own language specification with respect to the UML2RDBMS transformation. This involves:
+
+* *UMLinstantiator* generates a defined number of randomly generated UML model instances.
+* *UML2RDBMS* contains a Haskell implementation with a thin XML wrapper around the UML2RDBMS implementation extracted from the proof.
+* *RDBMScomparator* compares the output of the ModelMorf engine against the output of our own Haskell implementation.
+
+The study demonstrates that all 100 randomly generated model instances result in RDBMS model instances equal on ModelMorf and our verified implementation. It is possible to verify additional QVT-R execution engines, like Eclipse QVTd or qvtMedini.
 
 ### Installing
 
