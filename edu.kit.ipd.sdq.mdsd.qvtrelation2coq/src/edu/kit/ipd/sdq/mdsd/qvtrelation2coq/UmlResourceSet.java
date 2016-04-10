@@ -39,7 +39,7 @@ public class UmlResourceSet extends ResourceSetImpl {
 
     	// setup UML
 //		debugPrintln("-----Starting " + getClass().getSimpleName() + "." + getName() + "-----");
-		EPackage.Registry.INSTANCE.put(UML302UMLResource.STANDARD_PROFILE_NS_URI, /*L2Package.eINSTANCE*/ StandardPackage.eINSTANCE);
+		EPackage.Registry.INSTANCE.put(UML302UMLResource.STANDARD_PROFILE_NS_URI, /*L2Package.eINSTANCE*/StandardPackage.eINSTANCE);
 
 		// setup QVTcore
 //		QVTcoreStandaloneSetup.doSetup();
